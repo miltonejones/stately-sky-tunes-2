@@ -27,6 +27,7 @@ export default function AudioPlayer(props) {
   const { player, isMobile } = props;
   const { intro, silent } = player.state.context;
   const Component = isMobile ? SmallPlayer : AudioPlayerBody;
+  if (!player.state.can("stop")) return <i />;
   return (
     <>
       <Snackbar

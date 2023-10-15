@@ -116,7 +116,14 @@ export default function Dashboard({
           state.context.dashboard
             .filter((f) => f.Type === "artist")
             .slice(0, 10)
-            .map((item) => <DashCard item={item} />)}
+            .map((item) => (
+              <DashCard
+                onClick={() => {
+                  openList("artist", item.ID);
+                }}
+                item={item}
+              />
+            ))}
       </Box>
     </>
   );

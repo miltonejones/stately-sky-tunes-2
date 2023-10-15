@@ -66,8 +66,8 @@ function App() {
   };
   const playing = player.state.can("stop");
   let offset = playing ? OFFSET_MARGIN + PLAYER_MARGIN : OFFSET_MARGIN;
-  if (isMobile && playing) {
-    offset += 104;
+  if (isMobile) {
+    offset += playing ? 104 : 64;
   }
   return (
     <>
