@@ -68,6 +68,9 @@ function App() {
   let offset = playing ? OFFSET_MARGIN + PLAYER_MARGIN : OFFSET_MARGIN;
   if (isMobile) {
     offset += playing ? 104 : 64;
+    if (rotated) {
+      // offset -= 64;
+    }
   }
   return (
     <>

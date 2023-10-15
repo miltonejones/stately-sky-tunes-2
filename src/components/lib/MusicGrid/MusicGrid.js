@@ -2,9 +2,18 @@ import { Box } from "@mui/material";
 import DashCard from "../DashCard/DashCard";
 import { LIST_IDENTIFIER } from "../../../constants";
 
-export default function MusicGrid({ openList, isMobile, records, state }) {
+export default function MusicGrid({
+  openList,
+  isMobile,
+  rotated,
+  records,
+  state,
+}) {
   const { type } = state.context.queryProps;
-  const gridTemplateColumns = isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr 1fr";
+  let gridTemplateColumns = isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr 1fr";
+  if (rotated) {
+    gridTemplateColumns = "1fr 1fr 1fr 1fr";
+  }
   return (
     <Box
       sx={{ p: 2, display: "grid", gridTemplateColumns: gridTemplateColumns }}

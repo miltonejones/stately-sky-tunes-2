@@ -14,12 +14,21 @@ export default function MusicList({
   state,
   openList,
   isMobile,
+  rotated,
 }) {
   if (isMobile) {
+    const sx = rotated
+      ? { p: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1 }
+      : { p: 1 };
     return (
-      <Box sx={{ p: 1 }}>
+      <Box sx={sx}>
         {records?.map((record) => (
-          <Stack sx={{ pb: 1 }}>
+          <Stack
+            sx={{
+              pb: 1,
+              width: rotated ? "calc(33vw - 16px)" : "calc(100vw - 16px)",
+            }}
+          >
             <Flex spacing={1}>
               <Avatar
                 sx={{ width: 30, height: 30 }}

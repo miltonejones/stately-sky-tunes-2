@@ -17,12 +17,19 @@ const Nav = styled(Paper)(({ theme }) => ({
   left: 0,
   right: 0,
   zIndex: 100,
-  "@media screen and (max-width: 912px) and (orientation: landscape)": {
-    display: "none",
-  },
+  // "@media screen and (max-width: 912px) and (orientation: landscape)": {
+  //   display: "none",
+  // },
 }));
 
-export default function AppFooter({ setState, send, state, events, isMobile }) {
+export default function AppFooter({
+  setState,
+  send,
+  state,
+  events,
+  rotated,
+  isMobile,
+}) {
   const sx = { color: "white", cursor: "pointer" };
   const value = Object.keys(navigationIcons).find((e) =>
     state.matches(events[e])
@@ -63,7 +70,7 @@ export default function AppFooter({ setState, send, state, events, isMobile }) {
           </Typography>
         </Flex>
       </Flex>
-      {!!isMobile && (
+      {!!(isMobile || rotated) && (
         <Nav elevation={3}>
           <BottomNavigation showLabels value={value}>
             {Object.keys(navigationIcons).map((key) => (

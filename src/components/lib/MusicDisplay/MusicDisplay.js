@@ -44,18 +44,20 @@ export default function MusicDisplay(props) {
   return (
     <>
       {" "}
-      <Flex spacing={1} sx={{ p: 2 }}>
-        <MemoryButtons {...props} />
+      {!props.rotated && (
+        <Flex spacing={1} sx={{ p: 2 }}>
+          <MemoryButtons {...props} />
 
-        <MusicListBreadcrumbs {...props} />
-        <Spacer />
-        {!props.isMobile && <Typography variant="h6">SkyTunes</Typography>}
-        <Avatar
-          onClick={() => props.setState("debug", !props.state.context.debug)}
-          src="https://www.sky-tunes.com/assets/icon-72x72.png"
-          alt="logo"
-        />
-      </Flex>
+          <MusicListBreadcrumbs {...props} />
+          <Spacer />
+          {!props.isMobile && <Typography variant="h6">SkyTunes</Typography>}
+          <Avatar
+            onClick={() => props.setState("debug", !props.state.context.debug)}
+            src="https://www.sky-tunes.com/assets/icon-72x72.png"
+            alt="logo"
+          />
+        </Flex>
+      )}
       <MusicPagination {...props} queryProps={props.state.context.queryProps} />
       {!!props.isMobile && (
         <Flex sx={{ pb: 1, pt: 1 }} spacing={1}>
