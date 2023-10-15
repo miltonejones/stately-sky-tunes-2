@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Music Machine
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a music app built with React and XState.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The app uses XState to model application state with music-related actions. The main state machine is `musicMachine` which handles navigation and data loading.
 
-### `npm start`
+The main views are:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Dashboard - overview of app summary data
+- Music list - browse songs, albums, playlists
+- Artist view - view songs by an artist
+- Search results - search across music entities
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+React hooks like `useMusic` and `usePlayer` provide components access to the XState instances.
 
-### `npm test`
+## State Machines
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **musicMachine** - main state machine handling navigation
+- **playerMachine** - controls music playback
+- **artistMachine** - manages artist entity data
+- **playlistMachine** - manages playlist entity data
 
-### `npm run build`
+## React Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Custom hooks for accessing state machines:
+  - `useMusic` - returns musicMachine instances
+  - `usePlayer` - returns playerMachine instance
+- State managed by XState and hooks
+- React components render UI based on state
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Data Loading
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+API calls to load data are handled in services associated with state machine transitions. Examples:
 
-### `npm run eject`
+- `loadDashboard` - gets summary dashboard data
+- `searchMusic` - searches for entities
+- `loadListList` - loads list data for view
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Results are normalized and stored in state context.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This app is built with Create React App so standard CRA deployment applies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+npm run build
+npm install -g serve
+serve -s build
+```
 
-## Learn More
+## Future Improvements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Add more robust search capabilities
+- Implement additional music entity models
+- Abstract API calls into a data provider layer
+- Add authentication and user accounts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Conclusion
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This app shows how React and XState can be used together to model complex application state for a music app. The architecture creates a scalable and robust foundation for future development.
