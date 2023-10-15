@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Flex from "../../../styled/Flex";
 import { GitHub, Settings } from "@mui/icons-material";
-import { navigationIcons } from "../../../constants";
+import { LOGO_PHOTO, navigationIcons } from "../../../constants";
 
 const Nav = styled(Paper)(({ theme }) => ({
   position: "fixed",
@@ -60,11 +60,7 @@ export default function AppFooter({
         )}
 
         <Flex spacing={1}>
-          <Avatar
-            sx={{ width: 24, height: 24 }}
-            src="https://www.sky-tunes.com/assets/icon-72x72.png"
-            alt="logo"
-          />
+          <Avatar sx={{ width: 24, height: 24 }} src={LOGO_PHOTO} alt="logo" />
           <Typography variant="caption" sx={sx}>
             <b>SkyTunes</b>. An xstate web application
           </Typography>

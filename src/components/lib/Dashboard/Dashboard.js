@@ -6,6 +6,7 @@ import Flex from "../../../styled/Flex";
 import Spacer from "../../../styled/Spacer";
 import { MemoryButtons } from "../MusicDisplay/MusicDisplay";
 import { createKey } from "../../../util/createKey";
+import { LOGO_PHOTO } from "../../../constants";
 
 function getGreeting() {
   const currentHour = moment().hour();
@@ -39,7 +40,7 @@ export default function Dashboard({
         <Typography variant="h6">SkyTunes</Typography>
         <Avatar
           onClick={() => setState("debug", !state.context.debug)}
-          src="https://www.sky-tunes.com/assets/icon-72x72.png"
+          src={LOGO_PHOTO}
           alt="logo"
         />
       </Flex>

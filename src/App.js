@@ -21,6 +21,8 @@ import { useTrack } from "./machines/trackMachine";
 import TrackDrawer from "./components/lib/TrackDrawer/TrackDrawer";
 import { navigationIcons, OFFSET_MARGIN, PLAYER_MARGIN } from "./constants";
 import AppFooter from "./components/lib/AppFooter/AppFooter";
+import NavigationCard from "./components/lib/NavigationPanel/NavigationCard";
+import Panel from "./styled/Panel";
 
 function App() {
   const musician = useMusic();
@@ -68,9 +70,6 @@ function App() {
   let offset = playing ? OFFSET_MARGIN + PLAYER_MARGIN : OFFSET_MARGIN;
   if (isMobile) {
     offset += playing ? 104 : 64;
-    if (rotated) {
-      // offset -= 64;
-    }
   }
   return (
     <>
@@ -83,47 +82,13 @@ function App() {
           {!isMobile && (
             <Grid item xs={3}>
               <Stack spacing={1}>
-                <Card sx={{ p: 1 }}>
-                  <Stack>
-                    {Object.keys(events).map((e) => (
-                      <>
-                        <Flex onClick={() => send(e)} spacing={1}>
-                          <IconButton>{navigationIcons[e]}</IconButton>
-                          <Typography
-                            sx={{ textTransform: "capitalize" }}
-                            color={
-                              state.matches(events[e])
-                                ? "primary"
-                                : "text.secondary"
-                            }
-                          >
-                            {e}
-                          </Typography>
-                        </Flex>
-                      </>
-                    ))}
-
-                    {/* 
-                  <Flex onClick={() => send("search")} spacing={1}>
-                    <IconButton>
-                      <Search />
-                    </IconButton>
-                    <Typography>Search</Typography>
-                  </Flex> */}
-                  </Stack>
-                </Card>
+                <NavigationCard {...props} />
                 <NavigationPanel {...props} />
               </Stack>
             </Grid>
           )}
           <Grid item xs={isMobile ? 12 : 9}>
-            <Card
-              sx={{
-                p: 1,
-                height: `calc(100vh - ${offset}px)`,
-                overflow: "auto",
-              }}
-            >
+            <Panel offset={offset}>
               {state.matches("load music list") && <LinearProgress />}
               {state.matches("dashboard view.ready") && (
                 <Dashboard {...props} />
@@ -134,7 +99,7 @@ function App() {
               {state.matches("display music list") && (
                 <MusicDisplay {...props} />
               )}
-            </Card>
+            </Panel>
           </Grid>
         </Grid>
         <AppFooter {...props} />

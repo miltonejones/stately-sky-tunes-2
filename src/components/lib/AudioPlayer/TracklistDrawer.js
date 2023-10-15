@@ -3,6 +3,7 @@ import { useMenu } from "../../../machines/menuMachine";
 import { Checklist } from "@mui/icons-material";
 import Nowrap from "../../../styled/Nowrap";
 import { OFFSET_MARGIN } from "../../../constants";
+import Panel from "../../../styled/Panel";
 
 export default function TracklistDrawer({ player }) {
   const { trackList } = player.state.context;
@@ -26,13 +27,7 @@ export default function TracklistDrawer({ player }) {
           }}
           spacing={1}
         >
-          <Card
-            sx={{
-              p: 1,
-              height: `calc(100vh - ${OFFSET_MARGIN + 8}px)`,
-              overflow: "auto",
-            }}
-          >
+          <Panel offset={OFFSET_MARGIN + 8}>
             {trackList.map((track) => (
               <Nowrap
                 onClick={menu.handleClose(track)}
@@ -42,7 +37,7 @@ export default function TracklistDrawer({ player }) {
                 {track.Title}
               </Nowrap>
             ))}
-          </Card>
+          </Panel>
         </Stack>
       </Drawer>
     </>

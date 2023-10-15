@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  Chip,
   IconButton,
   InputAdornment,
   Menu,
@@ -31,6 +32,8 @@ import { useMenu } from "../../../machines/menuMachine";
 import { createKey } from "../../../util/createKey";
 import PictureCard from "../../../styled/PictureCard";
 import MusicPagination from "../MusicDisplay/MusicPagination";
+import Panel from "../../../styled/Panel";
+import SortMenu from "./SortMenu";
 
 export default function NavigationPanel(props) {
   const {
@@ -115,14 +118,13 @@ export default function NavigationPanel(props) {
                 })
               }
             />
-            <Button
-              variant="contained"
-              onClick={menu.handleClick}
-              sx={{ textTransform: "capitalize" }}
-              endIcon={<SortByAlpha />}
-            >
-              {field}
-            </Button>
+            <SortMenu
+              send={props.send}
+              field={field}
+              type={type}
+              musicProps={musicProps}
+              direction={direction}
+            />
           </Flex>
         </form>
 
@@ -130,21 +132,8 @@ export default function NavigationPanel(props) {
           <Spacer />
           <NavChips {...props} />
         </Flex>
-
-        {!!sortProps && (
-          <Menu {...menu.menuProps}>
-            {Object.keys(sortProps).map((key) => (
-              <MenuItem onClick={menu.handleClose(sortProps[key])}>
-                {sortProps[key] === field && <CheckCircle />}
-                {key}
-              </MenuItem>
-            ))}
-          </Menu>
-        )}
       </Card>{" "}
-      <Card
-        sx={{ p: 1, height: `calc(100vh - ${offset}px)`, overflow: "auto" }}
-      >
+      <Panel offset={offset}>
         <Stack spacing={1}>
           <MusicPagination
             state={props.state}
@@ -180,7 +169,7 @@ export default function NavigationPanel(props) {
             />
           ))}
         </Stack>
-      </Card>
+      </Panel>
     </>
   );
 }

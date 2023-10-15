@@ -17,6 +17,7 @@ import Nowrap from "../../../styled/Nowrap";
 import { createKey } from "../../../util/createKey";
 import { useMenu } from "../../../machines/menuMachine";
 import { OFFSET_MARGIN } from "../../../constants";
+import Panel from "../../../styled/Panel";
 
 export default function PlaylistDrawer(props) {
   const menu = useMenu((name) => !!name && props.listman.create(name));
@@ -77,9 +78,7 @@ export default function PlaylistDrawer(props) {
             </Stack>
           </Card>
 
-          <Card
-            sx={{ p: 1, height: `calc(100vh - ${offset}px)`, overflow: "auto" }}
-          >
+          <Panel offset={offset}>
             {!!playlists.records &&
               playlists.records.map((playlist, i) => (
                 <Flex key={i}>
@@ -96,7 +95,7 @@ export default function PlaylistDrawer(props) {
                   </Box>
                 </Flex>
               ))}
-          </Card>
+          </Panel>
         </Stack>
       </Drawer>
     </>

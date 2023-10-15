@@ -7,7 +7,7 @@ import {
   Person,
   Search,
 } from "@mui/icons-material";
-
+export const LOGO_PHOTO = "https://www.sky-tunes.com/assets/icon-72x72.png";
 export const API_ENDPOINT =
   "https://u8m0btl997.execute-api.us-east-1.amazonaws.com";
 
@@ -50,7 +50,8 @@ export const SORT_FIELDS = {
     Count: "TrackCount",
   },
 };
-
+export const COVER_ART_IMAGE =
+  "https://www.sky-tunes.com/assets/default_album_cover.jpg";
 export const OFFSET_MARGIN = 64;
 export const PLAYER_MARGIN = 64;
 

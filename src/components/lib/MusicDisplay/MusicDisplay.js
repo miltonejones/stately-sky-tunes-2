@@ -1,12 +1,14 @@
-import { Avatar, IconButton, Typography } from "@mui/material";
+import { Avatar, Chip, IconButton, Typography } from "@mui/material";
 import Flex from "../../../styled/Flex";
 import MusicGrid from "../MusicGrid/MusicGrid";
 import MusicList from "../MusicList/MusicList";
 import MusicListBreadcrumbs from "../MusicList/MusicListBreadcrumbs";
 import Spacer from "../../../styled/Spacer";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { ArrowBack, ArrowForward, SortByAlpha } from "@mui/icons-material";
 import MusicPagination from "./MusicPagination";
 import NavChips from "./NavChips";
+import { LOGO_PHOTO } from "../../../constants";
+import SortMenu from "../NavigationPanel/SortMenu";
 
 export const MemoryButtons = ({ state, send }) => {
   const { memory_index, memory } = state.context;
@@ -41,6 +43,8 @@ export const MemoryButtons = ({ state, send }) => {
 };
 
 export default function MusicDisplay(props) {
+  const { queryProps } = props.state.context;
+  const { field, type, direction } = queryProps;
   return (
     <>
       {" "}
@@ -53,7 +57,7 @@ export default function MusicDisplay(props) {
           {!props.isMobile && <Typography variant="h6">SkyTunes</Typography>}
           <Avatar
             onClick={() => props.setState("debug", !props.state.context.debug)}
-            src="https://www.sky-tunes.com/assets/icon-72x72.png"
+            src={LOGO_PHOTO}
             alt="logo"
           />
         </Flex>
@@ -63,6 +67,18 @@ export default function MusicDisplay(props) {
         <Flex sx={{ pb: 1, pt: 1 }} spacing={1}>
           <Spacer />
           <NavChips {...props} />
+          <SortMenu
+            send={props.send}
+            field={field}
+            type={type}
+            musicProps={queryProps}
+            direction={direction}
+            component={Chip}
+            size="small"
+            variant="filled"
+            color="primary"
+            icon={<SortByAlpha />}
+          />
         </Flex>
       )}
       {props.state.matches("display music list.display list view") && (

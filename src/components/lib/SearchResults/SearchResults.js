@@ -14,6 +14,7 @@ import Flex from "../../../styled/Flex";
 import { MemoryButtons } from "../MusicDisplay/MusicDisplay";
 import MusicListBreadcrumbs from "../MusicList/MusicListBreadcrumbs";
 import Spacer from "../../../styled/Spacer";
+import { LOGO_PHOTO } from "../../../constants";
 
 export default function SearchResults(props) {
   const { state, send, setState, isMobile } = props;
@@ -39,7 +40,7 @@ export default function SearchResults(props) {
               </Typography>
               <Avatar
                 onClick={() => setState("debug", !state.context.debug)}
-                src="https://www.sky-tunes.com/assets/icon-72x72.png"
+                src={LOGO_PHOTO}
                 alt="logo"
               />
             </Flex>

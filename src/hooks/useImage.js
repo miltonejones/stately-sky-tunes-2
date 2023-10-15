@@ -1,9 +1,8 @@
 import React from "react";
+import { COVER_ART_IMAGE } from "../constants";
 
 export const useImage = (src) => {
-  const [source, setSource] = React.useState(
-    "https://www.sky-tunes.com/assets/default_album_cover.jpg"
-  );
+  const [source, setSource] = React.useState(COVER_ART_IMAGE);
 
   React.useEffect(() => {
     const im = new Image();

@@ -22,6 +22,7 @@ import {
 import statePath from "../../../util/statePath";
 import SmallPlayer from "./SmallPlayer";
 import TracklistDrawer from "./TracklistDrawer";
+import { COVER_ART_IMAGE } from "../../../constants";
 
 export default function AudioPlayer(props) {
   const { player, isMobile } = props;
@@ -61,15 +62,12 @@ function AudioPlayerBody(props) {
     silent,
   } = player.state.context;
 
-  const [image, setImage] = React.useState(
-    "https://www.sky-tunes.com/assets/default_album_cover.jpg"
-  );
+  const [image, setImage] = React.useState(COVER_ART_IMAGE);
   React.useEffect(() => {
     if (!track) return;
     const im = new Image();
     im.onload = () => setImage(track.albumImage);
-    im.onerror = () =>
-      setImage("https://www.sky-tunes.com/assets/default_album_cover.jpg");
+    im.onerror = () => setImage(COVER_ART_IMAGE);
     im.src = track.albumImage;
   }, [track]);
   const buttons = {

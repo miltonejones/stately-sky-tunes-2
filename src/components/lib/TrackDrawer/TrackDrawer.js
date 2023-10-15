@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { useCurator } from "../../../machines/curatorMachine";
 import CuratorCollapse from "./CuratorCollapse";
+import Panel from "../../../styled/Panel";
 
 export default function TrackDrawer({ tracker }) {
   const curator = useCurator(() => tracker.machine.refreshList());
@@ -113,9 +114,7 @@ export default function TrackDrawer({ tracker }) {
           </Flex>
           {/* <pre>{JSON.stringify(tracker.state.context.track, 0, 2)}</pre> */}
         </Card>
-        <Card
-          sx={{ p: 1, height: `calc(100vh - ${offset}px)`, overflow: "auto" }}
-        >
+        <Panel offset={offset}>
           <Collapse in={curator.state.can("open")}>
             {actions.map((action) => (
               <Flex>
@@ -153,7 +152,7 @@ export default function TrackDrawer({ tracker }) {
             </Flex>
           </Collapse>
           <CuratorCollapse curator={curator} />
-        </Card>
+        </Panel>
       </Stack>
     </Drawer>
   );
