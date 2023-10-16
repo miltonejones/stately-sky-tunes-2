@@ -1,4 +1,10 @@
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  LinearProgress,
+  Typography,
+} from "@mui/material";
 import DashCard from "../DashCard/DashCard";
 import PictureCard from "../../../styled/PictureCard";
 import moment from "moment";
@@ -7,6 +13,8 @@ import Spacer from "../../../styled/Spacer";
 import { MemoryButtons } from "../MusicDisplay/MusicDisplay";
 import { createKey } from "../../../util/createKey";
 import { LOGO_PHOTO } from "../../../constants";
+import playlistSort from "../../../util/playlistSort";
+import { Album, Checklist, Person } from "@mui/icons-material";
 
 function getGreeting() {
   const currentHour = moment().hour();
@@ -27,13 +35,16 @@ export default function Dashboard({
   send,
   isMobile,
   openList,
+  playList,
+  openGrid,
 }) {
-  const listProps = listman.state.context.playlists?.records;
+  const listProps = playlistSort(listman.state.context.playlists?.records);
   const playlistTemplateColumns = isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr";
   const groupTemplateColumns = isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr 1fr";
 
   return (
     <>
+      {!state.can("play") && <LinearProgress />}
       <Flex spacing={1}>
         <MemoryButtons state={state} send={send} />
         <Spacer />
@@ -49,15 +60,26 @@ export default function Dashboard({
       </Flex>
       {!!listProps && (
         <>
-          {" "}
-          <Divider
-            textAlign="left"
-            sx={{
-              textTransform: "capitalize",
-            }}
-          >
-            playlists
-          </Divider>
+          <Flex spacing={2}>
+            <Divider
+              textAlign="left"
+              sx={{
+                width: "calc(100% - 80px)",
+                textTransform: "capitalize",
+              }}
+            >
+              <Flex spacing={1}>
+                <Checklist />
+                playlists
+              </Flex>
+            </Divider>
+            <Typography
+              onClick={() => openGrid("playlist")}
+              variant="subtitle2"
+            >
+              show all
+            </Typography>
+          </Flex>
           <Box
             sx={{
               display: "grid",
@@ -67,11 +89,16 @@ export default function Dashboard({
               alignItems: "flex-start",
             }}
           >
-            {listProps.slice(0, 8).map((item) => (
+            {listProps.slice(0, 8).map((item, i) => (
               <PictureCard
+                bold={i === 0}
+                key={i}
                 src={item.image}
                 title={item.Title}
                 caption={`${item.TrackCount} tracks`}
+                onPlay={() => {
+                  playList("playlist", createKey(item.Title));
+                }}
                 onClick={() => {
                   openList("playlist", createKey(item.Title));
                 }}
@@ -81,14 +108,23 @@ export default function Dashboard({
         </>
       )}
 
-      <Divider
-        textAlign="left"
-        sx={{
-          textTransform: "capitalize",
-        }}
-      >
-        top albums
-      </Divider>
+      <Flex spacing={2}>
+        <Divider
+          textAlign="left"
+          sx={{
+            textTransform: "capitalize",
+            width: "calc(100% - 80px)",
+          }}
+        >
+          <Flex spacing={1}>
+            <Album />
+            top albums
+          </Flex>
+        </Divider>
+        <Typography onClick={() => openGrid("album")} variant="subtitle2">
+          show all
+        </Typography>
+      </Flex>
       <Box sx={{ display: "grid", gridTemplateColumns: groupTemplateColumns }}>
         {!!state.context.dashboard &&
           state.context.dashboard
@@ -99,19 +135,31 @@ export default function Dashboard({
                 onClick={() => {
                   openList("album", item.ID);
                 }}
+                onPlay={() => {
+                  playList("album", item.ID);
+                }}
                 key={item.ID}
                 item={item}
               />
             ))}
       </Box>
-      <Divider
-        textAlign="left"
-        sx={{
-          textTransform: "capitalize",
-        }}
-      >
-        top artists
-      </Divider>
+      <Flex spacing={2}>
+        <Divider
+          textAlign="left"
+          sx={{
+            textTransform: "capitalize",
+            width: "calc(100% - 80px)",
+          }}
+        >
+          <Flex spacing={1}>
+            <Person />
+            top artists
+          </Flex>
+        </Divider>
+        <Typography onClick={() => openGrid("artist")} variant="subtitle2">
+          show all
+        </Typography>
+      </Flex>
       <Box sx={{ display: "grid", gridTemplateColumns: groupTemplateColumns }}>
         {!!state.context.dashboard &&
           state.context.dashboard
@@ -121,6 +169,9 @@ export default function Dashboard({
               <DashCard
                 onClick={() => {
                   openList("artist", item.ID);
+                }}
+                onPlay={() => {
+                  playList("artist", item.ID);
                 }}
                 item={item}
               />

@@ -43,7 +43,7 @@ export const MemoryButtons = ({ state, send }) => {
 };
 
 export default function MusicDisplay(props) {
-  const { queryProps } = props.state.context;
+  const { queryProps, selectedID } = props.state.context;
   const { field, type, direction } = queryProps;
   return (
     <>
@@ -67,18 +67,20 @@ export default function MusicDisplay(props) {
         <Flex sx={{ pb: 1, pt: 1 }} spacing={1}>
           <Spacer />
           <NavChips {...props} />
-          <SortMenu
-            send={props.send}
-            field={field}
-            type={type}
-            musicProps={queryProps}
-            direction={direction}
-            component={Chip}
-            size="small"
-            variant="filled"
-            color="primary"
-            icon={<SortByAlpha />}
-          />
+          {!!field && !selectedID && (
+            <SortMenu
+              send={props.send}
+              field={field}
+              type={type}
+              musicProps={queryProps}
+              direction={direction}
+              component={Chip}
+              size="small"
+              variant="filled"
+              color="primary"
+              icon={<SortByAlpha />}
+            />
+          )}
         </Flex>
       )}
       {props.state.matches("display music list.display list view") && (

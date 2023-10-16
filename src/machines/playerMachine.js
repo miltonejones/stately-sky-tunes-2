@@ -10,12 +10,15 @@ const connector = new AudioConnector();
 
 const playerMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYjSwG0AGAXURQHtYBLAF1qoDtKQAPRAFi5IDouATgBMJAMwAOAOwSArIK7CxAGhCZEAWgCMW4cL7DBWiXrEA2KSVmyAvjdWFsOPqiroIAAgC26AMYALWmYwPlh6dBx6D0dcDyCw9GZfMDwIFhCggDcqAGsQmOdXd28-QODQ8MjojCc45gSksAQsql90RhZSMi62ZBoGJlYkDk0tEgk+QRkzKbFzOeEzM1V1BG1ZCTE+MwkSJUUuHbFBMTsHGtwXN08fAKCQos8wAEcAV3RUWgAvXFT0vhaeT4BSuxVuZQe1w8L3enx+OGazGybQ6zC6PWGfToqLYnAQi1kfCkUimsjEPEEFikhxWo2OWykWlJXHJZKkwjOIBBjiCUDwYSoyAx1Gxg1xiDGfFkuhI4yksikkmkZhUalGWjEhOlmxOxkEJnlnO5NV5-LAYBywq5-RxwzxxnkROMS12gkpwi4Ulpax2E2E1P2JCM0kkRouzh5zD5AGEAPKxgBKABEAMpWrEDFjihDGMRaPjHeUqz0a9myb0aLg6AuUjX6jUhrRhrCXSN8uioMCNdM2sV2iVyKR8WXE-1iPZaWQ7CtKLb+8YKWQkCxCaTNpzAk1RvDxXD0HuirP9nNyCaMiQ7I6UqTTtVrHgGQyyHjSqxmZfr1tbqAVCJRNt8DAUSJMwVCvI0XjMPQfzlIC+ThpuWC8r+VQAUBHggWBEFQYiyLtIM6LkL0vZHqAeKVpOw6DpSOzPmYixcBWihEoYZiHMIEiCEu+o8J+Ebfih-4CehmHgckkHQWksFIrk8EtvxSFRoJ1SKT+InMKBYlgBJuGtPhnTkEQWgUJiJFDGREoatsQbCLmogkLwWgVmIQ4ep6z57CYtkSBIfGIZgyEJKhAlBcBrwQEwMEZDJQLGqpykAaFGHhUwukogRhlEaZh7mSMCCyP62zCPIOwnEoTLLHehhbEs8o6BsQZcLspz2FyCGJZUQnxUl6ApVQeC4DgVAKfQABmw1eP5X7dZ1KkBUpPV9Wl+loplJkipmuX2pxBbyB6T4bHmwjeq+kw6jIoiGJYLJ+R1f5zYFyBgOgOR1PQQ1RQCMVyRud3Bd1T0vW9Q3LaihHrdaOXZhouxErsTLWC5mqTuWVUnNsFjSpOrpNeIt0hbNAGjUETzsLQYS8hhGlYeJUGfXBU0KfNP5JUTJPQmTFNRlTmnYfQoMZd0WUbbaFlrLs-CSG6lLjpIvCVas-pnoYPl5pY+3PvjM33WzzCk+TjDc6JfP099jP+YFhMCcTescwblPG7T-MtOlBndMZxFQ8eMOSsuiqTiSJyeqqqxaEIfBaJYyonG6cyhq1cXMxb3NBNEQ1QDgcCwHgAAKCaxgA4gmACiKZpsLkObdmugegYTI3mxl5uhI3psfoeZByY9ImFwWtJ22dRp1QGdZ6EYBRK8yAeME7BRO9fg5Kb2Sxe1AkD6nyDp5nsCwGPE9TzPc84AvAtuweVfHjojIGIq4hMsV5heneihanmnErsSnocgnq-xevzBDxHjvfyAAjBeBBeqwDAOfUWeUJDhwcnoGQeppSKlbkoPgnEdCCAXGYScxU+7IX-oA7eu9HBgN8IvYuAA5JMMC+xixMPwZqTDZbFRZBWPaN8TAxwKlMIwhClLr1gNESBkA8Db1eF4aBFcMywLxCIfMjICqmA9EuJ+qx-aYLzNgy8VZFCCJ-PPSh0I9biPYAkegIR0CjSsTgAAFEuEgABKAgv8k7GNel2CAkB6GkTyhoQwUoDhVjzLwRGXBUarA0JIQkSx6LEkkJOQ4TYf7yWTkY4+JjvHmMsdY2xuBHGylcYnZCnjTE+IgEZCGciGEBJ0GYSYSxjAkDGMVHiTk7ww1ru+SkBVFRsjsK1UCPj4CYnDJ7C+YttD+kaYcHiqCgzvwrEyMOBh6I8DGDwpcvk0kbkeCUO4wRJnyM0EoRplgyQXhVAqPB5gVkmAuRsngYh7KHDMH5A54J7gJXDHUBoyQTl1PIsYM8VhJBLE1DeDUCtRiKkEOsty0w5ibA+Xsy4XzSg-Mzu4VYItgWaAsAIXQ7JZnyHZCIFZxwuBEhZEyBYrSdifKhN88oByYQfG+LgIF-i8TtILGYKcEgSVsU2J06JAcJgOU2PAniE5e7oqZryHlW1Rh6AmPM+Biz9SUgrBYBFxIeEOSDG3QxvzVIquhjoWGmrImRyWbqrpdZhyCpkIoHyCgdAtXOOkv6XUk7qV5k7S13tpgRxLLoMOyiqycPzFOBUYctDFmXFqs1rMCb3V6hFKgIaxYOm2E4i8AdH4yG9LMgQU4hBTmJIKoQaarYA2eq9II70c3ZSmQE8kQ55Q3ngSyMkOCrBlpvBWtixww5NVeWSetOtrbszAJzQ2UAeY020lBXN9SNT6Ftdq5ZVUR2RLYs+awVaFBop9b9Ne35B6b2HqQjdeJEkRw1OOEkrJ3RlrwVKBUL9hVbsZGa4ht6gG7ygfvaeC6j4LwfRKOl2w+0Kh8pYLd3peD8DJKCt0U48zyEA9ejeW9R7kOg+205CATD5i9a+oOJVjp3npN+xUxU9gsiDnh1ScQRHIDERAGD5H0ZGHlBxGYrr5DehEI0iqixNjnjDoIM15Scm8dIwS-EhJ5jUjdGxa6+pOEzG-fa3QIg9hSDNYNYaHhQoOz6nxyOhJFErirIK98U5W4kilCrcYpYxgWCGTYIAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYjSwG0AGAXURQHtYBLAF1qoDtKQAPRARgBY+A6AGw9BATi5dRAdglcSAVgA0ITIgC0EwQGZ+ongA5RJAEzH5RroIC+V5YWw5+qKuggACALboAxgAtazGD8sPToOPRu9rhuASHozN5geBAsQQEAblQA1kFRjs6unj7+gcGh4ZEYDjHMcQlgCBlU3uiMLKRkHWzINAxMrEgciMY8ovxaWlIiplNm+iLKqghqxiQkUvzyWgokovIGPApSNnZVuE4u7l5+AUEF7mAAjgCu6Ki0AF64yan8TTn8PIXQrXEp3S5uJ6vd5fHCNZiZFptZgdLqDHp0ZFsTgIAQ8eRcKTGMQGbZcYz6JQqdRcczGTZSKSibZ8BSEk4gIH2AJQPAhKjINHUTH9bHqLRcXRyUQWcTSQ76QSLGlyQSbQRErTEwnaHhaDlcqo8vlgMBZIWc3pYwY40wU-i0uRrHbGIlK6kIST6fhSBTCQTyQQmQTGLT6A1nRzc5i8gDCAHl4wAlAAiAGULRi+iwxQhTIGpWt5FtDFJ9CR3Us1DxaUJGTwyxJjKIzPrbJzI4CjTG+bRUGB6pmraKbcMRvIhOItHwtMJKcrlsY5Lp9FwteT5L7ptZ24asMbYrh6EORTnR3nVhPJOTy-pVwTRJX1CN+KYA2JNw35CZaRGsOdo15ZxnggXAT2zAZQFtCUJ1Gcx9FWEQ+CmBceFDfh8V2ckJmJcweD-Bwu33GMyjCCJAP4GAIniZgqGeeoPGYegflKf5ck7Ci4gqCiqLcGi6IYpj4URVp+lRchumHM8oPUAkJxISlHzWNDyUELgFzUIldBdRsjCmcNdw47soFI7jjMosBqOYWj6MSRjmJSViEWydj-yjcyuPI8zeP42ywHs4TmlE9pyCILgKHRKTIKGBASAXEgCIAjzyi84iTM8viQKYFi0mcgE90wHlTNSwqSIy9AsqoQKkTE0KJMi09opxeRXSEMxH0MLUJUfBdmx0QQNQJWlyz0cs21ONyiNK9KUsqNLisyiBstwHAqHc1oADM1o8KakvmjLONmiqlqqpoapCzp6uFCDcy4QxxjpNC9nkfQJWMBcCRIFctGkBCTGkEg9US9bpoWzjkDAdAshqehVpyv48tcwjDrIubQdgCGoZh1bquClE6oi67rRk5ZyUlEheBISZNw1GQG16xVdDU-QZBGORkOBqaioO8yNoCB52FoEIeT46yBLspj4bY3aQe52aKL55gBaFxgY1FmzBPoXHkXEwnLUa3MNCdDCNUOR18V4d6PVdb0iRlLVmyOcwdwm5HktRhX+chQXhbV3zNalxGZa5sr5d5r2wB91WoHV8X-KEs68dRcLJIN88NEBngfWEIkpA-R8tCpJZeAnVdy0DPOZVXIlOYowCakiVaoBwOBYDwAAFJN4wAcSTABRNMMyu-WbvPckXyXaQBpERUq4XYR6W66cEJ+sMRlr8z64CRuqGb1u8HoXeoH7cDiZiwlCQdcwJTzn7aWEeea34BR1xZswKckDf5q35gd732BYDBEsm4Z4yA3CBHYBEWGPgsiB0yPlIy39jIN2QE3FuACgERFAeAyOUCcAwO1rVS6essxnxxBIGQr4pDbG6q2DUqEzCbAlIYU29Ya6GUmnXZB29UG73QYA+wAAjGBBAKqwDAKfEcJN5hjEBjMMuexCRaHnuhQwEgjAsNpGYL+oMf5-34VNYR3hYF9wAHIpkkdJGKzIvoKEOPsMQhI9hPmWGGHQ1DHwUi1EGF6+EOFuyQWlFBaDW6GJEWYixKcGqjxJnIFm-AWbiDXEufEed9AaUtjoLYdN8xmBrAZV2e1dHcN-rw-+AiqhGNgZ3PuAA1AAkvGAAqkPEhUVcxjU2EkmcchvwTAyUGV8d4pgKWmI+UQOiip6LKQYvwYBjFuC2jgPi4QVZ4EsU1bgBINi+ntqzUQlJLALiUc-R2voJRrwDH4wpssSLTJCRguZCylkrMYCEdZUSiZSPPvsMYYYBrXyDGGZkDMdkSEVB+NSS55CTLuSU-RoTxFK1eSrNwdAoDMDeHAlywcuFBJ4Q8wBSL3BkVReizFqBCEXQ2bdVc9JFEtS2MICUFZUKX22NQhsep8QjGOP4opUzuGwEiGIyAeB0HPA8BI4epDvk4k8T6dYchJhOIrDwBcUwNjmCJK6cQSEDCwpMtAhZA5QIQDwOwOI9AgjoA2tanAAAKb8JAACUBBEGg2NdDU1kAaXpzMIvZk35NwsubOqj0ag16vh+toQMYgKQyENfwL1kIlZistaEa1-BbX2qdWsN1BUiopp9RAMKbS04kxWGsH0obAZlkEJSdJEbxATnlMq5CfBRic3uEUG4pQnnQzyG4TIqBJVJD9ZW3gWdJB230neTQUgNJLnWM-WdRIXT7BsO2WioF4DokjKnGJMUNAaIwnnZCqwG2MiLs+OCQg7oVkpHTIMBSOyTR7aCW4h6yHPjLFQkQuxhkUkMEuhUDoH13mcTImF-L8gQk-aUHmbkah1ESN+uVz5tj-qDAct+d55wRskDKKUroNxSDjdct9hEP3FFuPwFurglhfKsTiDQDYEnlkOA2vgdKm1VkppKHjr1ZxBiVZRoENG+3gkKFCN4nxcDoZY4gShFNFF6A3Nq0QGTywbEvPsblgYNyGsU5s0miovoNmEA2S9LNyMaTkjWx8hJmyrEMOJj1csPbGRM4bO65Iz1WfXVeuzEbELaT6RbBsFMyxJqQ6DHyYs-L2R8+nJ0WcRPbFMAoGR6kI0Nt0H0vQfAQyEhgzckOM0vP7SOpVFLsTLAPUpue-EzsXGhnpLPYTM8vEUli2HfamNoYBFhlQOrx7SSbBEBYZhepQzKOtiIV84KpiWGmLwF2VGBWhyq6DRWytfYx39hLegY3WM6izpZi9j7r29T1A6U28o7w-TDUm+5fDW6neU3oU5aTQzaskFbYuX0pgtmm5YYsudXvwpmYi4B2CIF4JgZ9z035JQyH2C1ZkGpgMLjDFnRslIRiF1nAoKH+LSmErCcY5H8x6QmF+4XaQAPcfMk2CGtxCEmQKTJ9NYJ73Hm+HmdDF5pKQjI80DoOYWpnZNhGMcgwmwznaGJD9XYG3C1wvJwijBxKUUhDRbQDFbxxf1odIDFqJPyzknDcXNCPpRjNgba6CkroeciyFiK544iIA09Z+IcjFIxABnI1pj0LY1SSBDA2lVq4u2wYq8m-BJq00++iT+hA75n73hasqg5tINKFzR3NqL17GQTCTStNaaKUoi2OkwE3ralymxrO+P088mSK4OQpNcMgKx8vK5JsE-AB1o2iCOsdyOq1fQbZYBC1cXphiXa6CPEH5i+i2K7rdQA */
     id: "player",
     context: {
       trackList: [],
       trackIndex: 0,
       silent: true,
+      shuffle: false,
+      repeat: true,
+      volume: 1,
     },
     initial: "load machine",
 
@@ -30,10 +33,12 @@ const playerMachine = createMachine(
                 actions: "assignPlayer",
               },
             },
+
+            description: `Load the audio player into the machine context.`,
           },
 
           ready: {
-            description: `Player is closed and empty`,
+            description: `Player is closed and empty but ready to play.`,
           },
 
           "load equalizer": {
@@ -44,10 +49,19 @@ const playerMachine = createMachine(
                 actions: "assignAnalyser",
               },
             },
+
+            description: `Attach the sound analyser engine to the audio player.`,
+          },
+
+          "check player volume": {
+            entry: "initVolume",
+
+            always: "start player instance",
           },
         },
 
-        initial: "start player instance",
+        initial: "check player volume",
+        description: `Initialize media player components.`,
       },
 
       playing: {
@@ -62,10 +76,16 @@ const playerMachine = createMachine(
                       target: "speak intro",
                       actions: "assignIntro",
                       cond: "introduction present",
+                      description: `Intro was successfully generated`,
                     },
-                    "start audio",
+                    {
+                      target: "start audio",
+                      description: `No introduction was generated due to an error or something else.`,
+                    },
                   ],
                 },
+
+                description: `Generate a fresh intro from ChatGPT`,
               },
 
               "start audio": {
@@ -74,6 +94,8 @@ const playerMachine = createMachine(
                   onDone: "#player.playing.playing in progress",
                   onError: "#player.playing.error starting audio",
                 },
+
+                description: `Send explicit play command to audio player.`,
               },
 
               "speak intro": {
@@ -81,6 +103,8 @@ const playerMachine = createMachine(
                   src: "introduceTrack",
                   onDone: "start audio",
                 },
+
+                description: `Speak the intro using the local voice engine.`,
               },
 
               "find existing announcemnt": {
@@ -91,20 +115,27 @@ const playerMachine = createMachine(
                       target: "speak intro",
                       cond: "event data not empty",
                       actions: "assignIntro",
+                      description: `Existing intro was found.`,
                     },
-                    "get announcemnt",
+                    {
+                      target: "get announcemnt",
+                      description: `No existing intro was found.`,
+                    },
                   ],
                 },
+
+                description: `Look for an announcement that has already been stored by the announcer machine.`,
               },
             },
-
-            initial: "find existing announcemnt",
 
             // on: {
             //   silence: {
             //     actions: "assignQuiet",
             //   },
             // },
+            initial: "find existing announcemnt",
+
+            description: `Player begins gathering information for this track.`,
           },
 
           "playing in progress": {
@@ -120,6 +151,8 @@ const playerMachine = createMachine(
                   src: "sendIntroSignal",
                   onDone: "playback",
                 },
+
+                description: `Load introduction for the next track.`,
               },
 
               playback: {
@@ -131,20 +164,61 @@ const playerMachine = createMachine(
                     actions: "pausePlayer",
                   },
 
-                  END: {
+                  END: [
+                    {
+                      target: "#player.playing.track ended",
+                      actions: "advanceTrack",
+                      description: `Track has ended or user has selected the next track.`,
+                      cond: "repeat is on",
+                    },
+                    {
+                      target: "#player.load machine.ready",
+                      actions: ["pausePlayer", "clearTrack"],
+                    },
+                  ],
+
+                  PREVIOUS: {
                     target: "#player.playing.track ended",
-                    actions: "advanceTrack",
+                    actions: "rewindTrack",
                   },
                 },
               },
+
+              "check for artist": {
+                always: [
+                  {
+                    target: "send artist signal",
+                    cond: "track has an artist",
+                  },
+                  "set up next track",
+                ],
+
+                description: `Check if there is an artist listed for this track.`,
+              },
+
+              "send artist signal": {
+                invoke: {
+                  src: "sendArtistSignal",
+                  onDone: "set up next track",
+                },
+
+                description: `Send signal to update artist hero image`,
+              },
             },
 
-            initial: "set up next track",
+            initial: "check for artist",
 
             on: {
               PROGRESS: {
                 actions: "assignProgressToContext",
+                description: `Player reports current player position to the UI.`,
+              },
+
+              toggle: {
+                target: "playing in progress",
                 internal: true,
+                description: `Toggle a boolean setting on the player`,
+                actions: "toggleProp",
               },
             },
           },
@@ -165,10 +239,16 @@ const playerMachine = createMachine(
                   target: "start playing",
                   cond: "more tracks",
                   actions: "updateCurrentTrack",
+                  description: `If there are more tracks, iterate the track index and return to playing state.`,
                 },
-                "#player.load machine",
+                {
+                  target: "#player.load machine",
+                  actions: ["pausePlayer", "clearTrack"],
+                },
               ],
             },
+
+            description: `Move to next track if there is one.`,
           },
 
           "error starting audio": {},
@@ -180,26 +260,36 @@ const playerMachine = createMachine(
           stop: {
             target: "load machine.ready",
             actions: ["pausePlayer", "clearTrack"],
+            description: `Stop player and clear current track from memory.`,
           },
 
           seek: {
             actions: "seekPlayer",
+            description: `Change the position of the current track.`,
           },
 
           COORDS: {
             actions: "assignCoordsToContext",
+            description: `Sends coordinates to the equalizer.`,
           },
 
           silence: {
             actions: "assignQuiet",
-            internal: true,
+            description: `Opens/closes the announcer snackbar.`,
           },
 
           insert: {
             actions: "insertTrack",
-            internal: true,
+            description: `Adds a track to the queue after the currently playing one.`,
+          },
+
+          louder: {
+            actions: "assignVolume",
+            description: `User changes the volume of the player`,
           },
         },
+
+        description: `An audio track is currently loaded.`,
       },
     },
 
@@ -207,6 +297,7 @@ const playerMachine = createMachine(
       play: {
         target: ".playing",
         actions: ["assignTrack"],
+        description: `User clicks play on a track in the UI.`,
       },
     },
   },
@@ -215,15 +306,22 @@ const playerMachine = createMachine(
       assignQuiet: assign((_, event) => {
         return { silent: event.silent };
       }),
+      toggleProp: assign((context, event) => {
+        return { [event.prop]: !context[event.prop] };
+      }),
       seekPlayer: assign((context, event) => {
         context.player.currentTime = context.player.duration * event.value;
       }),
       assignIntro: assign((_, event) => ({
         intro: event.data,
       })),
-      assignPlayer: assign((_, event) => ({
-        player: event.data,
-      })),
+      assignPlayer: assign((context, event) => {
+        const player = event.data;
+        player.volume = context.volume;
+        return {
+          player,
+        };
+      }),
       pausePlayer: assign((context) => {
         context.player.pause();
         return {
@@ -234,6 +332,16 @@ const playerMachine = createMachine(
         context.player.play();
         return {
           paused: false,
+        };
+      }),
+      initVolume: assign({
+        volume: Number(localStorage.getItem("player-volume") || 1),
+      }),
+      assignVolume: assign((context, event) => {
+        context.player.volume = event.volume;
+        localStorage.setItem("player-volume", event.volume);
+        return {
+          volume: event.volume,
         };
       }),
       clearTrack: assign({
@@ -250,13 +358,14 @@ const playerMachine = createMachine(
           trackList,
         };
       }),
-      advanceTrack: assign((context) => {
-        const trackIndex = context.trackIndex + 1;
-        // alert(trackIndex);
-        return {
-          trackIndex,
-        };
-      }),
+      advanceTrack: assign((context) => ({
+        trackIndex: context.shuffle
+          ? Math.floor(Math.random() * context.trackList.length)
+          : context.trackIndex + 1,
+      })),
+      rewindTrack: assign((context) => ({
+        trackIndex: context.trackIndex - 1,
+      })),
       updateCurrentTrack: assign((context) => {
         const { trackList, trackIndex } = context;
         const track = trackList[trackIndex];
@@ -300,25 +409,29 @@ const playerMachine = createMachine(
           progress: (currentTime / duration) * 100,
         };
       }),
-      // assignProgress: assign((_, event) => ({
-      //   currentTime: event.currentTime,
-      //   duration: event.duration,
-      // })),
     },
     guards: {
+      "repeat is on": (context) => context.repeat,
       "more tracks": (context) => context.trackIndex < context.trackList.length,
       "introduction present": (_, event) => !!event.data?.Introduction,
       "event data not empty": (_, event) => !!event.data,
+      "track has an artist": (context) => !!context.track.artistFk,
     },
   }
 );
 
 const audio = new Audio();
 
-export const usePlayer = () => {
+export const usePlayer = (artisan) => {
   const announcer = useAnnouncer();
   const [state, send] = useMachine(playerMachine, {
     services: {
+      sendArtistSignal: async (context) => {
+        artisan.send({
+          type: "open",
+          ID: context.track.artistFk,
+        });
+      },
       findAnnouncerIntro: async (context) => {
         const { announcements } = announcer.state.context;
         const { Title } = context.track;
@@ -351,7 +464,7 @@ export const usePlayer = () => {
       introduceTrack: async (context) => {
         speakText(context.intro.Introduction, true, "en-US", null, (value) => {
           if (context.player) {
-            context.player.volume = !!value ? 0.5 : 1;
+            context.player.volume = !!value ? 0.5 : context.volume;
           }
           send({
             type: "silence",
@@ -403,7 +516,7 @@ export const usePlayer = () => {
         try {
           context.player.src = context.src;
           context.player.play();
-          // alert("played??");
+
           return context.player;
         } catch (e) {
           throw new Error(e);

@@ -1,11 +1,10 @@
 import {
   Button,
   Card,
-  Chip,
   IconButton,
   InputAdornment,
-  Menu,
-  MenuItem,
+  LinearProgress,
+  Popover,
   Stack,
   TextField,
   Typography,
@@ -13,20 +12,13 @@ import {
 import NavChips from "../MusicDisplay/NavChips";
 import Flex from "../../../styled/Flex";
 import Spacer from "../../../styled/Spacer";
-import {
-  Add,
-  CheckCircle,
-  LibraryMusic,
-  Search,
-  SortByAlpha,
-} from "@mui/icons-material";
+import { Add, LibraryMusic, Search } from "@mui/icons-material";
 import {
   GRID_QUERY_PROPS,
   LIST_IDENTIFIER,
   LIST_QUERY_PROPS,
   OFFSET_MARGIN,
   PLAYER_MARGIN,
-  SORT_FIELDS,
 } from "../../../constants";
 import { useMenu } from "../../../machines/menuMachine";
 import { createKey } from "../../../util/createKey";
@@ -45,18 +37,13 @@ export default function NavigationPanel(props) {
   const { records: old = [], count: gridCount } = musicGrid;
   const { field, direction, type } = musicProps;
   const menu = useMenu((value) => {
-    if (!value) return;
-    props.send({
-      type: "open",
-      queryProps: {
-        ...musicProps,
-        field: value,
-        direction: direction === "ASC" ? "DESC" : "ASC",
-        page: 1,
-      },
-    });
+    !!value &&
+      props.listman.send({
+        type: "adhoc",
+        track: props.player.state.context.track,
+        listname: value,
+      });
   });
-  const sortProps = SORT_FIELDS[type];
   const playing = props.player.state.can("stop");
   const BASE_HEIGHT = 304;
   const offset = playing
@@ -77,6 +64,24 @@ export default function NavigationPanel(props) {
 
   return (
     <>
+      <Popover {...menu.menuProps}>
+        <Stack spacing={1} sx={{ p: 2 }}>
+          <Typography>Create new playlist</Typography>
+          <TextField
+            size="small"
+            name="value"
+            label="List name"
+            onChange={menu.handleChange}
+            value={menu.value}
+          />
+          <Flex>
+            <Spacer />
+            <Button variant="contained" onClick={menu.handleClose(menu.value)}>
+              save
+            </Button>
+          </Flex>
+        </Stack>
+      </Popover>
       <Card sx={{ p: 1, overflow: "auto" }}>
         <Flex spacing={1}>
           <IconButton>
@@ -84,7 +89,10 @@ export default function NavigationPanel(props) {
           </IconButton>
           <Typography>Your Library</Typography>
           <Spacer />
-          <IconButton>
+          <IconButton
+            onClick={menu.handleClick}
+            disabled={!props.player.state.context.track}
+          >
             <Add />
           </IconButton>
         </Flex>
@@ -134,6 +142,7 @@ export default function NavigationPanel(props) {
         </Flex>
       </Card>{" "}
       <Panel offset={offset}>
+        {!props.state.can("open") && <LinearProgress />}
         <Stack spacing={1}>
           <MusicPagination
             state={props.state}

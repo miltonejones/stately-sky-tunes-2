@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-export default function MusicListHeader({ artist }) {
+export default function MusicListHeader({ artist, type }) {
   if (!artist?.imageLg) return <i />;
   return (
     <>
@@ -30,6 +30,12 @@ export default function MusicListHeader({ artist }) {
             mixBlendMode: "difference",
           }}
         >
+          <Typography
+            sx={{ lineHeight: 1, textTransform: "capitalize" }}
+            variant="subtitle2"
+          >
+            {type}
+          </Typography>
           <Typography sx={{ lineHeight: 1 }} variant="h3">
             {artist.Name}
           </Typography>

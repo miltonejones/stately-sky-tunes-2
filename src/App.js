@@ -1,25 +1,16 @@
 import "./App.css";
 import { useMusic } from "./machines/musicMachine";
-import {
-  Box,
-  Card,
-  Grid,
-  IconButton,
-  LinearProgress,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, LinearProgress, Stack } from "@mui/material";
 import Dashboard from "./components/lib/Dashboard/Dashboard";
 import SearchResults from "./components/lib/SearchResults/SearchResults";
 import MusicDisplay from "./components/lib/MusicDisplay/MusicDisplay";
 import AudioPlayer from "./components/lib/AudioPlayer/AudioPlayer";
 import NavigationPanel from "./components/lib/NavigationPanel/NavigationPanel";
-import Flex from "./styled/Flex";
 import MachineDebugger from "./components/lib/MachineDebugger/MachineDebugger";
 import PlaylistDrawer from "./components/lib/PlaylistDrawer/PlaylistDrawer";
 import { useTrack } from "./machines/trackMachine";
 import TrackDrawer from "./components/lib/TrackDrawer/TrackDrawer";
-import { navigationIcons, OFFSET_MARGIN, PLAYER_MARGIN } from "./constants";
+import { OFFSET_MARGIN, PLAYER_MARGIN } from "./constants";
 import AppFooter from "./components/lib/AppFooter/AppFooter";
 import NavigationCard from "./components/lib/NavigationPanel/NavigationCard";
 import Panel from "./styled/Panel";
@@ -42,6 +33,8 @@ function App() {
     states,
     isMobile,
     rotated,
+    playList,
+    openGrid,
   } = musician;
 
   const props = {
@@ -58,6 +51,8 @@ function App() {
     isMobile,
     rotated,
     events,
+    playList,
+    openGrid,
   };
 
   const machines = {
@@ -90,9 +85,7 @@ function App() {
           <Grid item xs={isMobile ? 12 : 9}>
             <Panel offset={offset}>
               {state.matches("load music list") && <LinearProgress />}
-              {state.matches("dashboard view.ready") && (
-                <Dashboard {...props} />
-              )}
+              {state.matches("dashboard view") && <Dashboard {...props} />}
               {state.matches("music search view") && (
                 <SearchResults {...props} />
               )}

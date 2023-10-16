@@ -5,7 +5,7 @@ import { savePlaylist } from "../connector/savePlaylist";
 import { createKey } from "../util/createKey";
 const playlistMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnqglrALgHQ4SpgAEB6+YAxBAPYB2YxTAbgwNatpa4FipClRoIcHBgGNqOZgG0ADAF0lyxCgawc+OUw0gAHogC0ARgDsANgA0ITIgAcVworeKzAJkefPVx4oArJ4AviF2fNh4RABOYOgQmLQMyGBMagbIWjp6BsYI5gAsFoTOFmYAnJaBhQDMlrW1dg4ItcWEZrUWjmZWVoWeXoUVYREYUYKRAvjkeOQpaZC0UqhaYBlIIFnausx5iJ61joT1noHNpo2EFsMVjuUWFvUVgaNb49OEU9GzsPOpLAgQjItASEA2mh2uU2+U6hUId0CVUszjcVhuFwQVjaCIqVkGAzMik8dysb2+kw+PzmC0BhDiADM4rAABbkab0ZisCScHhfKmU-jUv60yD0sBMuBs6biSQyXbpFQQrbZBX7ApEzyEKydG6oipPTpNeyIImdDrdYokwKKQqOO7kgVECkzGkAsVg8j4GLoKRcL0McguzksNi83hO-lCgi-f6LIGe72+-34QMu2WceV6NTK7Y5PYwxCFYmuCweFFtWrBDEmhCOYsdCq1Pz2pttPqO6POp2x0VAkggqRxajrFSZVXQ0D5EzeY5mQL3GqWRQBWy1s1mbWWioGrqFYuhcLvLtRiaukXuoFD+I0cgsADu7OiIe5kj5LtP017l8I15Hd7AR8ZR5aRZAUJUx02PM1ULVoKnhPcAjuDw6g8NcWk6RRakIQJen3MthkCCwRjeJgGAgOBMidccoQLKdTAGEorBqPorCwxwiK8TFzCrVx3DMAZnCIxxHE7M9gREfARxo-N9Fg8x7RwxRui8c5axMdpbjuB5DXg0Sjw-YdEhkmD6I1WoXBtFSzkxQ5FD4twvB8FsgjEz4XW-eMTMnIxLmI7UWL6djOM8TEWOuXwnhXYsrERNzok-YU4zpAcwG8ujfIKRpN2YwpWOC8pQtrbFAkIK1rDOfd8X8eLBTPTy6UZZlpWidK5LMqt4WLe1PEKMwiVizxFHQ00PHsiogmG4ahuCfrau7LsGo9CAIC9H0-QDINqKgicMvyLpjkeZsbUCQIdWUwpMWxeFfE8G4nKJNwSLGE8PLdeNf2HW8HyfAg2vVExag8ALFwmyblK6TEhgqQg7v6xcnj8JswjCIA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnqglrALgHQ4SpgAEB6+YAxBAPYB2YxTAbgwNatpa4FipClRoIcHBgGNqOZgG0ADAF0lyxCgawc+OUw0gAHogC0ARgDsANgA0ITIgAcVworeKzAJkefPVx4oArJ4AviF2fNh4RABOYOgQmLQMyGBMagbIWjp6BsYI5gAsFoTOFmYAnJaBhQDMlrW1dg4ItcWEZrUWjmZWVoWeXoUVYREYUYKRAvjkeOQpaZC0UqhaYBlIIFnausx5iJ61joT1noHNpo2EFsMVjuUWFvUVgaNb49OEU9GzsPOpLAgQjItASEA2mh2uU2+U6hUId0CVUszjcVhuFwQVjaCIqVkGAzMik8dysb2+kw+PzmC0BwLoUji1HWKky2V2+hhpm8xzMgXuNUsigCtnsiCJZjMhHRjluTxuhWJ5KplP41L+tMghDiADM4rAABbkab0ZisCScHhfFVECkzGkArW6-VG6biSQyDlqCFbdnQ0D5czE6WdG6oipPTpNMUICW1DrdYokwKKQqOO7KtWqib2jWOoFg8j4GLoKRcIsMch200sNiW3g261Z3P-RYFiAQIslssVqs292cT16b2szbbHJ7LkIRWeVwWDwotq1YIYmOyxQdCq1PzprdtPqZnNNnO-Vt0xnxGjkFgAd2N0Rr5skVrtx+mp81QIvzOvYDvbotaRZAUFQfXHDl9laCp4S6NNFDuDw6g8UUWk6RR40CXpCmKVMXgsEZwneZttXiRJQQgA1pDAv1JwDUx+gqE550aecbkCfozExTxFBKTwnmKYZAhuElGkPT4EnISipHvAhHzrbgG2IiSpJk-AByAr1QNHSEJ05OiCmwqVt0GRxgjMWVnBQy5Z08W5ZX8cykNqMJCKYBgIDgTIbTZKFaKMUwLD8VwgkKdijls9FoxaIp4RuCp4raWVFXuRwxOielKHwZkfN0yDzHTQgU26LxzhjEx2luO4HkjaDUsI18mUSHKIKncxahcIqejOLjag3dwPG8Xx-CCNLs3fB022a-1-IKLpGKsGo+isdDTPKTxMUW65fEjUzCksXpRttG0P3zekpr8wNGilBbCiWlahK8TFsUCQgk2sM5sPxfxDrfdUzydMA9TgV1onOvSZuXeFkoqWzJUUKwYfhzEJQ3Cognh+HuLMswfrtE620IQti1Lct8ErO0wcgrpjkebcU0CdiiVXFpsXhXw+L27wiTcAixmIvGJvPJkr1vVTKda3rrv5CwkTcFMeK6ZHbMYvjJQFJ4-C3H7lOkMWxxo8HAxlYKajCnxbqeTETCEwhlbuRUhKErcahckIgA */
     id: "playlist",
     initial: "idle state",
     context: { songs: [], playlists: [] },
@@ -25,6 +25,11 @@ const playlistMachine = createMachine(
           open: {
             target: "playlist is opened",
             actions: "assignTrack",
+          },
+
+          adhoc: {
+            target: "ad hoc list",
+            actions: "assignAdHoc",
           },
         },
       },
@@ -80,6 +85,13 @@ const playlistMachine = createMachine(
 
         initial: "idle",
       },
+
+      "ad hoc list": {
+        invoke: {
+          src: "createList",
+          onDone: "idle state",
+        },
+      },
     },
   },
   {
@@ -125,6 +137,10 @@ const playlistMachine = createMachine(
     actions: {
       assignTrack: assign((_, event) => ({
         track: event.track,
+      })),
+      assignAdHoc: assign((_, event) => ({
+        track: event.track,
+        listname: event.listname,
       })),
       assignListname: assign((_, event) => ({
         listname: event.listname,

@@ -93,7 +93,10 @@ export default function MusicList({
   return (
     <Box sx={{ p: 2 }}>
       {!!state.context.displayArtist && !isMobile && (
-        <MusicListHeader artist={state.context.displayArtist[0]} />
+        <MusicListHeader
+          type={state.context.queryProps.type}
+          artist={state.context.displayArtist[0]}
+        />
       )}{" "}
       <Box
         sx={{
@@ -184,7 +187,11 @@ export default function MusicList({
                 })
               }
             >
-              {listman.contains(record) ? <Favorite /> : <FavoriteBorder />}
+              {listman.contains(record) ? (
+                <Favorite color="error" />
+              ) : (
+                <FavoriteBorder />
+              )}
             </Nowrap>
 
             <Box

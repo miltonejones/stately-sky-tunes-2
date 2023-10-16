@@ -1,5 +1,5 @@
 import { CheckCircle, SortByAlpha } from "@mui/icons-material";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { Button, Divider, Menu, MenuItem } from "@mui/material";
 import { SORT_FIELDS } from "../../../constants";
 import { useMenu } from "../../../machines/menuMachine";
 
@@ -30,7 +30,6 @@ export default function SortMenu({
   return (
     <>
       <Component
-        variant="contained"
         onClick={menu.handleClick}
         label={label}
         sx={{ textTransform: "capitalize" }}
@@ -41,6 +40,7 @@ export default function SortMenu({
       </Component>
       {!!sortProps && (
         <Menu {...menu.menuProps}>
+          <Divider textAlign="left">sort by</Divider>
           {Object.keys(sortProps).map((key) => (
             <MenuItem onClick={menu.handleClose(sortProps[key])}>
               {sortProps[key] === field && <CheckCircle />}
