@@ -1,4 +1,11 @@
-import { Avatar, Box, Link, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  CircularProgress,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Nowrap from "../../../styled/Nowrap";
 import MusicListHeader from "./MusicListHeader";
 import {
@@ -6,6 +13,7 @@ import {
   FavoriteBorder,
   MoreHoriz,
   MoreVert,
+  VolumeUp,
 } from "@mui/icons-material";
 import moment from "moment";
 import Flex from "../../../styled/Flex";
@@ -22,6 +30,7 @@ export default function MusicList({
   rotated,
   sortList,
 }) {
+  const announcementTitle = player.announcer.state.context.title;
   if (isMobile) {
     const sx = rotated
       ? { p: 1, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1 }
@@ -41,6 +50,10 @@ export default function MusicList({
                 src={record.albumImage}
                 alt={record.Title}
               />
+              {announcementTitle === record.Title && (
+                <CircularProgress size={18} />
+              )}
+              {player.state.context.track?.ID === record.ID && <VolumeUp />}
               <Nowrap
                 width={300}
                 onClick={() => player.play(record, records)}
@@ -163,15 +176,21 @@ export default function MusicList({
               src={record.albumImage}
               alt={record.Title}
             />
-            <Nowrap
-              onClick={() => player.play(record, records)}
-              hover
-              variant="body2"
-              muted={!player.announcer.contains(record.Title)}
-              bold={record.FileKey === player.state.context.track?.FileKey}
-            >
-              {record.Title}
-            </Nowrap>
+            <Flex spacing={1}>
+              {announcementTitle === record.Title && (
+                <CircularProgress size={18} />
+              )}
+              {player.state.context.track?.ID === record.ID && <VolumeUp />}
+              <Nowrap
+                onClick={() => player.play(record, records)}
+                hover
+                variant="body2"
+                muted={!player.announcer.contains(record.Title)}
+                bold={record.FileKey === player.state.context.track?.FileKey}
+              >
+                {record.Title}
+              </Nowrap>
+            </Flex>
             <Nowrap
               hover
               variant="body2"

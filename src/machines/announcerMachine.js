@@ -160,10 +160,12 @@ const announcerMachine = createMachine(
       assignList: assign((_, event) => ({
         items: event.items,
         work_index: 0,
+        progress: 1,
         announcementText: "",
       })),
       incrementWork: assign((context) => ({
         work_index: context.work_index + 1,
+        progress: 100 * ((context.work_index + 1) / context.items.length),
         announcementText: "",
       })),
       updateText: assign((_, event) => ({
@@ -180,6 +182,7 @@ const announcerMachine = createMachine(
         upcoming: context.items[context.work_index].upcoming,
       })),
       assignIntro: assign((context, event) => ({
+        title: null,
         announcements: {
           ...context.announcements,
           [context.title]: event.data,

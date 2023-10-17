@@ -14,6 +14,7 @@ import Flex from "../../../styled/Flex";
 import Equalizer from "../../../styled/Equalizer";
 import Nowrap from "../../../styled/Nowrap";
 import {
+  Close,
   Favorite,
   FavoriteBorder,
   NavigateBefore,
@@ -57,13 +58,36 @@ export default function AudioPlayer(props) {
           <Flex spacing={1}>
             <CircularProgress size={18} />
             <Nowrap width={160} variant="caption">
-              Getting intro for
+              Getting introductions
             </Nowrap>
+            <Spacer />
+            <IconButton
+              onClick={() =>
+                player.setOption(
+                  "options",
+                  player.state.context.options & ANNOUNCER_OPTIONS.SHOW
+                    ? Number(player.state.context.options) -
+                        ANNOUNCER_OPTIONS.SHOW
+                    : Number(player.state.context.options) +
+                        ANNOUNCER_OPTIONS.SHOW
+                )
+              }
+            >
+              <Close />
+            </IconButton>
+          </Flex>
+          {!!player.announcer.state.context.progress && (
+            <LinearProgress
+              variant="determinate"
+              value={player.announcer.state.context.progress}
+            />
+          )}
+          <Flex spacing={1}>
             <Nowrap variant="body2">
               {player.announcer.state.context.title}
             </Nowrap>
           </Flex>
-          <Typography variant="caption">
+          <Typography sx={{ width: 400 }} component={"code"} variant="caption">
             {player.announcer.state.context.announcementText}
           </Typography>
         </Card>
