@@ -9,6 +9,7 @@ import MusicPagination from "./MusicPagination";
 import NavChips from "./NavChips";
 import { LOGO_PHOTO } from "../../../constants";
 import SortMenu from "../NavigationPanel/SortMenu";
+import SettingsModal from "../SettingsModal/SettingsModal";
 
 export const MemoryButtons = ({ state, send }) => {
   const { memory_index, memory } = state.context;
@@ -59,6 +60,10 @@ export default function MusicDisplay(props) {
             onClick={() => props.setState("debug", !props.state.context.debug)}
             src={LOGO_PHOTO}
             alt="logo"
+          />
+          <SettingsModal
+            player={props.player}
+            onClick={() => props.setState("debug", !props.state.context.debug)}
           />
         </Flex>
       )}

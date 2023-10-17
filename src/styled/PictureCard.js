@@ -53,7 +53,7 @@ export default function PictureCard({
             </Box>
           )}
         </Box>
-        <Stack onClick={onClick} sx={{ m: 1 }}>
+        <Stack onClick={onClick} sx={{ m: 1, width: "100%" }}>
           <Nowrap bold={bold} variant="body2">
             {title}
           </Nowrap>

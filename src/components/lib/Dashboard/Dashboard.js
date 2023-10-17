@@ -15,6 +15,7 @@ import { createKey } from "../../../util/createKey";
 import { LOGO_PHOTO } from "../../../constants";
 import playlistSort from "../../../util/playlistSort";
 import { Album, Checklist, Person } from "@mui/icons-material";
+import S3Uploader from "../S3Uploader/S3Uploader";
 
 function getGreeting() {
   const currentHour = moment().hour();
@@ -48,6 +49,7 @@ export default function Dashboard({
       <Flex spacing={1}>
         <MemoryButtons state={state} send={send} />
         <Spacer />
+        <S3Uploader />
         <Typography variant="h6">SkyTunes</Typography>
         <Avatar
           onClick={() => setState("debug", !state.context.debug)}

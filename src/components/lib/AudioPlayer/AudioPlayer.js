@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box,
   Card,
+  CircularProgress,
   IconButton,
   LinearProgress,
   Slider,
@@ -34,7 +35,7 @@ import {
 import statePath from "../../../util/statePath";
 import SmallPlayer from "./SmallPlayer";
 import TracklistDrawer from "./TracklistDrawer";
-import { COVER_ART_IMAGE } from "../../../constants";
+import { ANNOUNCER_OPTIONS, COVER_ART_IMAGE } from "../../../constants";
 import Spacer from "../../../styled/Spacer";
 
 export default function AudioPlayer(props) {
@@ -108,9 +109,31 @@ function AudioPlayerBody(props) {
 
   if (!track) return <i />;
   if (!player.state.can("stop")) return <i />;
-
+  const showAnnouncements =
+    ANNOUNCER_OPTIONS.SHOW & player.state.context.options;
   return (
     <>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        open={
+          player.announcer.state.can("append") && !!silent && showAnnouncements
+        }
+      >
+        <Card sx={{ p: 2, width: 500 }}>
+          <Flex spacing={1}>
+            <CircularProgress size={18} />
+            <Nowrap width={160} variant="caption">
+              Getting intro for
+            </Nowrap>
+            <Nowrap variant="body2">
+              {player.announcer.state.context.title}
+            </Nowrap>
+          </Flex>
+          <Typography variant="caption">
+            {player.announcer.state.context.announcementText}
+          </Typography>
+        </Card>
+      </Snackbar>
       <Snackbar
         open={!silent}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}

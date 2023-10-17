@@ -1,7 +1,12 @@
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Link, Stack, Typography } from "@mui/material";
 import Nowrap from "../../../styled/Nowrap";
 import MusicListHeader from "./MusicListHeader";
-import { Favorite, FavoriteBorder, MoreVert } from "@mui/icons-material";
+import {
+  Favorite,
+  FavoriteBorder,
+  MoreHoriz,
+  MoreVert,
+} from "@mui/icons-material";
 import moment from "moment";
 import Flex from "../../../styled/Flex";
 import Spacer from "../../../styled/Spacer";
@@ -15,6 +20,7 @@ export default function MusicList({
   openList,
   isMobile,
   rotated,
+  sortList,
 }) {
   if (isMobile) {
     const sx = rotated
@@ -90,6 +96,15 @@ export default function MusicList({
     );
   }
 
+  const columns = {
+    "#": "discNumber,trackNumber",
+    Title: "Title",
+    Artist: "artistName",
+    Album: "albumName",
+    Genre: "Genre",
+    Time: "trackTime",
+  };
+
   return (
     <Box sx={{ p: 2 }}>
       {!!state.context.displayArtist && !isMobile && (
@@ -107,12 +122,22 @@ export default function MusicList({
           mt: 2,
         }}
       >
-        <Box />
-        <Typography variant="subtitle2">Title</Typography>
+        {/* <Box /> */}
+        {Object.keys(columns).map((column) => (
+          <Link
+            sx={{ cursor: "pointer" }}
+            underline="hover"
+            onClick={() => sortList(columns[column])}
+            variant="subtitle2"
+          >
+            {column}
+          </Link>
+        ))}
+        {/* <Typography variant="subtitle2">Title</Typography>
         <Typography variant="subtitle2">Artist</Typography>
-        <Typography variant="subtitle2">Album</Typography>
+        
         <Typography variant="subtitle2">Genre</Typography>
-        <Typography variant="subtitle2">Time</Typography>
+        <Typography variant="subtitle2">Time</Typography> */}
         <FavoriteBorder />
         <Box />
       </Box>
@@ -141,6 +166,7 @@ export default function MusicList({
               onClick={() => player.play(record, records)}
               hover
               variant="body2"
+              muted={!player.announcer.contains(record.Title)}
               bold={record.FileKey === player.state.context.track?.FileKey}
             >
               {record.Title}
@@ -202,7 +228,7 @@ export default function MusicList({
                 })
               }
             >
-              <MoreVert />
+              <MoreHoriz />
             </Box>
           </Box>
         ))}

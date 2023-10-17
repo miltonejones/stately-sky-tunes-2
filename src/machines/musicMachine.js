@@ -15,7 +15,7 @@ const searches = ["music", "album", "artist"];
 
 export const musicMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QFsCusCWBjAxAGwwCMAnAQ2IE8BtABgF1FQAHAe0wBcMWA7RkAD0QB2AJxCAdAA5RAZkkBGAEwiALDVGKANCAqIAtCMUrxigKyKhimTNE0aANhkBfJ9rSZcsMOSwALWgxIIKwcXLxBggiKNNHi8iryClaSkvZGWjr6qvbiIqbyMirWlqrSLm7o2Di+LMhgAXwhGJw8fJF69qY5CpKKkqYqFirDktq6CAZK4vaSqoYis-ZCMvblIO5VfqTcMAAETOSkyA1BTS3hoO1KMoriKqazIp0FpjI0MmP6VvLiQvI0kjsaSspgezlc60quG4pAAbhgoKR2PV6I02M0wm1EIp5D8RCt+mJLPYin9PhN5uIbg9lkVSnI1hssOIIKRYL5CCxyBBdvCwAB3HAsJhgbgnZjo85YiYKcQ0UoqJamOySQbkvTUkyJGjyERPPUyeTLRlQllsjlc4g8vn88QYbgY0h4XZ4LkQHAQHhgO3cWEsADW3qZZvZnO5vIwAp9judrtIEAQ9r9WCRYQC4uCksxESyBVyKj+KSE-UKRvVKn6UkU9nkSukQiEDiEJo8IYt4Zt4mI3ggFBwTDwpGoqNOWdaOYmMxkcQW+PluL+iXV1h+bweMzyBWJKhb2HEcZ5TJdGFg7H3buPp49Xp9fsD4mDB92R4Ip-P8cv7ETvpYKfO6ZHCVQnHS5sRmOUYmGaI8nuZZTHVB580kGwlgWKw+l3ZknxfE8zyfV92BwMBiGIFhiHEAckQAMzI5AH1NbCoU-d8eQI79k1THgAMCICMRAgREHyEQtQBNJRGQv4VGXOxchEeJlTEGRXgLZsIUfC8cLfeMeQOMhkFgXZ2BYXZfFwsi+wzM5s1AhAVgkYZrD1f4zCWcsbGmCwHHsGgK1SPVMJZE9KIoZ8mIIoURTFQDM2Ai4BIQfJJDuQx4nsQwhHMMlMknGg7grGQFlVQ1qXkAKICCwcQs0s8IDAZEsHYUKPEMigRRwSyxziyIbludKFASAtZlMJ5ySU4SFlsAYrBiZCyoqocmuwZjavqxqj3YVqwHa+QeJiviusQElpwrHElIUIRBhEUb3OrAoSQsLojXkUwAqPLwfF8CMoxFYgaOIZBdne4g-HEIG-F2QgQo2trPW4b0kwDINTTe7xgc+zsfr+gGwd8UHUfByGWpFdjf04qK6A62LpSMIQcjSApBh1B4aHg7K9GGXLLHiWRkIcBZwQqVsUY+r7bUx2jAfx3GYEauH+EanGia2yn9uplYcmeukXgGMR1WUCRFHQw3qwLeIBchIWmMVjHiKxyWPvEGXdjlhWpaV7bdqs-jIiNLo5WQtdF2UeRlxxOJ7CWNLzFBZUzFeq23c7crYGC+20d2btYFQPB2FgCLRRVqUJ1xd4tQbEkI96OSMnGDU1CkRUZmiJSEnMePmutyNbT8MAsH9XY-v2Q5kHa6KvYOhAjREXLSU6VQcRJK62YLUwqWsFJa1BQZhnbpbO6jHu+4Hsih70j20Sp4vy7lW7Da8ukPjZh5V-6bfDT1fExF3rA0-BzsMAgHgLaVF7QQELtZeK0Q-hSD1KYWmFZFKWHVEsXK8RHinQNAMAKTBuwHmvHDW8iN6KthwWAA8JM-xpnoOA72+hejGBUHqOw7wdaqnsMgiQDgBj3TSowuwpU1KmlZKGS01ou6OzqoZMgR9wqw3hj+e8wZhHtitKLCRjV2DSP7mxBGlCuLULHp1aU7M+i-EGMsRINwnhFHLJYcQw08jIWrC5KwZVzRhlUZ2Lw3AdKVUBgiGEeB8HyLvEjVsyiPFiKjN43xC1MBQECRQsm3EL6qwnB0VQ9jzHvDku8Ioj9a4kiShXYY+ICrT2Gi4CE3AWC1XgEEJkqSi42T0M5Y6oI7B5AbDYQ26p-iFDuPkJSFg9QNkkG4kRHYu5NIge0MQq97jKnlHA5Ylga76Aurce4xs5B2A0OMwR4T3GiLUfaGMLo3QzNoRSCwgylldNWb0tmnRjB5ENmbZYTxCgTJUVE203Z4zjF4s0+KHQ-ZrJsE4nySwCn6HuKuZY0KUhFJZj8yJainaaNIDI3CVyJ7sz9k5HUF1VRoVhRMTUTlFQPRBE8VSgs9yMWagRPF1MHDJUVGoZYNYFDsLZn8LZ+QMqFgcRYAKTKloERYp+VlE4zAMOyFylYiRayh1XlS4stYbACvFRpMKuFpXEVIsQWVNkMp4khbiE2eonm1zeFsuSKlVDqGWObdSH5qriG0qfI4BkjImTMpQU18VrC5VUH8bIKx0qKmQUYXIQrhpNlxGkOaKc-HVWDZEasq9E2qiNNEfqoxsr5pMI4Tc9x8S03xKm1OnqVq9zWkxaGYBM2IGKvY6eebLAAjQeSMwwlaYFUSDWIdcCa3pv1W+ZOqcCKi1bbZZ6VZzC8KsIYYY5JqX2JuAWb40gEgiHHQtOt80QpQGIAAudo5L42RJD8GmtM-gDFkBu1Icpt20wjvkOwoJv6-3RtMq9aSbLxFLgVOB5SSUFnVICactZp7qHeOrfIv795i1thLHG87d1xAGEOpSOshDqkfdMNKKpHXFlSChxO4jxb-T-XjEWhNm1YbUOqsDJQBXmFjUlODOp1B5GrgIhlzJhbpxtr9DDUt1HOzAPLP9SsWPyjfaGx9W4SR6xWCYC6vsdRpTkm65GCcRZJxPfJzO2dc7zvkquLpEGKxQbZm8XKpHEj6fxCSDKVHjPiMPv3QeukjhWfMNOIprwVzT0GrYiQYJkIzBmiqrzYnxEAKAVZ2Q+ZRDCprAUVUHDOHVl5gVuSShsG4MuYBkF7RkJJSBICJ6gxvLktLFSBYLMjD2tazuQ5e4IknK8aKWJIV4mBPnezAs0wjQZR1LiXoIdnkDHjTiVIPlCpxyqUAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QFsCusCWBjAxAGwwCMAnAQ2IE8BtABgF1FQAHAe0wBcMWA7RkAD0QA2AMwAOAHQBOAExCALAEYA7DJrqp8oQBoQFRAFpZUiSJkBWMcpHyRmsXYC+j3Wky5YYclgAWtBkggrBxcvIGCCGpqEopKYooy4mJCMvIyuvoIRlrS5oo2IiKq9srOrujYOD4syGD+fMEYnDx8EQZCQsoSyrLKNEI08jQWYuYZhglp3VJFYlrmaqNlIG6VvqTcMAAETOSkyPWBjc1hoG35UooS-SKKsbMdQmLjWTKKkp3yc+bFhTRSy1WuG4pAAbhgoKR2HV6A02E1Qq1EG8rjMnuYpMpVAoiooXkYZCYzJZrLZ7OJARUsBIIKRYD5CCxyBAtuCwAB3HAsJhgbiHZjwk5IrIJGQSBZmGjmcyicxDGTKfFCO4SToqZRCKTmYZaESU9w0ukMpnEFls9kSDDcBGkPBbPBMiA4CA8MCW7iglgAazdQMN9MZzNZGA57ptdodpAgCCtnqwUNC-n5QUFiPChikQnM0hod1+ihSyvxYil0wchR6c2M+uw-uNQfNEmIXggFBwTDwpGosKOqZa6ayfXk3REPzeGoV-SkSryEgVJe1NG+T0UNeptIDJrNIYtMHYW3YZCwXvtGFg7Gdrvdnp9Ej9G-rpuDob3B6PJ4I55jHpY8ZOSZ7AUQn7M5DFsMUxCkMQFQULM5EufEejFH4VCrHotRoPUXBWKk60DJ9G08bgWQ7LstkwKAQTwS9uDdWNvV9XCH3w7dQyIkjOwociISo784wTHgAICICERAgRDGUAtrh6eRbE1eJEnxTFs3yDoaB6RRMwuNcJEjFkgVPc9dMdQyLxdWjrwYu9cL0rYDM-dhjKjUy+N-AS+XoZNjjTUCEALEwswGWIEniO4ZXxSxpC+Io+mUIZoIcHTbPss9HNshycDAYhiBYYgJFI9gADNcuQayDWSqlTKclkHNcv9E08wCU2A05xIQIZh0uTT3nUxR-i1eR8UJYdIOldSLHkOKniEJKTJSoyoxIvZkFgA8WC2HxUtytsvL7VqIgsEQYlk+Q5SKBYtVifFbCucxblFP4lxkHSIDPUiuPmi9uV5XaWuFSaukuGYpQLDFCWnPRDAGCRZIcWCtCxJRV2w+83s4uzKocmkwGhLB9wM9gKB5HBftE-bkWg1VoLuER1DzZUdEhhBRxMKCen+JdZLMDoXrRsjPux3H8cqwniaoRRhOasnhRxGHqdHeI4sJF4KznZURAUBUZRURRzB0gzPG8HxnwtHliGK4hkHIrxiF8CRDdt43CC40WwBouif1vP0DZt3wTfyrKLath27ZDp2XaJsA6vcoS4T+gdUg1VU3hsNRdYXa6hm6N5JpmBwp0SlHcJ9o3-bNoPraNiRX1o-h9zDg9I5JprvLEg6NaEGIzsuUc5UxIbMTnRIZBHuRJvufXKobxty5KyvHernGtlr+vfeN12SYluPpYHFQZWucspUkhIEKZgwzCuAtOk1BZpW1CxJ-cee-cbV7YHe5-jebWBUDwdhYC5DyDyktW7kz8v8TugwswsxHmIZIioz5mCOkoTohR7A9QfkXA0JdHb+18GAY8WwLY7GWs3EBe1hQqCkDQGGRQsyaDeAoCGmQDCTWzIUJIoM5SpHkI-bAn88E+AISeYhuwyDIE3uQ+Ovl3gJGOuNEYcC0iDTPpYbMoxlG3CkNouwpQsG1hwS-HcloIB4DdoVK0EBSZCgTr1CQkFMwa1OiWIsZ9OhdGGE8WmchIJ3GRuUA0TBmx6XdpZL2uEglgD0tHf8jUpE718gYb41wlCWFpvIWQKD8QcPFLTZSpINQzB0vgwhm1zzbTIdvGxiTCjDgUAWfItMNR2GyWYbo8RhiZn6CkMwxShGlK2pQSRVSfJtXPoMA+sksTam0T4lRLDZJXDpgMahXVtFiGcNhbgLAIBwD4ECEZbcJhX26LqUYmhRCjnxI0mhhJxCDA1oUNQWEAm1mYluE2hywEGD6gqGGHNdb9AWLEZ4Z8+opFVBrSSk1ToFmevo9cRoWL+ytOGe0jovnCiMD0f51DAVwRBUpOK0hUhQveE0jZCK8IfMbM2KMmQRLVLGZ0SQFge62HzgqRCklTCnVgbmTMygMQvSRTS4xr5DykEIQ5TFA5WHKmOlmdQo4nhpCVKdaQogcRwLvnkEVm4GzGPYjsdGFEqKysSbC7o1hh5QQ1iWBBLDMSdVJWqfOyhKWvOpBVJ+MrezSLarIGIWpNQDCXKs1QiF+imGlLIcc4hmmzWcgLdKqULVtViDQzSMounhv+JGxBml7FajuidDJ5Yk36UxqlaqWwso5WIOmiIoguiiDgR0O6WJnkD07nYaUqc3hQTlJWjGvqa2LRIeI1a7B1plJnZQJtyIpIKGghk1ZWZwpuPePY6U8RS0OBkIXL1NI+YfWreeRdflB48M1qobpMp5mIBUGKOQdhMTUxLP8F5OEDRvw-gLXZQtR38Ndpe+CMQFROMKJpf4WgXhsu6KIS4yQLi6z0cev96MAOntMp8-1CS2qpGzDetId6O0KBeKdSBsQMlfFUCPTQvN35YfPY5TDZEoDEAwKxdkl76lzkmpqBjgx7CUZxXkPltSNK5j4VgAR5pL2ZqOn26w2i4pzEdYYEsR1-KYTmPkH4esqWGONjPQOc8w5gduJIXWZIDN9004OXWqpNT0xzkFWT8njGz0tp-e2a8tjO0bjyMDQxswzC1MUSSFh0huMPTETUuZ1JakuG8Tz09vPmd82HRe+4V4CNA-hplB0hgmEwn8SSeQ6GPteBrOccU965k1D3dLAXX44Ybt-X+-9FNWpU2+9Tk1snqFVHi3xdgnFCta6XRsJSRG5UnfsXrPKMR9WggoO6usxhnwBuKBwyRU7QScdN3BjZuNmMU-na4hZHgzFSaClh7jrg+O8U8Lq8Lj2RL0pen5dxJBTXEBiXUVzEGjnsYMDJmFEh-aM8eubG1BkMqlsVww0ouiaTzjqIVmtslyPSVoUYo4PXKk2Y4IAA */
     id: "music",
 
     initial: "preload",
@@ -203,10 +203,21 @@ export const musicMachine = createMachine(
         invoke: {
           src: "preloadPlaylists",
           onDone: {
-            target: "dashboard view",
+            target: "check history",
             actions: "assignPreload",
           },
         },
+      },
+
+      "check history": {
+        always: [
+          {
+            target: "load music list",
+            cond: "query was saved",
+            actions: "assignCachedProp",
+          },
+          "dashboard view",
+        ],
       },
     },
 
@@ -229,7 +240,10 @@ export const musicMachine = createMachine(
         actions: "assignSearchParam",
       },
 
-      home: ".dashboard view",
+      home: {
+        target: ".dashboard view",
+        actions: "removeCachedProp",
+      },
 
       "change param": {
         actions: "assignParam",
@@ -243,6 +257,7 @@ export const musicMachine = createMachine(
   },
   {
     guards: {
+      "query was saved": () => !!localStorage.getItem("queryProp"),
       "type is list": (context) =>
         context.queryProps.type === "music" || !!context.selectedID,
       "more search types": (context) => context.search_index < searches.length,
@@ -312,10 +327,24 @@ export const musicMachine = createMachine(
         searchResults: {},
         searchParam: event.searchParam,
       })),
-      assignQueryProp: assign((_, event) => ({
-        queryProps: event.queryProps,
-        selectedID: event.selectedID,
-      })),
+      assignQueryProp: assign((_, event) => {
+        const queryProp = {
+          queryProps: event.queryProps,
+          selectedID: event.selectedID,
+        };
+        console.log({ saving: queryProp });
+        localStorage.setItem("queryProp", JSON.stringify(queryProp));
+        return queryProp;
+      }),
+      assignCachedProp: assign((_, event) => {
+        const queryProp = JSON.parse(localStorage.getItem("queryProp"));
+        console.log({ saved: queryProp });
+        return { ...queryProp };
+      }),
+      removeCachedProp: assign((_, event) => {
+        localStorage.removeItem("queryProp");
+        return { queryProp: {} };
+      }),
       assignParam: assign((_, event) => ({
         [event.name]: event.value,
       })),
@@ -392,7 +421,7 @@ export const useMusic = () => {
     state.context.musicList.related || state.context.musicList;
 
   const corrected = records?.map((rec) => {
-    if (rec.Title && !rec.listKey && !rec.FileKey) {
+    if (rec.Title && !rec.FileKey) {
       rec.listKey = createKey(rec.Title);
     }
     return rec;
@@ -427,6 +456,18 @@ export const useMusic = () => {
       },
     });
 
+  const sortList = (field) =>
+    send({
+      type: "open",
+      queryProps: {
+        ...state.context.queryProps,
+        field,
+        direction: state.context.direction === "ASC" ? "DESC" : "ASC",
+        page: 1,
+      },
+      selectedID: state.context.selectedID,
+    });
+
   const openList = (type, id) => sendToList("open", type, id);
   const playList = (type, id) => sendToList("play", type, id);
 
@@ -456,5 +497,6 @@ export const useMusic = () => {
     refreshList,
     isMobile,
     rotated,
+    sortList,
   };
 };

@@ -43,7 +43,7 @@ export default function MusicListHeader({ artist, type }) {
             {artist.TrackCount} tracks in your library
           </Typography>
         </Box>
-        {JSON.stringify(artist)}
+        {/* {JSON.stringify(artist)} */}
       </Box>
     </>
   );

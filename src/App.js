@@ -35,6 +35,7 @@ function App() {
     rotated,
     playList,
     openGrid,
+    sortList,
   } = musician;
 
   const props = {
@@ -53,6 +54,7 @@ function App() {
     events,
     playList,
     openGrid,
+    sortList,
   };
 
   const machines = {
@@ -64,7 +66,7 @@ function App() {
   const playing = player.state.can("stop");
   let offset = playing ? OFFSET_MARGIN + PLAYER_MARGIN : OFFSET_MARGIN;
   if (isMobile) {
-    offset += playing ? 104 : 64;
+    offset += playing ? 100 : 64;
   }
   return (
     <>
@@ -89,9 +91,9 @@ function App() {
               {state.matches("music search view") && (
                 <SearchResults {...props} />
               )}
-              {state.matches("display music list") && (
-                <MusicDisplay {...props} />
-              )}
+              {["display music list", "load music list"].some(
+                state.matches
+              ) && <MusicDisplay {...props} />}
             </Panel>
           </Grid>
         </Grid>

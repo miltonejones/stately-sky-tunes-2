@@ -26,69 +26,72 @@ export default function CuratorCollapse({ curator }) {
   return (
     <>
       <Collapse in={curator.state.can("okay")}>
-        {!!curator.state.context.matches && (
-          <Stack sx={{ m: 1 }} spacing={1}>
-            <Flex spacing={1}>
-              <IconButton onClick={() => curator.send("retry")}>
-                <ArrowBack />
-              </IconButton>
-              <Spacer />
-              <Typography variant="caption">Add</Typography>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={add_pref & ADD_ARTIST}
-                    onChange={() => handleCheckboxChange(ADD_ARTIST)}
-                    name="enabled"
-                    color="primary"
-                  />
-                }
-                label="Artists"
-              />
-
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={add_pref & ADD_ALBUM}
-                    onChange={() => handleCheckboxChange(ADD_ALBUM)}
-                    name="enabled"
-                    color="primary"
-                  />
-                }
-                label="Albums"
-              />
-            </Flex>
-            {curator.state.context.matches.map((item) => (
-              <Flex
-                onClick={() =>
-                  curator.send({
-                    type: "okay",
-                    answer: item,
-                  })
-                }
-                spacing={1}
-              >
-                <Picture
-                  src={item.albumImage}
-                  alt={item.Title}
-                  style={{
-                    width: 64,
-                    height: 64,
-                  }}
+        <Stack sx={{ m: 1 }} spacing={1}>
+          <Flex spacing={1}>
+            <IconButton onClick={() => curator.send("retry")}>
+              <ArrowBack />
+            </IconButton>
+            <Spacer />
+            <Typography variant="caption">Add</Typography>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={add_pref & ADD_ARTIST}
+                  onChange={() => handleCheckboxChange(ADD_ARTIST)}
+                  name="enabled"
+                  color="primary"
                 />
-                <Stack>
-                  <Flex>{item.Title}</Flex>
-                  {!!(add_pref & ADD_ARTIST) && (
-                    <Nowrap variant="caption">{item.artistName}</Nowrap>
-                  )}
-                  {!!(add_pref & ADD_ALBUM) && (
-                    <Nowrap variant="caption">{item.albumName}</Nowrap>
-                  )}
-                </Stack>
-              </Flex>
-            ))}
-          </Stack>
-        )}
+              }
+              label="Artists"
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={add_pref & ADD_ALBUM}
+                  onChange={() => handleCheckboxChange(ADD_ALBUM)}
+                  name="enabled"
+                  color="primary"
+                />
+              }
+              label="Albums"
+            />
+          </Flex>
+          {curator.state.context.matches?.length || "No"} items found.
+          {!!curator.state.context.matches && (
+            <>
+              {curator.state.context.matches.map((item) => (
+                <Flex
+                  onClick={() =>
+                    curator.send({
+                      type: "okay",
+                      answer: item,
+                    })
+                  }
+                  spacing={1}
+                >
+                  <Picture
+                    src={item.albumImage}
+                    alt={item.Title}
+                    style={{
+                      width: 64,
+                      height: 64,
+                    }}
+                  />
+                  <Stack>
+                    <Flex>{item.Title}</Flex>
+                    {!!(add_pref & ADD_ARTIST) && (
+                      <Nowrap variant="caption">{item.artistName}</Nowrap>
+                    )}
+                    {!!(add_pref & ADD_ALBUM) && (
+                      <Nowrap variant="caption">{item.albumName}</Nowrap>
+                    )}
+                  </Stack>
+                </Flex>
+              ))}
+            </>
+          )}
+        </Stack>
       </Collapse>
 
       <Collapse in={curator.state.can("accept")}>

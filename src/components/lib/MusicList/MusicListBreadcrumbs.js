@@ -44,7 +44,7 @@ export default function MusicListBreadcrumbs({ isMobile, send, state }) {
         </Second>
         {!!detail && (
           <Nowrap variant="caption" bold>
-            {detail[props.field]}
+            {detail[props?.field]}
           </Nowrap>
         )}
       </Breadcrumbs>

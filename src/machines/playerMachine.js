@@ -5,12 +5,15 @@ import moment from "moment";
 import { getIntro } from "../util/getIntro";
 import { speakText } from "../util/speakText";
 import { useAnnouncer } from "./announcerMachine";
+import { getLocalSetting } from "../util/getLocalSetting";
+import { setLocalSettings } from "../util/setLocalSettings";
+import { getRandomBoolean } from "../util/getRandomBoolean";
 
 const connector = new AudioConnector();
 
 const playerMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYjSwG0AGAXURQHtYBLAF1qoDtKQAPRARgBY+A6AGw9BATi5dRAdglcSAVgA0ITIgC0EwQGZ+ongA5RJAEzH5RroIC+V5YWw5+qKuggACALboAxgAtazGD8sPToOPRu9rhuASHozN5geBAsQQEAblQA1kFRjs6unj7+gcGh4ZEYDjHMcQlgCBlU3uiMLKRkHWzINAxMrEgciMY8ovxaWlIiplNm+iLKqghqxiQkUvzyWgokovIGPApSNnZVuE4u7l5+AUEF7mAAjgCu6Ki0AF64yan8TTn8PIXQrXEp3S5uJ6vd5fHCNZiZFptZgdLqDHp0ZFsTgIAQ8eRcKTGMQGbZcYz6JQqdRcczGTZSKSibZ8BSEk4gIH2AJQPAhKjINHUTH9bHqLRcXRyUQWcTSQ76QSLGlyQSbQRErTEwnaHhaDlcqo8vlgMBZIWc3pYwY40wU-i0uRrHbGIlK6kIST6fhSBTCQTyQQmQTGLT6A1nRzc5i8gDCAHl4wAlAAiAGULRi+iwxQhTIGpWt5FtDFJ9CR3Us1DxaUJGTwyxJjKIzPrbJzI4CjTG+bRUGB6pmraKbcMRvIhOItHwtMJKcrlsY5Lp9FwteT5L7ptZ24asMbYrh6EORTnR3nVhPJOTy-pVwTRJX1CN+KYA2JNw35CZaRGsOdo15ZxnggXAT2zAZQFtCUJ1Gcx9FWEQ+CmBceFDfh8V2ckJmJcweD-Bwu33GMyjCCJAP4GAIniZgqGeeoPGYegflKf5ck7Ci4gqCiqLcGi6IYpj4URVp+lRchumHM8oPUAkJxISlHzWNDyUELgFzUIldBdRsjCmcNdw47soFI7jjMosBqOYWj6MSRjmJSViEWydj-yjcyuPI8zeP42ywHs4TmlE9pyCILgKHRKTIKGBASAXEgCIAjzyi84iTM8viQKYFi0mcgE90wHlTNSwqSIy9AsqoQKkTE0KJMi09opxeRXSEMxH0MLUJUfBdmx0QQNQJWlyz0cs21ONyiNK9KUsqNLisyiBstwHAqHc1oADM1o8KakvmjLONmiqlqqpoapCzp6uFCDcy4QxxjpNC9nkfQJWMBcCRIFctGkBCTGkEg9US9bpoWzjkDAdAshqehVpyv48tcwjDrIubQdgCGoZh1bquClE6oi67rRk5ZyUlEheBISZNw1GQG16xVdDU-QZBGORkOBqaioO8yNoCB52FoEIeT46yBLspj4bY3aQe52aKL55gBaFxgY1FmzBPoXHkXEwnLUa3MNCdDCNUOR18V4d6PVdb0iRlLVmyOcwdwm5HktRhX+chQXhbV3zNalxGZa5sr5d5r2wB91WoHV8X-KEs68dRcLJIN88NEBngfWEIkpA-R8tCpJZeAnVdy0DPOZVXIlOYowCakiVaoBwOBYDwAAFJN4wAcSTABRNMMyu-WbvPckXyXaQBpERUq4XYR6W66cEJ+sMRlr8z64CRuqGb1u8HoXeoH7cDiZiwlCQdcwJTzn7aWEeea34BR1xZswKckDf5q35gd732BYDBEsm4Z4yA3CBHYBEWGPgsiB0yPlIy39jIN2QE3FuACgERFAeAyOUCcAwO1rVS6essxnxxBIGQr4pDbG6q2DUqEzCbAlIYU29Ya6GUmnXZB29UG73QYA+wAAjGBBAKqwDAKfEcJN5hjEBjMMuexCRaHnuhQwEgjAsNpGYL+oMf5-34VNYR3hYF9wAHIpkkdJGKzIvoKEOPsMQhI9hPmWGGHQ1DHwUi1EGF6+EOFuyQWlFBaDW6GJEWYixKcGqjxJnIFm-AWbiDXEufEed9AaUtjoLYdN8xmBrAZV2e1dHcN-rw-+AiqhGNgZ3PuAA1AAkvGAAqkPEhUVcxjU2EkmcchvwTAyUGV8d4pgKWmI+UQOiip6LKQYvwYBjFuC2jgPi4QVZ4EsU1bgBINi+ntqzUQlJLALiUc-R2voJRrwDH4wpssSLTJCRguZCylkrMYCEdZUSiZSPPvsMYYYBrXyDGGZkDMdkSEVB+NSS55CTLuSU-RoTxFK1eSrNwdAoDMDeHAlywcuFBJ4Q8wBSL3BkVReizFqBCEXQ2bdVc9JFEtS2MICUFZUKX22NQhsep8QjGOP4opUzuGwEiGIyAeB0HPA8BI4epDvk4k8T6dYchJhOIrDwBcUwNjmCJK6cQSEDCwpMtAhZA5QIQDwOwOI9AgjoA2tanAAAKb8JAACUBBEGg2NdDU1kAaXpzMIvZk35NwsubOqj0ag16vh+toQMYgKQyENfwL1kIlZistaEa1-BbX2qdWsN1BUiopp9RAMKbS04kxWGsH0obAZlkEJSdJEbxATnlMq5CfBRic3uEUG4pQnnQzyG4TIqBJVJD9ZW3gWdJB230neTQUgNJLnWM-WdRIXT7BsO2WioF4DokjKnGJMUNAaIwnnZCqwG2MiLs+OCQg7oVkpHTIMBSOyTR7aCW4h6yHPjLFQkQuxhkUkMEuhUDoH13mcTImF-L8gQk-aUHmbkah1ESN+uVz5tj-qDAct+d55wRskDKKUroNxSDjdct9hEP3FFuPwFurglhfKsTiDQDYEnlkOA2vgdKm1VkppKHjr1ZxBiVZRoENG+3gkKFCN4nxcDoZY4gShFNFF6A3Nq0QGTywbEvPsblgYNyGsU5s0miovoNmEA2S9LNyMaTkjWx8hJmyrEMOJj1csPbGRM4bO65Iz1WfXVeuzEbELaT6RbBsFMyxJqQ6DHyYs-L2R8+nJ0WcRPbFMAoGR6kI0Nt0H0vQfAQyEhgzckOM0vP7SOpVFLsTLAPUpue-EzsXGhnpLPYTM8vEUli2HfamNoYBFhlQOrx7SSbBEBYZhepQzKOtiIV84KpiWGmLwF2VGBWhyq6DRWytfYx39hLegY3WM6izpZi9j7r29T1A6U28o7w-TDUm+5fDW6neU3oU5aTQzaskFbYuX0pgtmm5YYsudXvwpmYi4B2CIF4JgZ9z035JQyH2C1ZkGpgMLjDFnRslIRiF1nAoKH+LSmErCcY5H8x6QmF+4XaQAPcfMk2CGtxCEmQKTJ9NYJ73Hm+HmdDF5pKQjI80DoOYWpnZNhGMcgwmwznaGJD9XYG3C1wvJwijBxKUUhDRbQDFbxxf1odIDFqJPyzknDcXNCPpRjNgba6CkroeciyFiK544iIA09Z+IcjFIxABnI1pj0LY1SSBDA2lVq4u2wYq8m-BJq00++iT+hA75n73hasqg5tINKFzR3NqL17GQTCTStNaaKUoi2OkwE3ralymxrO+P088mSK4OQpNcMgKx8vK5JsE-AB1o2iCOsdyOq1fQbZYBC1cXphiXa6CPEH5i+i2K7rdQA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYljABcACAe2SIEsyA7AbQAYBdRFM2K6utkAD0QAmABwAWAJwA6AOzjGwwYxEA2AIyCAzMoA0ITIgC0AVhEzBo1eOHLhwxkemCAvk91osuPO8xNWSEMgcXDS0vAIIqqJRksqiyuKqltKJqva6+ggGkYLKkozK9soaRlpGRsoubhjYOJKoZOgQJAC26ADGABZUtGCSsEToOKTeuCTd-ei0bWB4EHS93QBuZADWvSO19Y0t7V09fQNDJBtjtBNTYAhLZG3o3AwsvryBnPdhQhKSGhrScYKCv0ERjEOj0hkUjGkkhK9kY4iMojE9mklQC1VwdQaTVanW6vS2TTAAEcAK7oVBUABenjm+2ua0kG0x2xxe3xWJIxLJFOpOCutGWt3uvie-hewR4-nCWQKeSMqlKRRKCsYGnShlU8VUX1U5Uick0-yMqKZBJ2uP2nTAbRWx3ROBIy1QJOaM1F7FeIXemXUGi+GiB4hUAfhlnVmUEqW1OUR0mEiTkPxN9sZ1W6UAIRAo7oCQTeUsMGm1CThcksSVE8lBGSyqVy5UcAbU0iKog0yY8tW86YIYDAKxz4vzoHCmjhkn+QLhCtE4cswhkhTi5SUyk0wg7NVTWB7AGEAPL7gBKABEAMqDvNegsIQ1GSQG1TJRGxrThgyif6L+MAgqREqiJuGLdrQGacKgYAXJenqSiOQhFqIMTCBoUTiJWUSiNI76RowD7xgG6gOIwfwVK4aKdtumA9uMuBENBEqhDe-y-JIqjIYI4hoXGBFqmCEaIf8yglOI3xxg4FhAV2aagXg9QkhAuD0cO-DwbqkgSEYViKHEUS-OGn5+qIRjTpoTaaYBZFMiBUAHIMwzSTZMCkJMtBkCSFzNLQRCzPMkj0usKbWbZRxBU5JAuW5Hlefygp3CEIosM8V6wSpmTyve8iaQUxGRjkqjvo4D6wgC8ZyL8G6WYFDnBfZO6gZIYURe50yed5tILAKqwBRRQUTCF1WNbQrnNWArUxTccV0CKqh+B6DHenG6mccRxRaOYGjiNWhhCepurWJtColMoaiSZR6Y1XadWOcQ4VDZFLVeXguA4GQUl3AAZq9zSUcB1V9bVVH1YNw1RUQ41CvFjyJWKyWMXBPrSNI97WOU3xiIjv7vjYSHysIiMttI04WVUPV-YcAPnf94XyTQPl0p1DJWWTdmXYDNlU+gNNkODk0PMwSnXvDJhQmuWXCCJmiWFtt4iTEyhI4kwJwoiqqnb15Os5TGucxAtPPa925EJ9ODfUzV0XerLM6zQPPClDs25jBcOpWxUjFAkGh2Ej3xPrOfGOIhKEQnECRsRIavM-15uwMgYDoLa3REC9dMdcsjNVdHGu9bH8enEn3PXBDU320lTvelkkZ5JEqpIwTz5YXxKgPmoePqBYxGYRHmcs0F73dISfBUP06a3SDD1tb5-k-W9bMW9Vfe0APQ-UKBo-3aN0WF7zCUO0OgupbWjC4XEvyMLq-7ZOGJVmJxAYcciWVd7PVO9-3nKD8Pq9NaDKd+Qz3VbktlHWeC8l6fygGvEaY0t5235jNUu80bxZA7jIWIjgWzwk2sUOcRlJDxjsA2eIVgnzOEqqTbuwDzpWhtCQW4CkLh4AFilaUupxBQl+GWEQQZVzhmMlIfISJHDAgRPIJ+Wse7VWobaOhkFpiMPgTDMuN4ihfHhEJYiiMhLCE0rw8cAitCQmMmxVQYj6rWVOMcF6UAcBwFgHgAACkefcABxI8ABRM8F5oZzWUuEdQ5gJxJGOnEfaVhwyxEEDqESiJNAiQUMTcigDqrmO6JYsg1jbF4CzFAKAEEmHOz8ckKErCiwtg2rqWI4SLBygInjKcCZTE2RSbQNJGTYCwD6DdEkyASA9D4KQJO7QVi-ynmbWezTWk2PaZ00g3TelgH6SQQZNpbaQ35t4x2iD4b+L9N8IoIlVQKFbPpIE0IizaL1FOcojSzqr1ScgKxUyOneAAEZDK8JzQg+TvTaIXMRMqWUg4iHCeUPBqpzBCU9mhFCNyJkPPSU8yibybR4DcQAORPN8m8By5SVgRFqWQ5R3yez9NIDaa52IFGBAksZ504WPNsUi956LMUKJ8fvPx8goR41DgRIyLZhDvmyH6Eoz4jRAgsBVEmSTzb0oRYy157zHFuIAGoAEl9wAFUvG71hj81U0JQ5RCLLCb4QrZQiDxpWEEHF4iwochY+FbSOlSJIMbcKQxl6MI2XvZhiBz7sNLD8dQVh5TSyfH6JQZVVQKiOQie1V1HUMuma691dkvX0DZZs3x-qERu2sEJESBQoW8QyCIdhiQC1qPULqBNbMk3yumYQReHrqD9BIJwKAtByQjP-tPW5TSHX3OTR05tTR03ts7d21Aqzi7rN1Uo7ZP4HzpSBFoNsdZ9JPi+JCFCvwUImE7mQmV4yh2wGOJ8yAeApkujAFi+Gm0FwpDYuuf4EhBX+0woaxwAIEg6URDc5ZtpIIKQgHgPgEwiC9HQO9KDOAAAUxlGAAEovAZ1nkBzki9ID3oPkCSJG1ijIhNRxP2NZPaRNiUqY6QZW6AZwEMrDoHwOQeg7B3AiGj6odpfVTDIGcNZt9QUws+Q8FrndmwuMbFKl8WQeLHUP7iIKl1L8FwZFXIKXgGKe0CCc0+gSFIFGRRPaYXQdLAw5h5N2E4sCT2iRVSkWlRiM0rI8S6Y5eCOwMR5SlI0PIeM8psKVgI6kGuwJxbi1Oi53YeI56dlOOcaY7m-URgDN55TZL-PnyFZxKQCQASESRsEqLHJXP7BsY0DI7KUtZC-bYYiAiog-g-TWau2omvIS0NlZ8JWWQxf2GaLk5IqS4GS8JhAyQq6hjQoRTSshzUtmhKZfUqR9oomPc50r-XeiupOE6W9Y3y5PkM5qNCcIjTWDYthAEuE-OcXFiZhENL0PpkO0gtik2jNo1M5jWT6UZDkr80oSMqEbkvwcm9+GWQFB+i+yZjGLZsKQlYtxBQVg2FqBKGDrOA0brf3HpDg+oXA7HQ4mxYEVgyOGCRij5CP4i0cPENjiRFDnJc0J34zUXx5SVhbFEMom1paGjE1Yb4ISRABilYk36rPNb1RjnHBOXkXoc8MIiEVIcz7nLbKZK+cRAkfYsLENckRHPS5nuIyh9VQHv2XiPfHG8iCq4RrEdSfPMKKBsIjIweu-Sag4eVZCQY0LM6tzZV1MiLjO6yI2ViqRfi1wDKUcMyQMpiByIS39SYNsW7MUOlpTqnnO9kIhJQArNBzcsIIOcuEOEoU1BtMoRkz51pHsOxto6uk9L6QMhjNpne6jPjIXURkOJaEcLYcMJmZD4MPatKlre7kF5HUy-viitmpXT3kX8MPK9Bin7LMoZKSUKFkKInPA6B0NudZIVNr1W3LwHw3ictnAxqH8VTiIiIltlSKDkDacIZuPGg6ia7eN+Y6D+k6VAXa5IA+cYuQqQo+BidgbcOCkSHCtqp+IgAIi+ECQ8F6JIhAEAzuD2D4T4Jg+0QkSM4g4YQYCBm0OQyEyQ8Y4cF+QUfG2GxB6+emQkuQ8guoJgqQG0AWxK8oZgYuhM3uiM3wNy+sDo-09u7O3BHmEQ1g0I4sDg4kcIyQAItBiQKO5QQkJ8mo8YamTgQAA */
     id: "player",
     context: {
       trackList: [],
@@ -19,6 +22,9 @@ const playerMachine = createMachine(
       shuffle: false,
       repeat: true,
       volume: 1,
+      options: 47,
+      cadence: 0.3,
+      language: "en-US",
     },
     initial: "load machine",
 
@@ -54,7 +60,7 @@ const playerMachine = createMachine(
           },
 
           "check player volume": {
-            entry: "initVolume",
+            entry: ["initVolume", "assignStoredProps"],
 
             always: "start player instance",
           },
@@ -71,6 +77,7 @@ const playerMachine = createMachine(
               "get announcemnt": {
                 invoke: {
                   src: "loadIntroduction",
+
                   onDone: [
                     {
                       target: "speak intro",
@@ -83,6 +90,8 @@ const playerMachine = createMachine(
                       description: `No introduction was generated due to an error or something else.`,
                     },
                   ],
+
+                  onError: "find existing announcemnt",
                 },
 
                 description: `Generate a fresh intro from ChatGPT`,
@@ -126,6 +135,18 @@ const playerMachine = createMachine(
 
                 description: `Look for an announcement that has already been stored by the announcer machine.`,
               },
+
+              "check cadence": {
+                description: `Check announcer frequency option to see if an intro should be made at all.`,
+
+                always: [
+                  {
+                    target: "find existing announcemnt",
+                    cond: "announcer should talk",
+                  },
+                  "start audio",
+                ],
+              },
             },
 
             // on: {
@@ -133,7 +154,7 @@ const playerMachine = createMachine(
             //     actions: "assignQuiet",
             //   },
             // },
-            initial: "find existing announcemnt",
+            initial: "check cadence",
 
             description: `Player begins gathering information for this track.`,
           },
@@ -294,6 +315,10 @@ const playerMachine = createMachine(
     },
 
     on: {
+      "set option": {
+        actions: "applyChanges",
+        description: `Change a persistent player option`,
+      },
       play: {
         target: ".playing",
         actions: ["assignTrack"],
@@ -303,6 +328,20 @@ const playerMachine = createMachine(
   },
   {
     actions: {
+      applyChanges: assign((_, event) => {
+        setLocalSettings(event.name, event.value);
+        return {
+          [event.name]: event.value,
+        };
+      }),
+
+      assignStoredProps: assign((context) => ({
+        options: getLocalSetting("options") || context.options,
+        cadence: getLocalSetting("cadence") || context.cadence,
+        voice: getLocalSetting("voice") || context.voice,
+        language: getLocalSetting("language") || context.language,
+      })),
+
       assignQuiet: assign((_, event) => {
         return { silent: event.silent };
       }),
@@ -411,6 +450,7 @@ const playerMachine = createMachine(
       }),
     },
     guards: {
+      "announcer should talk": (context) => getRandomBoolean(context.cadence),
       "repeat is on": (context) => context.repeat,
       "more tracks": (context) => context.trackIndex < context.trackList.length,
       "introduction present": (_, event) => !!event.data?.Introduction,
@@ -441,26 +481,54 @@ export const usePlayer = (artisan) => {
       sendIntroSignal: async (context) => {
         const { trackList, trackIndex } = context;
         const track = trackList[trackIndex + 1];
-        const upcomingTracks = trackList.slice(trackIndex + 1);
         if (!track) return;
-        const { Title, artistName } = track;
-        announcer.announce(Title, artistName, upcomingTracks);
+        const unannounced = trackList
+          .slice(trackIndex + 1)
+          .filter((track) => !announcer.contains(track.Title))
+          .slice(0, 5);
+        const event = announcer.state.can("append") ? "append" : "list";
+        announcer.send({
+          type: event,
+          items: unannounced.map((item) => ({
+            artist: item.artistName,
+            title: item.Title,
+            upcoming: [],
+          })),
+        });
       },
+
       loadIntroduction: async (context) => {
         const { track, trackList, trackIndex } = context;
         const { Title, artistName } = track;
-        // alert(Title);
+
         const upcomingTracks = trackList.slice(trackIndex + 1);
+
         const intro = await getIntro(
           Title,
           artistName,
+          // (value) => {
+          //   const period = value.split(/[!\.]/);
+          //   if (period[1] && !sentence) {
+          //     sentence = period[0]
+          //       .replace("Introduction", "")
+          //       .replace(/{/g, "")
+          //       .replace(/"/g, "")
+          //       .replace(/:/g, "")
+          //       .replace(/\n/g, "");
+          //     console.log({ sentence });
+          //     speakText(sentence);
+          //   }
+          //   // console.log("value '%s'", value);
+          // },
           null,
           upcomingTracks,
-          "Milton"
+          "Milton",
+          context.options
         );
         console.log({ intro });
         return intro;
       },
+
       introduceTrack: async (context) => {
         speakText(context.intro.Introduction, true, "en-US", null, (value) => {
           if (context.player) {
@@ -530,6 +598,13 @@ export const usePlayer = (artisan) => {
     send,
     states: playerMachine.states,
     announcer,
+    setOption: (name, value) => {
+      send({
+        type: "set option",
+        name,
+        value,
+      });
+    },
     play: (track, trackList) => {
       send({
         type: "play",

@@ -82,7 +82,7 @@ export default function TrackDrawer({ tracker }) {
     });
   };
 
-  const BASE_HEIGHT = 128;
+  const BASE_HEIGHT = 96;
   const offset = BASE_HEIGHT + OFFSET_MARGIN;
   return (
     <Drawer
@@ -108,11 +108,11 @@ export default function TrackDrawer({ tracker }) {
             />
             <Stack>
               <Typography>{track.Title}</Typography>
-              <Typography variant="caption">{track.artistName}</Typography>
-              <Typography variant="caption">{track.artistFk}</Typography>
+              <Typography variant="caption">
+                {track.artistName} ({track.artistFk})
+              </Typography>
             </Stack>
           </Flex>
-          {/* <pre>{JSON.stringify(tracker.state.context.track, 0, 2)}</pre> */}
         </Card>
         <Panel offset={offset}>
           <Collapse in={curator.state.can("open")}>

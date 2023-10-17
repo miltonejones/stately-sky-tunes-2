@@ -32,5 +32,5 @@ export const streamResponse = async (response, fn) => {
     }
   }
 
-  return innerText;
+  return { innerText };
 };

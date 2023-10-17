@@ -12,9 +12,9 @@
  * @return {Array} An array containing an object with the role of "user" and the content of the instructions.
  */
 import { getRandomPoemType, isRandomlyTrue } from "./getRandomBoolean";
-import { DJ_OPTIONS } from "./djOptions";
 import { getLocation } from "./getLocation";
 import moment from "moment";
+import { ANNOUNCER_OPTIONS } from "../constants";
 
 const dotless = (str) => str?.replace(/\./g, "");
 
@@ -58,12 +58,12 @@ export const createInstructions = async (
   console.log({
     weather,
   });
-
-  const shouldSayBoombot = options & DJ_OPTIONS.BOOMBOT;
-  const shouldSayUsername = addedInfo && options & DJ_OPTIONS.USERNAME;
-  const shouldSayTime = addedInfo && options & DJ_OPTIONS.TIME;
-  const shouldSayUpnext = options & DJ_OPTIONS.UPNEXT;
-  const shouldSayWeather = options & DJ_OPTIONS.WEATHER;
+  console.log({ options });
+  const shouldSayBoombot = options & ANNOUNCER_OPTIONS.BOOMBOT;
+  const shouldSayUsername = addedInfo && options & ANNOUNCER_OPTIONS.USERNAME;
+  const shouldSayTime = addedInfo && options & ANNOUNCER_OPTIONS.TIME;
+  const shouldSayUpnext = options & ANNOUNCER_OPTIONS.UPNEXT;
+  const shouldSayWeather = options & ANNOUNCER_OPTIONS.WEATHER;
 
   const when = {
     poem: isRandomlyTrue(true) ? getRandomPoemType() : null,
@@ -97,35 +97,47 @@ export const createInstructions = async (
           ? "Remind user to add this song to favorites by clicking the pin icon."
           : ""
       }
-      ${when.poem && `Format the introduction as a ${when.poem}.`}
+      
+      ${when.poem ? `Format the introduction as a ${when.poem}.` : ""}
       ${
-        when.boom &&
-        "If there is time the introduction should mention Sky-tunes Radio in the introduction."
+        when.boom
+          ? "If there is time the introduction should mention Sky-tunes Radio in the introduction."
+          : ""
       }
       ${
-        when.time &&
-        `If there is time the introduction should be topical to the time of day which is ${moment().format(
-          "hh:mm a"
-        )}.`
+        when.time
+          ? `If there is time the introduction should be topical to the time of day which is ${moment().format(
+              "hh:mm a"
+            )}.`
+          : ""
       }
       ${
-        when.next &&
-        `If there is time the introduction should mention the upcoming tracks: ${nextUpcoming}.`
+        when.next
+          ? `If there is time the introduction should mention the upcoming tracks: ${nextUpcoming}.`
+          : ""
       }
       ${
-        when.name &&
-        `If there is time the introduction should mention a listener named ${firstName}.`
+        when.name
+          ? `If there is time the introduction should mention a listener named ${firstName}.`
+          : ""
       }
       ${
-        when.rain &&
-        `If there is time the introduction should mention the weather ${weatherText(
-          weather
-        )}.`
+        when.rain
+          ? `If there is time the introduction should mention the weather ${weatherText(
+              weather
+            )}.`
+          : ""
       }
+      
+
+ 
       ${
-        !!dedicateName &&
-        `This song is dedication to listener "${dedicateName}"`
+        !!dedicateName
+          ? `This song is dedication to listener "${dedicateName}"`
+          : ""
       }
+      
+   
       
       The listeners locale setting is "${lang}"
 
@@ -145,10 +157,12 @@ export const createInstructions = async (
     {
       role: "system",
       content:
-        "You are a very popular radio disc jockey with an irreverent sense of humor.",
+        "You are a very popular radio disc jockey with an sarcastic sense of humor.",
     },
     { role: "user", content },
   ];
+
+  console.log({ instructions });
   return create(instructions);
 };
 

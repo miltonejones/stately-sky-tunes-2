@@ -15,7 +15,7 @@ const [_, REACT_APP_CHAT_GPT_API_KEY] =
 export const generateText = async (
   messages,
   temperature,
-  max_tokens = 128,
+  max_tokens = 512,
   fn
 ) => {
   const requestOptions = {

@@ -42,7 +42,7 @@ export default function PlaylistDrawer(props) {
   const { playlists, track } = props.listman.state.context;
   if (!track) return <i />;
 
-  const BASE_HEIGHT = 88;
+  const BASE_HEIGHT = 56;
   const offset = BASE_HEIGHT + OFFSET_MARGIN;
 
   if (!playlists?.records) return <i />;

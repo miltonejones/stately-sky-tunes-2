@@ -8,7 +8,12 @@ export default function DashCard({ item, onClick, onPlay, ...props }) {
   return (
     <Card {...props} sx={{ m: 1, p: 1, overflow: "hidden" }}>
       <Box sx={{ position: "relative" }}>
-        <CardMedia component="img" image={source} alt={item.Name} />
+        <CardMedia
+          onClick={onClick}
+          component="img"
+          image={source}
+          alt={item.Name}
+        />
         {!!onPlay && (
           <Box
             sx={{

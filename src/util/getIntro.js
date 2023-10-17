@@ -14,9 +14,19 @@ import { generateText } from "./generateText";
 export const getIntro = async (title, artist, fn, ...args) => {
   // Create instructions for text generation.
   const curatedInstructions = await createInstructions(title, artist, ...args);
-  console.log({ fn });
+
   // Generate text based on instructions.
   const intro = await generateText(curatedInstructions, 1, 128, fn);
+
+  if (fn) {
+    // console.log({ intro });
+    const dj = JSON.parse(intro.innerText);
+    return {
+      ...dj,
+      title,
+      artist,
+    };
+  }
 
   // Extract choices from generated text.
   const { choices } = intro;

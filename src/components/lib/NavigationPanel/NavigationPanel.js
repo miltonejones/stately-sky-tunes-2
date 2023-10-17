@@ -51,7 +51,7 @@ export default function NavigationPanel(props) {
     : BASE_HEIGHT + OFFSET_MARGIN;
 
   const records = old?.map((rec, i) => {
-    if (rec.Title && !rec.listKey) {
+    if (rec.Title && !rec.ID) {
       rec.listKey = createKey(rec.Title);
     }
     return rec;
