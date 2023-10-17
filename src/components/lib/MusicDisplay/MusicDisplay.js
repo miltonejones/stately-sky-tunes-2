@@ -61,10 +61,14 @@ export default function MusicDisplay(props) {
             src={LOGO_PHOTO}
             alt="logo"
           />
-          <SettingsModal
-            player={props.player}
-            onClick={() => props.setState("debug", !props.state.context.debug)}
-          />
+          {!props.isMobile && (
+            <SettingsModal
+              player={props.player}
+              onClick={() =>
+                props.setState("debug", !props.state.context.debug)
+              }
+            />
+          )}
         </Flex>
       )}
       <MusicPagination {...props} queryProps={props.state.context.queryProps} />

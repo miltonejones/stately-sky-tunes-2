@@ -43,8 +43,31 @@ export default function AudioPlayer(props) {
   const { intro, silent } = player.state.context;
   const Component = isMobile ? SmallPlayer : AudioPlayerBody;
   if (!player.state.can("stop")) return <i />;
+  const showAnnouncements =
+    ANNOUNCER_OPTIONS.SHOW & player.state.context.options;
   return (
     <>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        open={
+          player.announcer.state.can("append") && !!silent && showAnnouncements
+        }
+      >
+        <Card sx={{ p: 2, width: 500 }}>
+          <Flex spacing={1}>
+            <CircularProgress size={18} />
+            <Nowrap width={160} variant="caption">
+              Getting intro for
+            </Nowrap>
+            <Nowrap variant="body2">
+              {player.announcer.state.context.title}
+            </Nowrap>
+          </Flex>
+          <Typography variant="caption">
+            {player.announcer.state.context.announcementText}
+          </Typography>
+        </Card>
+      </Snackbar>
       <Snackbar
         open={!silent}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}
@@ -109,31 +132,8 @@ function AudioPlayerBody(props) {
 
   if (!track) return <i />;
   if (!player.state.can("stop")) return <i />;
-  const showAnnouncements =
-    ANNOUNCER_OPTIONS.SHOW & player.state.context.options;
   return (
     <>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "left" }}
-        open={
-          player.announcer.state.can("append") && !!silent && showAnnouncements
-        }
-      >
-        <Card sx={{ p: 2, width: 500 }}>
-          <Flex spacing={1}>
-            <CircularProgress size={18} />
-            <Nowrap width={160} variant="caption">
-              Getting intro for
-            </Nowrap>
-            <Nowrap variant="body2">
-              {player.announcer.state.context.title}
-            </Nowrap>
-          </Flex>
-          <Typography variant="caption">
-            {player.announcer.state.context.announcementText}
-          </Typography>
-        </Card>
-      </Snackbar>
       <Snackbar
         open={!silent}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}

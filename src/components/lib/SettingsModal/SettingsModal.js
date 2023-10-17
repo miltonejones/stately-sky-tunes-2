@@ -34,9 +34,9 @@ export default function SettingsModal({ player, onClick }) {
 
   return (
     <>
-      <IconButton onClick={menu.handleClick}>
-        <Settings />
-      </IconButton>
+      {/* <IconButton> */}
+      <Settings onClick={menu.handleClick} />
+      {/* </IconButton> */}
       <Dialog {...menu.menuProps} onClose={menu.handleClose()}>
         <Stack sx={{ p: 2 }}>
           <Typography variant="caption">DJ Frequency</Typography>

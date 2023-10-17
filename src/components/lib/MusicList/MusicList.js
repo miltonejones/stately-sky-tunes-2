@@ -46,6 +46,7 @@ export default function MusicList({
                 onClick={() => player.play(record, records)}
                 hover
                 variant="body2"
+                muted={!player.announcer.contains(record.Title)}
                 bold={record.FileKey === player.state.context.track?.FileKey}
               >
                 {record.Title}

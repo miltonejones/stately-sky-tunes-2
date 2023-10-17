@@ -9,6 +9,7 @@ import {
 import Flex from "../../../styled/Flex";
 import { GitHub, Settings } from "@mui/icons-material";
 import { LOGO_PHOTO, navigationIcons } from "../../../constants";
+import SettingsModal from "../SettingsModal/SettingsModal";
 
 const Nav = styled(Paper)(({ theme }) => ({
   position: "fixed",
@@ -29,6 +30,7 @@ export default function AppFooter({
   events,
   rotated,
   isMobile,
+  player,
 }) {
   const sx = { color: "white", cursor: "pointer" };
   const value = Object.keys(navigationIcons).find((e) =>
@@ -78,9 +80,13 @@ export default function AppFooter({
               />
             ))}
             <BottomNavigationAction
-              onClick={() => setState("debug", !state.context.debug)}
               label={`settings`}
-              icon={<Settings />}
+              icon={
+                <SettingsModal
+                  player={player}
+                  onClick={() => setState("debug", !state.context.debug)}
+                />
+              }
             />
           </BottomNavigation>
         </Nav>
