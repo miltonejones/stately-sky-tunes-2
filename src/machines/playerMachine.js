@@ -13,7 +13,7 @@ const connector = new AudioConnector();
 
 const playerMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYljABcACAe2SIEsyA7AbQAYBdRFM2K6utkAD0QAmABwAWAJwA6AOzjGwwYxEA2AIyCAzMoA0ITIgC0AVhEzBo1eOHLhwxkemCAvk91osuPO8xNWSEMgcXDS0vAIIqqJRksqiyuKqltKJqva6+ggGkYLKkozK9soaRlpGRsoubhjYOJKoZOgQJAC26ADGABZUtGCSsEToOKTeuCTd-ei0bWB4EHS93QBuZADWvSO19Y0t7V09fQNDJBtjtBNTYAhLZG3o3AwsvryBnPdhQhKSGhrScYKCv0ERjEOj0hkUjGkkhK9kY4iMojE9mklQC1VwdQaTVanW6vS2TTAAEcAK7oVBUABenjm+2ua0kG0x2xxe3xWJIxLJFOpOCutGWt3uvie-hewR4-nCWQKeSMqlKRRKCsYGnShlU8VUX1U5Uick0-yMqKZBJ2uP2nTAbRWx3ROBIy1QJOaM1F7FeIXemXUGi+GiB4hUAfhlnVmUEqW1OUR0mEiTkPxN9sZ1W6UAIRAo7oCQTeUsMGm1CThcksSVE8lBGSyqVy5UcAbU0iKog0yY8tW86YIYDAKxz4vzoHCmjhkn+QLhCtE4cswhkhTi5SUyk0wg7NVTWB7AGEAPL7gBKABEAMqDvNegsIQ1GSQG1TJRGxrThgyif6L+MAgqREqiJuGLdrQGacKgYAXJenqSiOQhFqIMTCBoUTiJWUSiNI76RowD7xgG6gOIwfwVK4aKdtumA9uMuBENBEqhDe-y-JIqjIYI4hoXGBFqmCEaIf8yglOI3xxg4FhAV2aagXg9QkhAuD0cO-DwbqkgSEYViKHEUS-OGn5+qIRjTpoTaaYBZFMiBUAHIMwzSTZMCkJMtBkCSFzNLQRCzPMkj0usKbWbZRxBU5JAuW5Hlefygp3CEIosM8V6wSpmTyve8iaQUxGRjkqjvo4D6wgC8ZyL8G6WYFDnBfZO6gZIYURe50yed5tILAKqwBRRQUTCF1WNbQrnNWArUxTccV0CKqh+B6DHenG6mccRxRaOYGjiNWhhCepurWJtColMoaiSZR6Y1XadWOcQ4VDZFLVeXguA4GQUl3AAZq9zSUcB1V9bVVH1YNw1RUQ41CvFjyJWKyWMXBPrSNI97WOU3xiIjv7vjYSHysIiMttI04WVUPV-YcAPnf94XyTQPl0p1DJWWTdmXYDNlU+gNNkODk0PMwSnXvDJhQmuWXCCJmiWFtt4iTEyhI4kwJwoiqqnb15Os5TGucxAtPPa925EJ9ODfUzV0XerLM6zQPPClDs25jBcOpWxUjFAkGh2Ej3xPrOfGOIhKEQnECRsRIavM-15uwMgYDoLa3REC9dMdcsjNVdHGu9bH8enEn3PXBDU320lTvelkkZ5JEqpIwTz5YXxKgPmoePqBYxGYRHmcs0F73dISfBUP06a3SDD1tb5-k-W9bMW9Vfe0APQ-UKBo-3aN0WF7zCUO0OgupbWjC4XEvyMLq-7ZOGJVmJxAYcciWVd7PVO9-3nKD8Pq9NaDKd+Qz3VbktlHWeC8l6fygGvEaY0t5235jNUu80bxZA7jIWIjgWzwk2sUOcRlJDxjsA2eIVgnzOEqqTbuwDzpWhtCQW4CkLh4AFilaUupxBQl+GWEQQZVzhmMlIfISJHDAgRPIJ+Wse7VWobaOhkFpiMPgTDMuN4ihfHhEJYiiMhLCE0rw8cAitCQmMmxVQYj6rWVOMcF6UAcBwFgHgAACkefcABxI8ABRM8F5oZzWUuEdQ5gJxJGOnEfaVhwyxEEDqESiJNAiQUMTcigDqrmO6JYsg1jbF4CzFAKAEEmHOz8ckKErCiwtg2rqWI4SLBygInjKcCZTE2RSbQNJGTYCwD6DdEkyASA9D4KQJO7QVi-ynmbWezTWk2PaZ00g3TelgH6SQQZNpbaQ35t4x2iD4b+L9N8IoIlVQKFbPpIE0IizaL1FOcojSzqr1ScgKxUyOneAAEZDK8JzQg+TvTaIXMRMqWUg4iHCeUPBqpzBCU9mhFCNyJkPPSU8yibybR4DcQAORPN8m8By5SVgRFqWQ5R3yez9NIDaa52IFGBAksZ504WPNsUi956LMUKJ8fvPx8goR41DgRIyLZhDvmyH6Eoz4jRAgsBVEmSTzb0oRYy157zHFuIAGoAEl9wAFUvG71hj81U0JQ5RCLLCb4QrZQiDxpWEEHF4iwochY+FbSOlSJIMbcKQxl6MI2XvZhiBz7sNLD8dQVh5TSyfH6JQZVVQKiOQie1V1HUMuma691dkvX0DZZs3x-qERu2sEJESBQoW8QyCIdhiQC1qPULqBNbMk3yumYQReHrqD9BIJwKAtByQjP-tPW5TSHX3OTR05tTR03ts7d21Aqzi7rN1Uo7ZP4HzpSBFoNsdZ9JPi+JCFCvwUImE7mQmV4yh2wGOJ8yAeApkujAFi+Gm0FwpDYuuf4EhBX+0woaxwAIEg6URDc5ZtpIIKQgHgPgEwiC9HQO9KDOAAAUxlGAAEovAZ1nkBzki9ID3oPkCSJG1ijIhNRxP2NZPaRNiUqY6QZW6AZwEMrDoHwOQeg7B3AiGj6odpfVTDIGcNZt9QUws+Q8FrndmwuMbFKl8WQeLHUP7iIKl1L8FwZFXIKXgGKe0CCc0+gSFIFGRRPaYXQdLAw5h5N2E4sCT2iRVSkWlRiM0rI8S6Y5eCOwMR5SlI0PIeM8psKVgI6kGuwJxbi1Oi53YeI56dlOOcaY7m-URgDN55TZL-PnyFZxKQCQASESRsEqLHJXP7BsY0DI7KUtZC-bYYiAiog-g-TWau2omvIS0NlZ8JWWQxf2GaLk5IqS4GS8JhAyQq6hjQoRTSshzUtmhKZfUqR9oomPc50r-XeiupOE6W9Y3y5PkM5qNCcIjTWDYthAEuE-OcXFiZhENL0PpkO0gtik2jNo1M5jWT6UZDkr80oSMqEbkvwcm9+GWQFB+i+yZjGLZsKQlYtxBQVg2FqBKGDrOA0brf3HpDg+oXA7HQ4mxYEVgyOGCRij5CP4i0cPENjiRFDnJc0J34zUXx5SVhbFEMom1paGjE1Yb4ISRABilYk36rPNb1RjnHBOXkXoc8MIiEVIcz7nLbKZK+cRAkfYsLENckRHPS5nuIyh9VQHv2XiPfHG8iCq4RrEdSfPMKKBsIjIweu-Sag4eVZCQY0LM6tzZV1MiLjO6yI2ViqRfi1wDKUcMyQMpiByIS39SYNsW7MUOlpTqnnO9kIhJQArNBzcsIIOcuEOEoU1BtMoRkz51pHsOxto6uk9L6QMhjNpne6jPjIXURkOJaEcLYcMJmZD4MPatKlre7kF5HUy-viitmpXT3kX8MPK9Bin7LMoZKSUKFkKInPA6B0NudZIVNr1W3LwHw3ictnAxqH8VTiIiIltlSKDkDacIZuPGg6ia7eN+Y6D+k6VAXa5IA+cYuQqQo+BidgbcOCkSHCtqp+IgAIi+ECQ8F6JIhAEAzuD2D4T4Jg+0QkSM4g4YQYCBm0OQyEyQ8Y4cF+QUfG2GxB6+emQkuQ8guoJgqQG0AWxK8oZgYuhM3uiM3wNy+sDo-09u7O3BHmEQ1g0I4sDg4kcIyQAItBiQKO5QQkJ8mo8YamTgQAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYljABcACAe2SIEsyA7AbQAYBdRFM2K6utkAD0QAmABwAWAJwA6AOzjGwwYxEA2AIyCAzMoA0ITIgC0AVhEzBo1eOHLhwxkemCAvk91osuPO8xNWSEMgcXDS0vAIIqqJRksqiyuKqltKJqva6+ggGkYLKkozK9soaRlpGRsoubhjYOJKoZOgQJAC26ADGABZUtGCSsEToOKTeuCTd-ei0bWB4EHS93QBuZADWvSO19Y0t7V09fQNDJBtjtBNTYAhLZG3o3AwsvryBnPdhQhKSGhrScYKCv0ERjEOj0hkUjGkkhK9kY4iMojE9mklQC1VwdQaTVanW6vS2TTAAEcAK7oVBUABenjm+2ua0kG0x2xxe3xWJIxLJFOpOCutGWt3uvie-hewR4-nCWQKeSMqlKRRKCsYGnShlU8VUX1U5Uick0-yMqKZBJ2uP2nTAbRWx3ROBIy1QJOaM1F7FeIXemXUGi+GiB4hUAfhlnVmUEqW1OUR0mEiTkPxN9sZ1W6UAIRAo7oCQTeUsMGm1CThcksSVE8lBGSyqVy5UcAbU0iKog0yY8tW86YIYDAKxz4vzoHCmjhkn+QLhCtE4cswhkhTi5SUyk0wg7NVTWB7AGEAPL7gBKABEAMqDvNegsIQ1GSQG1TJRGxrThgyif6L+MAgqREqiJuGLdrQGacKgYAXJenqSiOQhFqIMTCBoUTiJWUSiNI76RowD7xgG6gOIwfwVK4aKdtumA9uMuBENBEqhDe-y-JIqjIYI4hoXGBFqmCEaIf8yglOI3xxg4FhAV2aagXg9QkhAuD0cO-DwbqkgSEYViKHEUS-OGn5+qIRjTpoTaaYBZFMiBUAHIMwzSTZMCkJMtBkCSFzNLQRCzPMkj0usKbWbZRxBU5JAuW5Hlefygp3CEIosM8V6wSpmTyve8iaQUxGRjkqjvo4D6wgC8ZyL8G6WYFDnBfZO6gZIYURe50yed5tILAKqwBRRQUTCF1WNbQrnNWArUxTccV0CKqh+B6DHegY5jQkZkTCNIcLfAk0i8TWQnqbq1jiGoxRaGokmUemNV2nVjnEOFQ2RS1Xl4LgOBkFJdwAGbvc0lHAdVfW1VR9WDcNUVEONQrxY8iVisljFwRGqR+owjCasoahiEGs58QY60TvG5QGfCHGaedvWHEDl2g49o3PSSyAQHcYBKdeiNZKjKMwhoaFyOIshGNhiiscuFjFEoDiqOTAOU9dwM2YD4XyTQPl0p1DJWTLdly5divoMrZCQ5NDzMKzKXhCYUJrllwgiZoljVkI20xPOPPIQGmnOJVPVa-1N1XfrEAq6973bkQ304L9mv+4rFPa4HNBG8KMOzbmMEI6lbFSMUCQaHY0glEWel8Y4iEoRCcQJGxEjSzHsu9cgYDoLa3REG9qsdcsGtVXX2sN03LdeW9SfQ6bsNzcp0rqNqaOVj8DjKNIz5YXxKgPpjyTmKkum1-LV1BZ93SEnwVD9Om91g09bW+f5f0fXvsfVYftDH6f1CgRftNjdcUNTSnSXpwWokYEeQ1zCDKAZHmO0hB2BiKqOIGh7DWCXsab2W445+z3s-V+Z8P5NXBh3Py6turoN9lTeq2DOQn1wVAT+I1v6dV-ibegM0AHzRvLWTQ6kYSWHhGuHI4g5xtgfFEEw2U2J2C9lUH2vdMGXStDaEgtwFIXDwGbDOU9bBl04v8YiwCHDQIQCYQQrFkLqByMUIEkRd663rtVBRtplGQWmGo1hcNAE3kSCY22shzAFE0PEcw4ZjK5D+PzWQaN5RSPIqQ-21lTjHDelAHAcBYB4AAApHn3AAcSPAAUTPBecead2GI3MQJJIGM4iHSsOGWIJiiwiURJoESCgLLSNiXveJ3RElkGSakvAWYoBQAguo70T4nysU0kXIoCQiZ1IsHKAia0pwJhsfVbptBen9NgLAPod0GYkB6HwUgbd2grEIbfaOXSHIJOQEklJuz9mkEOcc05OBzkjz-mPVOQ42aZ3+H6b4szEF5wsTjDIn57zKnAXqKc5R1k2U2dsx5ezvAACNzleH1oQMZN5wELmImVLK5cRB1PKJIOwAZlx5zQihRFF0P49PuX01FlFMU2jwHkgAciePFiMRK4XsJWBEWoBaO0yHnP020joiCbEg9pMT-pxNucyh5qT2VYp5XytxE9-nhFSGtSlshEgESMi2YQ75sh+hKM+I0QILAVQ6cqm5N07nqqeRirFmS8kADUACS+4ACqRTfnw29FS6EVcohFlhN8K1soRBrUrCCDi8QGXIpZTsvZDiSAR3CkMN+ajil-PNogXUkz1qcR+OoKw8oJVPhRhxSEqoFQKCEoq65l1M0epzR0a0tp812SLSwsNHiykImztYISIkCi0sMSIKEyQ2IYz4dPVBzr77dtVVsrNbLCAvwLdQfoJBOBQFoOSS5xC76MqRTulFGqD1NGHSes9F7UBfOYSW8NnifwPnSkCLQbY6z6UmYg7amE2xGXMCiNBLrt1utPscHFkA8CPJdCzb947UpHQXCkNi65-gSEtSXTCUbHAAgSDpREDKzmKMggpCAeA+ATCIL0dAn02M4AABTGUYAASi8D3PedHbQMcgPy1KBgeYmNRplW2uc2wiQKostacmsrygSOIWjHz6Mv1QyxgYbHJAca47x1Ggmu31VE5yfTEBR1sMnoWfIlK1w53CfGawEKNTyGzk+XRYtdS-AZY-f2NN6HPRDh9cOP0b0YPIbdZyD0IsQx-sbaaY7SmpW0twoothVRlHWt5yVsQXacV1GoAoJqXBkVcgpeAYp7SOf1eCGDeQ0YY0xhIIJuNzC20paWReBEDSkU3cybEuw8TNbLRGWBQkFSNvkITfKvXKwNNSMROwhQHbnTNKyPE+97SnHONMabGjwQBhiPKIuiDbAVqtZxKQCQASEQLlU3bHJ9v7BSY0DIeqZtZDI-lysNgog-hIzWSIaN1KIndhjVGz4Psskm-sM0XJyRUlwGd70yQ8iWE0xYIEmlZAJpbNCUy+pDXxFg2NvbKPei5pOE6DD2OOFPikPGeIlYgxAmsGxIW+NEGcVtnnIyUREWs-ZpGTi7X0Zdexu+Nafo1OozafzEmIW7E3Ul1JyM8pZedergr3GEhchqCsFYJQRZbA06VVu+qoW97hfBjrqe8guZGWnYa1IgtcbxHXkvLxsQbDJCdXb29h3ZHOQNq78tmovjykrC2URWUJWGlc1Yb41S5UiE133AGjdm6nDbmQWPmREQ2srmja3bZTLhj8RORIybNR-EiKN8P8WdYUKPlQt+598FXzL4tKsZgfhQMUKJFeGRzAmJEmhZCCJ8iCTz3I+quanEXCH4oRIMQUKImBAUQ64YWxSAsJ1pQAJtrbQzfevdqSy+yEQkoC1mhieWEEHOXCvxBVNkC3nDdHe1UParKj6ByyARyYAJyJAomZeuo0OyQCIJgs6jgtg4YouMgnmJgbYJQBQABVmd6iGu6vamqNoZeYgsmv4CgOcyQQYaBIk0IBiUqCgESYe+Bt67qIBTyuaQ6ha-QsBmofovOHsR0XiPWGQq05OZURQFifM7ebBwB2a+yh6L6pAb65IsBcYuQ28JgWg8gaMYh5an4Mg3WuGAIIgAIN+iGsAyGJIhAEAZB9BW0Jgh0QkBcgifEQYWhsqNgNa8YNccG9uNkNm4m9h7iWW4QQkuQ8guoJgyMVguo74xQ2ojYKE60KCS83wDKUWp6lM-eMeYRTmEQ1g0ItsDg4kcIm8U+iAVcrEb2Hai8mo8YNWTgQAA */
     id: "player",
     context: {
       trackList: [],
@@ -91,10 +91,28 @@ const playerMachine = createMachine(
                     },
                   ],
 
-                  onError: "find existing announcemnt",
+                  onError: [
+                    {
+                      target: "find existing announcemnt",
+                      cond: "can retry",
+                      actions: "iterateRetries",
+                    },
+                    "start audio",
+                  ],
                 },
 
                 description: `Generate a fresh intro from ChatGPT`,
+
+                on: {
+                  update: {
+                    actions: [
+                      "assignIntro",
+                      assign({
+                        silent: false,
+                      }),
+                    ],
+                  },
+                },
               },
 
               "start audio": {
@@ -143,6 +161,7 @@ const playerMachine = createMachine(
                   {
                     target: "find existing announcemnt",
                     cond: "announcer should talk",
+                    actions: "initRetries",
                   },
                   "start audio",
                 ],
@@ -341,7 +360,8 @@ const playerMachine = createMachine(
         voice: getLocalSetting("voice") || context.voice,
         language: getLocalSetting("language") || context.language,
       })),
-
+      initRetries: assign({ retries: 0 }),
+      iterateRetries: assign((context) => ({ retries: context.retries + 1 })),
       assignQuiet: assign((_, event) => {
         return { silent: event.silent };
       }),
@@ -450,6 +470,7 @@ const playerMachine = createMachine(
       }),
     },
     guards: {
+      "can retry": (context) => context.retries < 3,
       "announcer should talk": (context) => getRandomBoolean(context.cadence),
       "repeat is on": (context) => context.repeat,
       "more tracks": (context) => context.trackIndex < context.trackList.length,
@@ -503,24 +524,26 @@ export const usePlayer = (artisan) => {
 
         const upcomingTracks = trackList.slice(trackIndex + 1);
 
+        const updateChat = (value) => {
+          const text = value
+            .replace("Introduction", "")
+            .replace(/{/g, "")
+            .replace(/"/g, "")
+            .replace(/:/g, "")
+            .replace(/\n/g, "");
+          console.log({ text });
+          send({
+            type: "update",
+            data: {
+              Introduction: text,
+            },
+          });
+        };
+
         const intro = await getIntro(
           Title,
           artistName,
-          // (value) => {
-          //   const period = value.split(/[!\.]/);
-          //   if (period[1] && !sentence) {
-          //     sentence = period[0]
-          //       .replace("Introduction", "")
-          //       .replace(/{/g, "")
-          //       .replace(/"/g, "")
-          //       .replace(/:/g, "")
-          //       .replace(/\n/g, "");
-          //     console.log({ sentence });
-          //     speakText(sentence);
-          //   }
-          //   // console.log("value '%s'", value);
-          // },
-          null,
+          updateChat,
           upcomingTracks,
           "Milton",
           context.options
