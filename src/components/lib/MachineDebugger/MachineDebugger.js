@@ -41,7 +41,7 @@ export default function MachineDebugger({ machines }) {
         </Box>
       </Dialog>
       <Snackbar open>
-        <Card sx={{ p: 1, minWidth: 400 }}>
+        <Card sx={{ p: 1, minWidth: 400, maxWidth: 500 }}>
           <Stack spacing={1}>
             <Typography variant="caption">Select machine:</Typography>
             <Flex spacing={1}>
@@ -125,7 +125,7 @@ function StatePanel({ attr, show }) {
           <LinearProgress />
         </Stack>
       )}
-      <Flex spacing={1} sx={{ p: 1 }}>
+      <Flex spacing={1} sx={{ p: 1, width: "100%", overflow: "auto" }}>
         {state.nextEvents
           .filter((name) => name.indexOf(".") < 0)
           .map((eventName) => (

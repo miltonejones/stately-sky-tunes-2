@@ -41,7 +41,7 @@ export default function MusicList({
           <Stack
             sx={{
               pb: 1,
-              width: rotated ? "calc(33vw - 16px)" : "calc(100vw - 16px)",
+              width: rotated ? "calc(33vw - 16px)" : "calc(100vw - 48px)",
             }}
           >
             <Flex spacing={1}>

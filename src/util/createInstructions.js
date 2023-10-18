@@ -157,7 +157,7 @@ export const createInstructions = async (
     {
       role: "system",
       content:
-        "You are a very popular radio disc jockey with an sarcastic sense of humor.",
+        "You are a radio disc jockey named BeatBot with an sarcastic sense of humor.",
     },
     { role: "user", content },
   ];

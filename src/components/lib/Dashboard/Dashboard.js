@@ -49,7 +49,7 @@ export default function Dashboard({
       <Flex spacing={1}>
         <MemoryButtons state={state} send={send} />
         <Spacer />
-        <S3Uploader />
+        {/* <S3Uploader /> */}
         <Typography variant="h6">SkyTunes</Typography>
         <Avatar
           onClick={() => setState("debug", !state.context.debug)}

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import MusicList from "../MusicList/MusicList";
 import MusicGrid from "../MusicGrid/MusicGrid";
-import { Search } from "@mui/icons-material";
+import { Album, MusicNote, Person, Search } from "@mui/icons-material";
 import Flex from "../../../styled/Flex";
 import { MemoryButtons } from "../MusicDisplay/MusicDisplay";
 import MusicListBreadcrumbs from "../MusicList/MusicListBreadcrumbs";
@@ -20,6 +20,20 @@ export default function SearchResults(props) {
   const { state, send, setState, isMobile } = props;
   const { searchParam, searchResults, search_index } = state.context;
   const currentKey = Object.keys(searchResults)[search_index];
+  const searchLabels = {
+    music: {
+      label: "Songs",
+      icon: <MusicNote />,
+    },
+    album: {
+      label: "Albums",
+      icon: <Album />,
+    },
+    artist: {
+      label: "Artists",
+      icon: <Person />,
+    },
+  };
   return (
     <>
       {!!isMobile && (
@@ -78,7 +92,8 @@ export default function SearchResults(props) {
             size="small"
             variant={search_index === i ? "filled" : "outlined"}
             color="primary"
-            label={`${key} (${state.context.searchResults[key].records.length})`}
+            icon={searchLabels[key].icon}
+            label={`${searchLabels[key].label} (${state.context.searchResults[key].records.length})`}
             key={key}
           />
         ))}
