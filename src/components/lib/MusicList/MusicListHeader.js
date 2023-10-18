@@ -1,7 +1,26 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useImageSwap } from "../../../machines/imageswapMachine";
 
 export default function MusicListHeader({ artist, type }) {
+  const swap = useImageSwap();
+  React.useEffect(() => {
+    const type = swap.state.can("swap") ? "swap" : "init";
+    swap.send({
+      type,
+      pic: artist.imageLg,
+    });
+  }, [artist.imageLg]);
+
   if (!artist?.imageLg) return <i />;
+  const swapping = swap.state.matches("swapping");
+  const idleClassName = swapping
+    ? "image-swappable image-swap swapping"
+    : "image-swappable image-idle";
+  const swapClassName = swapping
+    ? "image-swappable image-idle swapping"
+    : "image-swappable image-ready";
+
   return (
     <>
       <Box
@@ -12,15 +31,14 @@ export default function MusicListHeader({ artist, type }) {
           overflow: "hidden",
         }}
       >
-        <img
-          src={artist.imageLg}
-          alt={artist.Name}
-          style={{
-            width: "100%",
-            position: "absolute",
-            top: "-50%",
-          }}
-        />
+        {!!swap.mainPic && (
+          <img src={swap.mainPic} alt={artist.Name} className={idleClassName} />
+        )}
+
+        {!!swap.swapPic && (
+          <img src={swap.swapPic} alt={artist.Name} className={swapClassName} />
+        )}
+
         <Box
           sx={{
             position: "absolute",
@@ -30,6 +48,7 @@ export default function MusicListHeader({ artist, type }) {
             mixBlendMode: "difference",
           }}
         >
+          <Typography sx={{ lineHeight: 1 }}></Typography>
           <Typography
             sx={{ lineHeight: 1, textTransform: "capitalize" }}
             variant="subtitle2"

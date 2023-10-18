@@ -1,8 +1,6 @@
 import {
-  Box,
   Button,
   Dialog,
-  IconButton,
   Slider,
   Stack,
   Switch,
@@ -15,7 +13,7 @@ import Flex from "../../../styled/Flex";
 
 export default function SettingsModal({ player, onClick }) {
   const menu = useMenu();
-  const { cadence, options, voice } = player.state.context;
+  const { cadence, options } = player.state.context;
 
   const optionsList = {
     [ANNOUNCER_OPTIONS.BOOMBOT]: "Say station name",

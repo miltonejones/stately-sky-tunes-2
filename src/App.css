@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.swapping {
+  transition: left 0.7s linear;
+}
+
+.image-swappable {
+  width: 100%;
+  position: absolute;
+  top: -50%;
+}
+
+.photo-swappable {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: -0;
+}
+
+.image-idle {
+  left: 0px;
+}
+
+.image-swap {
+  left: -100%;
+}
+
+.image-ready {
+  left: 100%;
+}

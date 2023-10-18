@@ -17,8 +17,6 @@ import {
   Close,
   Favorite,
   FavoriteBorder,
-  NavigateBefore,
-  NavigateNext,
   PauseCircle,
   PlayCircle,
   Repeat,
@@ -28,8 +26,6 @@ import {
   SkipNext,
   SkipPrevious,
   SmartToy,
-  Stop,
-  Sync,
   VolumeOff,
   VolumeUp,
 } from "@mui/icons-material";
@@ -38,6 +34,8 @@ import SmallPlayer from "./SmallPlayer";
 import TracklistDrawer from "./TracklistDrawer";
 import { ANNOUNCER_OPTIONS, COVER_ART_IMAGE } from "../../../constants";
 import Spacer from "../../../styled/Spacer";
+import { useImageSwap } from "../../../machines/imageswapMachine";
+import SwapBox from "./SwapBox";
 
 export default function AudioPlayer(props) {
   const { player, isMobile } = props;
@@ -119,18 +117,31 @@ function AudioPlayerBody(props) {
     duration_formatted,
     progress,
     coords,
-    intro,
-    silent,
     volume,
   } = player.state.context;
+  const swap = useImageSwap();
+  const swapping = swap.state.matches("swapping");
+  const idleClassName = swapping
+    ? "photo-swappable image-swap swapping"
+    : "photo-swappable image-idle";
+  const swapClassName = swapping
+    ? "photo-swappable image-idle swapping"
+    : "photo-swappable image-ready";
 
   const [image, setImage] = React.useState(COVER_ART_IMAGE);
+  // React.useEffect(() => {
+  //   if (!track) return;
+  //   const im = new Image();
+  //   im.onload = () => setImage(track.albumImage);
+  //   im.onerror = () => setImage(COVER_ART_IMAGE);
+  //   im.src = track.albumImage;
+  // }, [track]);
   React.useEffect(() => {
-    if (!track) return;
-    const im = new Image();
-    im.onload = () => setImage(track.albumImage);
-    im.onerror = () => setImage(COVER_ART_IMAGE);
-    im.src = track.albumImage;
+    const type = swap.state.can("swap") ? "swap" : "init";
+    swap.send({
+      type,
+      pic: track.albumImage,
+    });
   }, [track]);
   const buttons = {
     PREVIOUS: <SkipPrevious />,
@@ -158,20 +169,6 @@ function AudioPlayerBody(props) {
   if (!player.state.can("stop")) return <i />;
   return (
     <>
-      <Snackbar
-        open={!silent}
-        anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      >
-        {!!intro && (
-          <Card sx={{ p: 2, width: 500 }}>
-            <Flex spacing={1} sx={{ alignItems: "flex-start" }}>
-              <SmartToy />
-              <Typography variant="caption">{intro.Introduction}</Typography>
-            </Flex>
-          </Card>
-        )}
-      </Snackbar>
-
       <Box
         sx={{
           position: "fixed",
@@ -193,14 +190,8 @@ function AudioPlayerBody(props) {
                 spacing={1}
                 sx={{ alignItems: "flex-start", width: "100%" }}
               >
-                <img
-                  src={image}
-                  alt={track.Title}
-                  style={{
-                    width: 64,
-                    height: 64,
-                  }}
-                />
+                <SwapBox image={track.albumImage} title={track.Title} />
+
                 <Stack>
                   <Nowrap width={300} variant="body2">
                     {track.Title}
@@ -325,6 +316,9 @@ function AudioPlayerBody(props) {
               />
               <Spacer />
               {!!coords && <Equalizer width={300} coords={coords} />}
+              <IconButton onClick={() => player.send("stop")}>
+                <Close />
+              </IconButton>
             </Flex>
           </Box>
         </Card>

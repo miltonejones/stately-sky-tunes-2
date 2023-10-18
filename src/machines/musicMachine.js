@@ -15,7 +15,7 @@ const searches = ["music", "album", "artist"];
 
 export const musicMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QFsCusCWBjAxAGwwCMAnAQ2IE8BtABgF1FQAHAe0wBcMWA7RkAD0QA2AMwAOAHQBOAExCALAEYA7DJrqp8oQBoQFRAFpZUiSJkBWMcpHyRmsXYC+j3Wky5YYclgAWtBkggrBxcvIGCCGpqEopKYooy4mJCMvIyuvoIRlrS5oo2IiKq9srOrujYOD4syGD+fMEYnDx8EQZCQsoSyrLKNEI08jQWYuYZhglp3VJFYlrmaqNlIG6VvqTcMAAETOSkyPWBjc1hoG35UooS-SKKsbMdQmLjWTKKkp3yc+bFhTRSy1WuG4pAAbhgoKR2HV6A02E1Qq1EG8rjMnuYpMpVAoiooXkYZCYzJZrLZ7OJARUsBIIKRYD5CCxyBAtuCwAB3HAsJhgbiHZjwk5IrIJGQSBZmGjmcyicxDGTKfFCO4SToqZRCKTmYZaESU9w0ukMpnEFls9kSDDcBGkPBbPBMiA4CA8MCW7iglgAazdQMN9MZzNZGA57ptdodpAgCCtnqwUNC-n5QUFiPChikQnM0hod1+ihSyvxYil0wchR6c2M+uw-uNQfNEmIXggFBwTDwpGosKOqZa6ayfXk3REPzeGoV-SkSryEgVJe1NG+T0UNeptIDJrNIYtMHYW3YZCwXvtGFg7Gdrvdnp9Ej9G-rpuDob3B6PJ4I55jHpY8ZOSZ7AUQn7M5DFsMUxCkMQFQULM5EufEejFH4VCrHotRoPUXBWKk60DJ9G08bgWQ7LstkwKAQTwS9uDdWNvV9XCH3w7dQyIkjOwociISo784wTHgAICICERAgRDGUAtrh6eRbE1eJEnxTFs3yDoaB6RRMwuNcJEjFkgVPc9dMdQyLxdWjrwYu9cL0rYDM-dhjKjUy+N-AS+XoZNjjTUCEALEwswGWIEniO4ZXxSxpC+Io+mUIZoIcHTbPss9HNshycDAYhiBYYgJFI9gADNcuQayDWSqlTKclkHNcv9E08wCU2A05xIQIZh0uTT3nUxR-i1eR8UJYdIOldSLHkOKniEJKTJSoyoxIvZkFgA8WC2HxUtytsvL7VqIgsEQYlk+Q5SKBYtVifFbCucxblFP4lxkHSIDPUiuPmi9uV5XaWuFSaukuGYpQLDFCWnPRDAGCRZIcWCtCxJRV2w+83s4uzKocmkwGhLB9wM9gKB5HBftE-bkWg1VoLuER1DzZUdEhhBRxMKCen+JdZLMDoXrRsjPux3H8cqwniaoRRhOasnhRxGHqdHeI4sJF4KznZURAUBUZRURRzB0gzPG8HxnwtHliGK4hkHIrxiF8CRDdt43CC40WwBouif1vP0DZt3wTfyrKLath27ZDp2XaJsA6vcoS4T+gdUg1VU3hsNRdYXa6hm6N5JpmBwp0SlHcJ9o3-bNoPraNiRX1o-h9zDg9I5JprvLEg6NaEGIzsuUc5UxIbMTnRIZBHuRJvufXKobxty5KyvHernGtlr+vfeN12SYluPpYHFQZWucspUkhIEKZgwzCuAtOk1BZpW1CxJ-cee-cbV7YHe5-jebWBUDwdhYC5DyDyktW7kz8v8TugwswsxHmIZIioz5mCOkoTohR7A9QfkXA0JdHb+18GAY8WwLY7GWs3EBe1hQqCkDQGGRQsyaDeAoCGmQDCTWzIUJIoM5SpHkI-bAn88E+AISeYhuwyDIE3uQ+Ovl3gJGOuNEYcC0iDTPpYbMoxlG3CkNouwpQsG1hwS-HcloIB4DdoVK0EBSZCgTr1CQkFMwa1OiWIsZ9OhdGGE8WmchIJ3GRuUA0TBmx6XdpZL2uEglgD0tHf8jUpE718gYb41wlCWFpvIWQKD8QcPFLTZSpINQzB0vgwhm1zzbTIdvGxiTCjDgUAWfItMNR2GyWYbo8RhiZn6CkMwxShGlK2pQSRVSfJtXPoMA+sksTam0T4lRLDZJXDpgMahXVtFiGcNhbgLAIBwD4ECEZbcJhX26LqUYmhRCjnxI0mhhJxCDA1oUNQWEAm1mYluE2hywEGD6gqGGHNdb9AWLEZ4Z8+opFVBrSSk1ToFmevo9cRoWL+ytOGe0jovnCiMD0f51DAVwRBUpOK0hUhQveE0jZCK8IfMbM2KMmQRLVLGZ0SQFge62HzgqRCklTCnVgbmTMygMQvSRTS4xr5DykEIQ5TFA5WHKmOlmdQo4nhpCVKdaQogcRwLvnkEVm4GzGPYjsdGFEqKysSbC7o1hh5QQ1iWBBLDMSdVJWqfOyhKWvOpBVJ+MrezSLarIGIWpNQDCXKs1QiF+imGlLIcc4hmmzWcgLdKqULVtViDQzSMounhv+JGxBml7FajuidDJ5Yk36UxqlaqWwso5WIOmiIoguiiDgR0O6WJnkD07nYaUqc3hQTlJWjGvqa2LRIeI1a7B1plJnZQJtyIpIKGghk1ZWZwpuPePY6U8RS0OBkIXL1NI+YfWreeRdflB48M1qobpMp5mIBUGKOQdhMTUxLP8F5OEDRvw-gLXZQtR38Ndpe+CMQFROMKJpf4WgXhsu6KIS4yQLi6z0cev96MAOntMp8-1CS2qpGzDetId6O0KBeKdSBsQMlfFUCPTQvN35YfPY5TDZEoDEAwKxdkl76lzkmpqBjgx7CUZxXkPltSNK5j4VgAR5pL2ZqOn26w2i4pzEdYYEsR1-KYTmPkH4esqWGONjPQOc8w5gduJIXWZIDN9004OXWqpNT0xzkFWT8njGz0tp-e2a8tjO0bjyMDQxswzC1MUSSFh0huMPTETUuZ1JakuG8Tz09vPmd82HRe+4V4CNA-hplB0hgmEwn8SSeQ6GPteBrOccU965k1D3dLAXX44Ybt-X+-9FNWpU2+9Tk1snqFVHi3xdgnFCta6XRsJSRG5UnfsXrPKMR9WggoO6usxhnwBuKBwyRU7QScdN3BjZuNmMU-na4hZHgzFSaClh7jrg+O8U8Lq8Lj2RL0pen5dxJBTXEBiXUVzEGjnsYMDJmFEh-aM8eubG1BkMqlsVww0ouiaTzjqIVmtslyPSVoUYo4PXKk2Y4IAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QFsCusCWBjAxAGwwCMAnAQ2IE8BtABgF1FQAHAe0wBcMWA7RkAD0QA2AJwAOAHRiRARgBMcoWNEAWAOxC5AGhAVEAWhk0RaiSuMqArAGZrxodZliAvs51pMuWGHJYAFrQMSCCsHFy8wYIIMuKSNDRiKiqOlkJCMiraugZGJmYWNnYiDk6u7ujYOH4syGCBfKEYnDx8Ufpi1iISMkoynWoqItZiMjI6egiG1mpyEpZq8ZYZtiI2ZSAelf6k3DAABEzkpMj1wY3NEaBtGTKmlipiNEqi9zTJ4wZyPRI0itaWvxMQnmcnWm1w3FIADcMFBSOw6vQGmwmuFWohbkIpGlVop0rZbmoPpNcqZzCIrLZ7I4XG4NhUsBIIKRYH5CCxyBA9jCwAB3HAsJhgbinZgoi7oknJCRqUa3UbWOQaWRiYn6ITS2xyVLTaT3JRghlMllsjnELk83kSDDcVGkPB7PAciA4CA8MDW7hQlgAaw94ONrPZnO5GD5nrtDqdpAgCBt3qw8PCgVFIXFaMiOWM1h+cj11mBMULarEXwkSiGT2GYhsllBdIDzKDZotYatxB8EAoOCYeFI1CRZ3TLUzkw6Mmx-1+DzsKiEarSph6Il+igG6RolkNnkDppDlokMHYe3YZCwPsdGFg7Fd7s93r9EkbJuD5tD4aPJ7PF4I17jXpYRMLhTQcxTCEcrgMVIaFzIRN1lGs4JGEsEjMTQ1HmVIRGwxRt2wXdX1bcNvG4Lle37PZMCgSE8FvbgPXjX1-SNJs9zfA8SLIvsKEo2EaP-BMkx4ECgjA1EIIEAxEhzOQaBmOQkicOcYjVbCJ1+DDHgBYpUnrcod2jLlwUva8JEMkybzdej7yYp8jXM4zf3YMznQsgTAKEkV6FTc4M0g6JRHLaCbjzOVUjVSxJApDo1AWAYEjzaw8MZByGQslyYwsnAwGIYgWGICRyPYAAzfLkDsgzXMcq9nPMpz3KA5NvNAtNwMuSSEEGFQfjUDo50cDJpBENVQokBSMhoRwZhGYFkoyoy0qciQYzIo5kFgE8WD2Pwavy7sfOHdqomsTIJEcBJS3SVIa0sNUVFuKRYpoJwFJGJYhDmiAr3InjquvAUhS80TWvEo7EHUUxZErd7LBEORsIXGCkg6DVUdi+6ZE+77uL2P7nIgMAESwY9jPYCghRwA62slPNZiUL4+niUYNB6Yl-i6cQ1BXFdEmSPEsdgH7ccWmqmUJsBieFzwT3JsBKZkYHfIkqINRzB4vn+EYBnhtnpjG-ENSVVJ5S3BsjWM7xfD8d8rSFYhSuIZBKJ8Yh-AkS3XetwgeLJimrIYgDHwDC2Xf8G3Cpyh2nY9t2Y69n3ZYazyRORanRwUjRyw1zJnsizc7vMGUvnUIYOiecQkrNncQ6t8O7aj52rcPQm9no-hjzjmWKap0GaYLLEZHuTo+kse4TBGvIFEVBRFHUZY5prz268jsrG895vjzbjvQ+t325aoBXU970dblSH4OjseZRnhsZskmRUJx6IRlTrUeAW1Be0s7g8vsFnHO47LAVAeB2CwABsKHuEoT72B+HOWscM8zKCJHffQio1Y9DUCsB4Thfim30vhReYcDz+AlheB2Bw1qUxakrMG0QuZI2mMCCkXwNTDRQeoSwZ1bBiBmqPTISRP7S2-m2CQJDzx7HIYcMgyB5aK0OpKJw8hujmHkpFHh-CIo1ikPcBSjhsJDBMII7Aa8iEiIwBAPActio2ggJAvyHVZKyikNhBwGo87pAXLFWCZdFDSDlHNJgHZDJ0QDg+ZiO5AlgEMknYCzU5Fp38oYCwcwUY2BMNdZ6aoTrdXkIMa6WFhgYTmmIi8O1rx7SofE4+iTUjdVlCdcQ8RgSynnCgk6OZph5P6GIdGH0q74RKdtXalBZFHygTUus+tJqVm1OuLIEx9BJC6DMQeENpD3S+GoVwdJuAsAJvAYI4Ixn2OuLJWYNhn6rF6m-aYaoMhwR6vEToDxMiKk+i+FsNtjnKxyKsuYBYubzBujYZBCyjC9TmEqOCz8nDoz0vSHcrFCLhxtJGR0zpvm0MMEYLEFzAXXNHrclB2EYJvRWLFRwslK74MZEiz5B4OwxgmGJcZHV2ibjOsoWQSxJoFlhmqXqpg5AFlkk8YwCFqUIvwnS-cIjPynlIOIpymLJT6HmDmQoiQoaJFhtYBcz8JDMORukBQHR4XPmbLK4iwouIUSojRFVo41UQpXEYPoCxzAxFVMSlcUhB7kswfISac1UrS2VUOBJHVFFnU0LkhSlZ4jeoWaIWYCxbhyRrIkDIWz+kpSqiLUydUaqOv8goLoIq42DDsImrJTwxr3WSJNBwm54YhvzWG0W5kcp5WICWjqMwsRaXhms0YckRqlhlA2uwE1Nx4KlXmzKeNloQFWtIja7AtplI3ZQPtx0OUjDnL1Qe8QrCrERpw2S8p5BpE6LSGlTJsYUTxrujEk8kiGxmE8YEGpiS3FmH8BBvwnCxDvfOh9f8n0FvxuLSWpNZYvoQIoLo8hMGqz0RYVpExtTLIcCqfE3Kc33t-kLJdxGcZOS+RG6pDirD1rnJkT9aRanEisFiZ6SyHjyWHQLEjUHwNCygMQcxlGWUnOEPdetyoy1vGiixrmcwMh1lsCXN1RisAmOtpaBDE0OlXM6CYF5oKpKTW6KIJ5JhsKsbUxp5e9tV5xwQ8Kpw3Qh6yH+GPIzkxZScJxPETBPS4Y8Os8I8M9d7M73djvPY3su5gEc+YThBiQQmHkHWBceZTOurkqsWQXxgtRYPGFx2GmN6tzAO3Gze94vGB+LYOw3n3U-pQcKrESp7oYWeqINz+Xa4-0fTxABcBgGgO01YCcnR1XYQGIkTzqD4jlldX4zoBYOE9aXsQvwpCJH5QodI0bTjYZGEupSQet12FeMisMBwmRSwrbW6Y8M5jLHabLj8TQaQcQnUHkmgwz9TC-CUHYXxsh5ABKCRiqjrLrhHZ+LILqxg6yKHmQYTB5ZJpWEweIeGeY50BkGVuvaCH2iyXLB0R4k1ZQZEUFkhQzjpK3sinA7ZzggA */
     id: "music",
 
     initial: "preload",
@@ -224,15 +224,7 @@ export const musicMachine = createMachine(
     on: {
       library: {
         target: ".load music list",
-        actions: assign({
-          queryProps: {
-            field: "ID",
-            direction: "DESC",
-            page: 1,
-            type: "music",
-          },
-          selectedID: null,
-        }),
+        actions: "assignLibraryProp",
       },
 
       search: {
@@ -327,6 +319,19 @@ export const musicMachine = createMachine(
         searchResults: {},
         searchParam: event.searchParam,
       })),
+      assignLibraryProp: assign(() => {
+        const queryProp = {
+          queryProps: {
+            field: "ID",
+            direction: "DESC",
+            page: 1,
+            type: "music",
+          },
+          selectedID: null,
+        };
+        localStorage.setItem("queryProp", JSON.stringify(queryProp));
+        return queryProp;
+      }),
       assignQueryProp: assign((_, event) => {
         const queryProp = {
           queryProps: event.queryProps,

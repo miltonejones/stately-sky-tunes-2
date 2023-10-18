@@ -14,6 +14,7 @@ import Nowrap from "../../../styled/Nowrap";
 import statePath from "../../../util/statePath";
 import { Close, PauseCircle, PlayCircle } from "@mui/icons-material";
 import TracklistDrawer from "./TracklistDrawer";
+import SwapBox from "./SwapBox";
 
 export default function SmallPlayer(props) {
   const { player } = props;
@@ -43,14 +44,8 @@ export default function SmallPlayer(props) {
       >
         <Card sx={{ p: 1 }}>
           <Flex spacing={1}>
-            <Picture
-              src={track.albumImage}
-              alt={track.Title}
-              style={{
-                width: 64,
-                height: 64,
-              }}
-            />
+            <SwapBox image={track.albumImage} title={track.Title} />
+
             <Stack
               sx={{
                 width: `calc(100vw - 148px)`,

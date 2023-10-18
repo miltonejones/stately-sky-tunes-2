@@ -38,7 +38,7 @@ function App() {
     sortList,
   } = musician;
 
-  const props = {
+  const componentProps = {
     tracker,
     listman,
     state,
@@ -66,12 +66,12 @@ function App() {
   const playing = player.state.can("stop");
   let offset = playing ? OFFSET_MARGIN + PLAYER_MARGIN : OFFSET_MARGIN;
   if (isMobile) {
-    offset += playing ? 100 : 64;
+    offset += playing ? 100 : 60;
   }
   return (
     <>
       <Box sx={{ m: 1 }}>
-        <PlaylistDrawer {...props} />
+        <PlaylistDrawer {...componentProps} />
         <TrackDrawer tracker={tracker} />
         {!!debug && <MachineDebugger machines={machines} />}
 
@@ -79,28 +79,30 @@ function App() {
           {!isMobile && (
             <Grid item xs={3}>
               <Stack spacing={1}>
-                <NavigationCard {...props} />
-                <NavigationPanel {...props} />
+                <NavigationCard {...componentProps} />
+                <NavigationPanel {...componentProps} />
               </Stack>
             </Grid>
           )}
           <Grid item xs={isMobile ? 12 : 9}>
             <Panel offset={offset}>
               {state.matches("load music list") && <LinearProgress />}
-              {state.matches("dashboard view") && <Dashboard {...props} />}
+              {state.matches("dashboard view") && (
+                <Dashboard {...componentProps} />
+              )}
               {state.matches("music search view") && (
-                <SearchResults {...props} />
+                <SearchResults {...componentProps} />
               )}
               {["display music list", "load music list"].some(
                 state.matches
-              ) && <MusicDisplay {...props} />}
+              ) && <MusicDisplay {...componentProps} />}
             </Panel>
           </Grid>
         </Grid>
-        <AppFooter {...props} />
+        <AppFooter {...componentProps} />
       </Box>
 
-      <AudioPlayer {...props} />
+      <AudioPlayer {...componentProps} />
     </>
   );
 }

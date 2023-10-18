@@ -176,7 +176,10 @@ export default function MusicList({
               src={record.albumImage}
               alt={record.Title}
             />
-            <Flex spacing={1}>
+            <Nowrap
+              spacing={1}
+              sx={{ width: "100%", display: "flex", alignItems: "center" }}
+            >
               {announcementTitle === record.Title && (
                 <CircularProgress size={18} />
               )}
@@ -190,7 +193,7 @@ export default function MusicList({
               >
                 {record.Title}
               </Nowrap>
-            </Flex>
+            </Nowrap>
             <Nowrap
               hover
               variant="body2"
