@@ -15,11 +15,11 @@ export default function MusicListHeader({ artist, type }) {
   if (!artist?.imageLg) return <i />;
   const swapping = swap.state.matches("swapping");
   const idleClassName = swapping
-    ? "image-swappable image-swap swapping"
+    ? "image-swappable image-swapped swapping"
     : "image-swappable image-idle";
   const swapClassName = swapping
     ? "image-swappable image-idle swapping"
-    : "image-swappable image-ready";
+    : "image-swappable image-standby";
 
   return (
     <>

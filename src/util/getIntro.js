@@ -16,7 +16,7 @@ export const getIntro = async (title, artist, fn, ...args) => {
   const curatedInstructions = await createInstructions(title, artist, ...args);
 
   // Generate text based on instructions.
-  const intro = await generateText(curatedInstructions, 1, 128, fn);
+  const intro = await generateText(curatedInstructions, 1, 1024, fn);
 
   if (fn) {
     // console.log({ intro });

@@ -171,18 +171,22 @@ export default function MusicList({
                   : theme.palette.common.white,
             }}
           >
-            <Avatar
-              sx={{ width: 30, height: 30 }}
-              src={record.albumImage}
-              alt={record.Title}
-            />
+            {announcementTitle !== record.Title && (
+              <Avatar
+                sx={{ width: 30, height: 30 }}
+                src={record.albumImage}
+                alt={record.Title}
+              />
+            )}
+
+            {announcementTitle === record.Title && (
+              <CircularProgress size={30} />
+            )}
+
             <Nowrap
               spacing={1}
               sx={{ width: "100%", display: "flex", alignItems: "center" }}
             >
-              {announcementTitle === record.Title && (
-                <CircularProgress size={18} />
-              )}
               {player.state.context.track?.ID === record.ID && <VolumeUp />}
               <Nowrap
                 onClick={() => player.play(record, records)}

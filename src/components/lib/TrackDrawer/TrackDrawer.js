@@ -65,6 +65,14 @@ export default function TrackDrawer({ tracker }) {
         tracker.send("close");
       },
     },
+    // {
+    //   title: "Get song lyrics",
+    //   caption: "Search for the lyrics for this song",
+    //   icon: <Checklist />,
+    //   action: () => {
+    //     tracker.send("lyric");
+    //   },
+    // },
   ];
 
   const execute = (action) => {
@@ -152,6 +160,7 @@ export default function TrackDrawer({ tracker }) {
             </Flex>
           </Collapse>
           <CuratorCollapse curator={curator} />
+          {JSON.stringify(tracker.lyrics)}
         </Panel>
       </Stack>
     </Drawer>

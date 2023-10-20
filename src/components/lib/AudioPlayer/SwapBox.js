@@ -7,11 +7,11 @@ export default function SwapBox({ image, title }) {
   const swap = useImageSwap();
   const swapping = swap.state.matches("swapping");
   const idleClassName = swapping
-    ? "photo-swappable image-swap swapping"
+    ? "photo-swappable image-swapped swapping"
     : "photo-swappable image-idle";
   const swapClassName = swapping
     ? "photo-swappable image-idle swapping"
-    : "photo-swappable image-ready";
+    : "photo-swappable image-standby";
 
   React.useEffect(() => {
     const type = swap.state.can("swap") ? "swap" : "init";

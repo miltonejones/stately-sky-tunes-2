@@ -37,10 +37,6 @@
   }
 }
 
-.swapping {
-  transition: left 0.7s linear;
-}
-
 .image-swappable {
   width: 100%;
   position: absolute;
@@ -51,17 +47,21 @@
   width: 64px;
   height: 64px;
   position: absolute;
-  top: -0;
+  top: 0;
+}
+
+.swapping {
+  transition: left 0.7s linear;
 }
 
 .image-idle {
-  left: 0px;
+  left: 0;
 }
 
-.image-swap {
+.image-swapped {
   left: -100%;
 }
 
-.image-ready {
+.image-standby {
   left: 100%;
 }

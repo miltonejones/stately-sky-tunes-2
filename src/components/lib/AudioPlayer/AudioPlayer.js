@@ -122,11 +122,11 @@ function AudioPlayerBody(props) {
   const swap = useImageSwap();
   const swapping = swap.state.matches("swapping");
   const idleClassName = swapping
-    ? "photo-swappable image-swap swapping"
+    ? "photo-swappable image-swapped swapping"
     : "photo-swappable image-idle";
   const swapClassName = swapping
     ? "photo-swappable image-idle swapping"
-    : "photo-swappable image-ready";
+    : "photo-swappable image-standby";
 
   const [image, setImage] = React.useState(COVER_ART_IMAGE);
   // React.useEffect(() => {
@@ -205,7 +205,8 @@ function AudioPlayerBody(props) {
                 </Stack>
               </Flex>
 
-              <Box
+              <TracklistDrawer player={player} />
+              <IconButton
                 onClick={() =>
                   listman.send({
                     type: "open",
@@ -219,7 +220,7 @@ function AudioPlayerBody(props) {
                 ) : (
                   <FavoriteBorder />
                 )}
-              </Box>
+              </IconButton>
             </Flex>
 
             <Stack>
@@ -241,12 +242,12 @@ function AudioPlayerBody(props) {
                   .filter((action) => player.state.can(action))
                   .map((action) => (
                     <IconButton
-                      color={action === "pause" ? "primary" : "inherit"}
+                      color={"inherit"}
                       onClick={() => player.send(action)}
                       sx={{
-                        outline: (theme) =>
-                          action === "pause"
-                            ? `solid 3px ${theme.palette.primary.main}`
+                        backgroundColor: (theme) =>
+                          ["pause", "resume"].some((name) => action === name)
+                            ? `${theme.palette.primary.main}`
                             : "",
                       }}
                     >
@@ -272,6 +273,7 @@ function AudioPlayerBody(props) {
                 <Typography variant="caption">
                   {current_time_formatted}
                 </Typography>
+
                 {player.state.can("pause") && (
                   <Slider
                     min={0}
@@ -280,25 +282,26 @@ function AudioPlayerBody(props) {
                     value={Math.floor(progress)}
                   />
                 )}
+
                 {!player.state.can("pause") && (
-                  <Stack sx={{ width: "100%" }}>
+                  <Stack sx={{ width: "100%", p: 1, mt: 1 }}>
                     <Flex>
                       <LinearProgress
                         sx={{ width: "100%" }}
                         variant="indeterminate"
                       />
                     </Flex>
-                    <Nowrap variant="caption">
+                    {/* <Nowrap variant="caption">
                       {statePath(player.state.value)}
-                    </Nowrap>
+                    </Nowrap> */}
                   </Stack>
                 )}
+
                 <Typography variant="caption">{duration_formatted}</Typography>
               </Flex>
             </Stack>
 
             <Flex>
-              <TracklistDrawer player={player} />
               <IconButton
                 color={volume === 0 ? "primary" : "inherit"}
                 onClick={() => handleLouder(null, 0)}
@@ -316,8 +319,11 @@ function AudioPlayerBody(props) {
               />
               <Spacer />
               {!!coords && <Equalizer width={300} coords={coords} />}
-              <IconButton onClick={() => player.send("stop")}>
-                <Close />
+              <IconButton
+                sx={{ width: 18, height: 18 }}
+                onClick={() => player.send("stop")}
+              >
+                <Close sx={{ width: 16, height: 16 }} />
               </IconButton>
             </Flex>
           </Box>

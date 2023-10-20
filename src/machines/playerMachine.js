@@ -13,7 +13,7 @@ const connector = new AudioConnector();
 
 const playerMachine = createMachine(
   {
-    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYljABcACAe2SIEsyA7AbQAYBdRFM2K6utkAD0QAmABwAWAJwA6AOzjGwwYxEA2AIyCAzMoA0ITIgC0AVhEzBo1eOHLhwxkemCAvk91osuPO8xNWSEMgcXDS0vAIIqqJRksqiyuKqltKJqva6+ggGkYLKkozK9soaRlpGRsoubhjYOJKoZOgQJAC26ADGABZUtGCSsEToOKTeuCTd-ei0bWB4EHS93QBuZADWvSO19Y0t7V09fQNDJBtjtBNTYAhLZG3o3AwsvryBnPdhQhKSGhrScYKCv0ERjEOj0hkUjGkkhK9kY4iMojE9mklQC1VwdQaTVanW6vS2TTAAEcAK7oVBUABenjm+2ua0kG0x2xxe3xWJIxLJFOpOCutGWt3uvie-hewR4-nCWQKeSMqlKRRKCsYGnShlU8VUX1U5Uick0-yMqKZBJ2uP2nTAbRWx3ROBIy1QJOaM1F7FeIXemXUGi+GiB4hUAfhlnVmUEqW1OUR0mEiTkPxN9sZ1W6UAIRAo7oCQTeUsMGm1CThcksSVE8lBGSyqVy5UcAbU0iKog0yY8tW86YIYDAKxz4vzoHCmjhkn+QLhCtE4cswhkhTi5SUyk0wg7NVTWB7AGEAPL7gBKABEAMqDvNegsIQ1GSQG1TJRGxrThgyif6L+MAgqREqiJuGLdrQGacKgYAXJenqSiOQhFqIMTCBoUTiJWUSiNI76RowD7xgG6gOIwfwVK4aKdtumA9uMuBENBEqhDe-y-JIqjIYI4hoXGBFqmCEaIf8yglOI3xxg4FhAV2aagXg9QkhAuD0cO-DwbqkgSEYViKHEUS-OGn5+qIRjTpoTaaYBZFMiBUAHIMwzSTZMCkJMtBkCSFzNLQRCzPMkj0usKbWbZRxBU5JAuW5Hlefygp3CEIosM8V6wSpmTyve8iaQUxGRjkqjvo4D6wgC8ZyL8G6WYFDnBfZO6gZIYURe50yed5tILAKqwBRRQUTCF1WNbQrnNWArUxTccV0CKqh+B6DHegY5jQkZkTCNIcLfAk0i8TWQnqbq1jiGoxRaGokmUemNV2nVjnEOFQ2RS1Xl4LgOBkFJdwAGbvc0lHAdVfW1VR9WDcNUVEONQrxY8iVisljFwRGqR+owjCasoahiEGs58QY60TvG5QGfCHGaedvWHEDl2g49o3PSSyAQHcYBKdeiNZKjKMwhoaFyOIshGNhiiscuFjFEoDiqOTAOU9dwM2YD4XyTQPl0p1DJWTLdly5divoMrZCQ5NDzMKzKXhCYUJrllwgiZoljVkI20xPOPPIQGmnOJVPVa-1N1XfrEAq6973bkQ304L9mv+4rFPa4HNBG8KMOzbmMEI6lbFSMUCQaHY0glEWel8Y4iEoRCcQJGxEjSzHsu9cgYDoLa3REG9qsdcsGtVXX2sN03LdeW9SfQ6bsNzcp0rqNqaOVj8DjKNIz5YXxKgPpjyTmKkum1-LV1BZ93SEnwVD9Om91g09bW+f5f0fXvsfVYftDH6f1CgRftNjdcUNTSnSXpwWokYEeQ1zCDKAZHmO0hB2BiKqOIGh7DWCXsab2W445+z3s-V+Z8P5NXBh3Py6turoN9lTeq2DOQn1wVAT+I1v6dV-ibegM0AHzRvLWTQ6kYSWHhGuHI4g5xtgfFEEw2U2J2C9lUH2vdMGXStDaEgtwFIXDwGbDOU9bBl04v8YiwCHDQIQCYQQrFkLqByMUIEkRd663rtVBRtplGQWmGo1hcNAE3kSCY22shzAFE0PEcw4ZjK5D+PzWQaN5RSPIqQ-21lTjHDelAHAcBYB4AAApHn3AAcSPAAUTPBecead2GI3MQJJIGM4iHSsOGWIJiiwiURJoESCgLLSNiXveJ3RElkGSakvAWYoBQAguo70T4nysU0kXIoCQiZ1IsHKAia0pwJhsfVbptBen9NgLAPod0GYkB6HwUgbd2grEIbfaOXSHIJOQEklJuz9mkEOcc05OBzkjz-mPVOQ42aZ3+H6b4szEF5wsTjDIn57zKnAXqKc5R1k2U2dsx5ezvAACNzleH1oQMZN5wELmImVLK5cRB1PKJIOwAZlx5zQihRFF0P49PuX01FlFMU2jwHkgAciePFiMRK4XsJWBEWoBaO0yHnP020joiCbEg9pMT-pxNucyh5qT2VYp5XytxE9-nhFSGtSlshEgESMi2YQ75sh+hKM+I0QILAVQ6cqm5N07nqqeRirFmS8kADUACS+4ACqRTfnw29FS6EVcohFlhN8K1soRBrUrCCDi8QGXIpZTsvZDiSAR3CkMN+ajil-PNogXUkz1qcR+OoKw8oJVPhRhxSEqoFQKCEoq65l1M0epzR0a0tp812SLSwsNHiykImztYISIkCi0sMSIKEyQ2IYz4dPVBzr77dtVVsrNbLCAvwLdQfoJBOBQFoOSS5xC76MqRTulFGqD1NGHSes9F7UBfOYSW8NnifwPnSkCLQbY6z6UmYg7amE2xGXMCiNBLrt1utPscHFkA8CPJdCzb947UpHQXCkNi65-gSEtSXTCUbHAAgSDpREDKzmKMggpCAeA+ATCIL0dAn02M4AABTGUYAASi8D3PedHbQMcgPy1KBgeYmNRplW2uc2wiQKostacmsrygSOIWjHz6Mv1QyxgYbHJAca47x1Ggmu31VE5yfTEBR1sMnoWfIlK1w53CfGawEKNTyGzk+XRYtdS-AZY-f2NN6HPRDh9cOP0b0YPIbdZyD0IsQx-sbaaY7SmpW0twoothVRlHWt5yVsQXacV1GoAoJqXBkVcgpeAYp7SOf1eCGDeQ0YY0xhIIJuNzC20paWReBEDSkU3cybEuw8TNbLRGWBQkFSNvkITfKvXKwNNSMROwhQHbnTNKyPE+97SnHONMabGjwQBhiPKIuiDbAVqtZxKQCQASEQLlU3bHJ9v7BSY0DIeqZtZDI-lysNgog-hIzWSIaN1KIndhjVGz4Psskm-sM0XJyRUlwGd70yQ8iWE0xYIEmlZAJpbNCUy+pDXxFg2NvbKPei5pOE6DD2OOFPikPGeIlYgxAmsGxIW+NEGcVtnnIyUREWs-ZpGTi7X0Zdexu+Nafo1OozafzEmIW7E3Ul1JyM8pZedergr3GEhchqCsFYJQRZbA06VVu+qoW97hfBjrqe8guZGWnYa1IgtcbxHXkvLxsQbDJCdXb29h3ZHOQNq78tmovjykrC2URWUJWGlc1Yb41S5UiE133AGjdm6nDbmQWPmREQ2srmja3bZTLhj8RORIybNR-EiKN8P8WdYUKPlQt+598FXzL4tKsZgfhQMUKJFeGRzAmJEmhZCCJ8iCTz3I+quanEXCH4oRIMQUKImBAUQ64YWxSAsJ1pQAJtrbQzfevdqSy+yEQkoC1mhieWEEHOXCvxBVNkC3nDdHe1UParKj6ByyARyYAJyJAomZeuo0OyQCIJgs6jgtg4YouMgnmJgbYJQBQABVmd6iGu6vamqNoZeYgsmv4CgOcyQQYaBIk0IBiUqCgESYe+Bt67qIBTyuaQ6ha-QsBmofovOHsR0XiPWGQq05OZURQFifM7ebBwB2a+yh6L6pAb65IsBcYuQ28JgWg8gaMYh5an4Mg3WuGAIIgAIN+iGsAyGJIhAEAZB9BW0Jgh0QkBcgifEQYWhsqNgNa8YNccG9uNkNm4m9h7iWW4QQkuQ8guoJgyMVguo74xQ2ojYKE60KCS83wDKUWp6lM-eMeYRTmEQ1g0ItsDg4kcIm8U+iAVcrEb2Hai8mo8YNWTgQAA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QAcA2BDAnmATgYljABcACAe2SIEsyA7AbQAYBdRFM2K6utkAD0QAmABwAWAJwA6AOzjGwwYxEA2AIyCAzMoA0ITIgC0AVhEzBo1eOHLhwxkemCAvk91osuPO8xNWSEMgcXDS0vAIIqqJRksqiyuKqltKJqva6+ggGkYLKkozK9soaRlpGRsoubhjYOJKoZOgQJAC26ADGABZUtGCSsEToOKTeuCTd-ei0bWB4EHS93QBuZADWvSO19Y0t7V09fQNDJBtjtBNTYAhLZG3o3AwsvryBnPdhQhKSGhrScYKCv0ERjEOj0hkUjGkkhK9kY4iMojE9mklQC1VwdQaTVanW6vQmRxO4wGFzwuBwZFq7iIADNKc1JBtMdscXt8YdhuicKdztMrrRlrd7r4nv4XsEeP5wllpBpob9ZKlxKJ-pp0oZVMDRDJlPENIJlcp-j9UUyttjdnjmU0wABHACu6FQVAAXp45vtrmtGVzrTtcftzSQ7Y7nW6cPzBXcQiKWM8gm8pYgTJJhOpkhZzLLpMppOrMqoClCJBoJEoDeJpPJTb6g6yrZ0wG0VscuSRlqh7c0ZqL2K8Qu8C5ovvqjOIVPr4ZZ8wZBKlVJIcojpGnLIwTa40R4qdVulACEQKL2AgmB0nMhoFwk4XJLElRPJQRksqlcuVHPq1DnSxoa9ufVge4EGAYArMe4qJqA4SaHCi7-EYcKqKW+aWMIMiFHE5RKEaGjCH+NQAZgQEAMIAPKkQASgAIgAyuBp6SlBQijpIchzhmYjCLKT6GCqgjoWmAIFJEJSiPhGLeEBnCoGAFz0f2jH8MxkQxMIpYSA+USiHmYKZHOjCsWm+rqA4jB-BUm5MpJtD7uMuBEPJEqhOe-y-JIqhqRW2meUhM7mHByglOI3wrg4FjiTugE2Xg9T2hAuCOZBSkIJomqSBIY4KGZsTaaI+YqnKogIQkmifmOYmWb61lQAcgyclFNUwKQky0GQ9oXM0tBELM8ySF66xVbuNm1YSQ2NcQJAtW1HVdZGNzRnQsZ+H2TmDsYaXyGOBRmXOOSqDOjisbCAJpnIvx4ZV-7VSN9VEcNTWTbQrXtdMnXdR6CwCqsA1XWNN2tg1kgPVNL1gG9c1CjGjyqMtJ4Kc5TF6dqCJGJEXFwt8CSyjOgXpZq1jiGoxRaGoEWEXu-3XcDT3Ta9XVkjgFKRbS9KERJf0ErdFPU89M1EBDC0PMwiVnojWRqUYi4WLIon-PEPGZIdcgIRIVZwo4ypk9dnMA3d43NTToNvQzTMASzOAMlZHMcrr3MTSDfMC8K0OwxBovJYo2pFUUtjrmUVZ5bpBhaNqajiAk5SFpCCRa9bdW2-d9uG3zeD2sgEB3GAIuKdKqTrnkMIaMqciVvCfmKO5mEWMUSgOKoseAzr2s2+gcU0D1npfd6VuNzbzfx63EA0E7UPC3GYoMQjyUmFCRpbcIwWpYT+YAnKYdqVY3xAuODd65TcdHIP7fkpSZt0hbbORXvTcH81bdkCPi2POPK1JeEHlSMUCS4ZCJSXr8+ZHDalLBCOICQPISF3hTG+jdkBgHQC2boRAKQd0+ssbug1e7x21nAhBpxkEP2uJDJ+Y9XaTzWuoBcjBIjrmkA4XMGYdIZBUKxNQXF1AWDMtpKBw0YF7xpN0G0fAqD9D3I9XmdN3q9X6pfcmvC+5-QEbQIRIjqA2XEbTMGs0iGCyWvGeGFD8Z5CNMIMoBUi4aBXnYGI644gaHsNYaQdCeE1T4RTJRKjRHqIdpI1BfUu4-QIv3UagMPHBmEV4qAGijbaK+sQoW9AYb6NWueF8w4ir2MsPCI0ORxAoVEHKZURUciMGob7Zwl0gm3wTjVRszYSC3HiqSbOU9c7wmAQ+ccftZBOMDhkVGUIgq2BXHYOhRUXH70BnUlsjTZLTDwIkshBjzyJH4gvWQ5gCiaHiOYfMCFch-ErLIahqMKlVF+oDaqpxjgUigDgOAsA8AAAUKKkQAOIUQAKI0Toi-OGKTEaUMllWTepkEQKDybpJCRoviKAcD8BwZQAQTKud0G5ZA7kPLwIeKAUAZItMHKoRwUIfjqFLGUBCRKUJaH4vqZECK6EzxRWNa5yBbn3NgLAPoE004kB6HwUgyD2grD8TInue9UW0HRZizl3LSC8v5YKnAwrH4JL+W7HOiAkJFUXOUQmsQNYL3ykSr4kIgRaBzA4KwzKGqsvZQ8wiAAjYVeBPkADkqIEvPLYSWlgSm2BBJeBWxgxzQgxrtTimgbV6ztRijlXLvDOubK6j1izklvy1fIKEXFwHGSKjmYQM5shyhKBmeCQILAXXOVUy5LK0VsrjQ6xNLqXmfIAGoAElSIAFVflLIBclOwBlAr-BKtLQsM5SXuVkFYB8IgHAGmjWI+t9rZXTJIOfSaQxVELPVeQlZwJ+LBVRuuUqe1C26TUqmYyhZFTKhzCiSp7Na22pXY2tdHQmwtk3XVHdaaJ7LMBQUSWSLFCaErEaKxUJkgeV1NkoFS71FvplVywgyit3UH6CQTgUBaBOlFQE2R11JXSvjdy9Dv6sM4bw6gVVeiAMDvfgTdyRL8hIk1JmY1JLISll+OSrMEyhX1NkvFCAeA+ATCIL0dANIpM4AABQIUYAASi8JgveQmWwicgF6sWRd+KlM2gvb+BTgoHQsKmNW9hCaowSOIQTyrhPKMgOJyT0nZO4EU6U1T4qKaaeDM5iA-7X7u2lPY3I1hNBjiOWmawfSNTyE-kS-4ZkkKal+IhqJyGyPNuTXZIYunkqpAUGYEmFjw64SYYgNSBkci6iiMM0pURMuxpQ3KkgvL8tSaaJpgj6DAnPolXWqVDa2uEHlcgHk9lIAkE03R5+-aM0IEJsArN5hyzxDHPmKwaEtByHJWZAtLXstNuqEmlYl8xiwBqV4VuhBCvhGCmhXMYhv6BQYZCjI1cjp2CKHQyIuFArHZG6uhNZ3hWXZEccO7LmOVdiznuwDg7ojpjhNYMyT3BB7LnKxWzAPuJREfZuVq8V4Bii5Om0L4IYKldlIvdcPwqtI2CixriwJ3wNYqtWjEdZLQ9Ep5qvS1jAppdlPINMqM-IPklmwuhVhsg2F-E+zYWJ-RskmTUHkJJpgC9aeCfUMRUb-3sbYTU+0g5ZKkCVZIQI6H1bJrzgMvR7mNAyCFwXWRtKpjsA+GwDX1AXufDQhcDW1Ik1KRmB3qv6yBlVyGJ0rpcC68HFoVMIgI7jicZxfIRaVxSCUNkQmShkhR5ZHz3o66Tgdnh8n1JWT0ppkhHCM1thKzl1lDEDydDfh-c1BZbnV89y17FnOErH46d0pCkzgwXE5QEwq9QnIc5+9bhrdfBRDVh-JVnNq2nFjFBT5nBIXI6866OF9lW1fg3oEb73jzTRb0t+53kHKewRVrBqHkKkIwOMrcMNWbEDYMkJfr5vItgtUkfGQE-lqoWF8KjA+DmFEGUPqivAbgTGHnEAoJ5CAepjfuAbAvAogl1BSNAZkIiCWmAtQpeGIPqN8CvHEIuIkFxBYIAXOHEBMm4sNGEmABEmolEj4lokQKQbOI+HvvTofrpOYEekXOQQiPkHLBwbfhTOurMhcMIYoIkDEOpKYujgTIAvEHjLqFsgCNmErgPnIjVCRqNvGqQedO5ACGjgUCWAoDOAvDEC9rKHLKkGAsDqRg6uNh1pNoqrNo5isKQZqA4N7jeGOHTuVPmLhNqCuB5CYAUiUMBr4dYadlgOdrYYTPYSCujs4VjpIfkA3rhAiJQlWPEBkaDpIOuj+tuv0OEbtJ3mOGZBSgCCYHsp-DesUJ4YTB-jUe+qhiJhhqothlQLhk6OEaYpLD6vCMCLqLhFYPlLSr0QoEhOYAvCvqATVP5tphAKQbqJLFoLQW-n7gaAdMUF8LqIUBjrBvZsrhYZICfNyJzGIpATMW+AvIir8OrOmNtpoUSuUIFHEMkDYPXE8cRsNn4bKgEZ1mcNNj1qEeEdhIuOUZWPss3p9jAZ8MqGSmOAaIWA4EMW1rlhdkSNdtVKQTmtCMUEaGwmSj8PmHBl8DBvYg4FWIoDsbgcNFYbUeSZDlSTDocQxktrScXscpWCYUoPET8GUTVquCCRdC4EAA */
     id: "player",
     context: {
       trackList: [],
@@ -34,10 +34,13 @@ const playerMachine = createMachine(
           "start player instance": {
             invoke: {
               src: "initializePlayer",
+
               onDone: {
                 target: "load equalizer",
                 actions: "assignPlayer",
               },
+
+              onError: "ready",
             },
 
             description: `Load the audio player into the machine context.`,
@@ -96,6 +99,7 @@ const playerMachine = createMachine(
                       target: "find existing announcemnt",
                       cond: "can retry",
                       actions: "iterateRetries",
+                      description: `If an error occurs getting intro, retry up to 3 times.`,
                     },
                     "start audio",
                   ],
@@ -192,18 +196,13 @@ const playerMachine = createMachine(
                   onDone: "playback",
                 },
 
-                description: `Load introduction for the next track.`,
+                description: `Load introduction for the next tracks.`,
               },
 
               playback: {
-                description: `Player can safely send and receive requests`,
+                description: `Player can safely send and receive requests from the interface.`,
 
                 on: {
-                  pause: {
-                    target: "#player.playing.playing is paused",
-                    actions: "pausePlayer",
-                  },
-
                   END: [
                     {
                       target: "#player.playing.track ended",
@@ -221,7 +220,34 @@ const playerMachine = createMachine(
                     target: "#player.playing.track ended",
                     actions: "rewindTrack",
                   },
+
+                  insert: {
+                    target: "set up inserted track",
+                    actions: ["insertTrack", "insertTrackWhilePlaying"],
+                  },
                 },
+
+                states: {
+                  "player is playing": {
+                    on: {
+                      pause: {
+                        target: "player is paused",
+                        actions: "pausePlayer",
+                      },
+                    },
+                  },
+
+                  "player is paused": {
+                    on: {
+                      resume: {
+                        target: "player is playing",
+                        actions: "resumePlayer",
+                      },
+                    },
+                  },
+                },
+
+                initial: "player is playing",
               },
 
               "check for artist": {
@@ -244,6 +270,16 @@ const playerMachine = createMachine(
 
                 description: `Send signal to update artist hero image`,
               },
+
+              "set up inserted track": {
+                invoke: {
+                  src: "sendIntroSignal",
+                  onDone: {
+                    target: "playback",
+                    actions: "clearInserted",
+                  },
+                },
+              },
             },
 
             initial: "check for artist",
@@ -259,15 +295,6 @@ const playerMachine = createMachine(
                 internal: true,
                 description: `Toggle a boolean setting on the player`,
                 actions: "toggleProp",
-              },
-            },
-          },
-
-          "playing is paused": {
-            on: {
-              resume: {
-                target: "playing in progress.playback",
-                actions: "resumePlayer",
               },
             },
           },
@@ -288,7 +315,7 @@ const playerMachine = createMachine(
               ],
             },
 
-            description: `Move to next track if there is one.`,
+            description: `Previous track stopped or interrupted. Move to next track if there is one.`,
           },
 
           "error starting audio": {},
@@ -409,6 +436,12 @@ const playerMachine = createMachine(
         track: null,
         src: null,
       }),
+      clearInserted: assign({
+        inserted: null,
+      }),
+      insertTrackWhilePlaying: assign((_, event) => ({
+        inserted: event.track,
+      })),
       insertTrack: assign((context, event) => {
         const { trackList, trackIndex } = context;
         trackList.splice(trackIndex + 1, 0, event.track);
@@ -500,14 +533,26 @@ export const usePlayer = (artisan) => {
         return announcements[Title];
       },
       sendIntroSignal: async (context) => {
-        const { trackList, trackIndex } = context;
+        const { trackList, trackIndex, inserted } = context;
+        const event = announcer.state.can("append") ? "append" : "list";
+        if (inserted) {
+          return announcer.send({
+            type: event,
+            items: [
+              {
+                artist: inserted.artistName,
+                title: inserted.Title,
+                upcoming: [],
+              },
+            ],
+          });
+        }
         const track = trackList[trackIndex + 1];
         if (!track) return;
         const unannounced = trackList
           .slice(trackIndex + 1)
           .filter((track) => !announcer.contains(track.Title))
-          .slice(0, 5);
-        const event = announcer.state.can("append") ? "append" : "list";
+          .slice(0, 3);
         announcer.send({
           type: event,
           items: unannounced.map((item) => ({
@@ -544,7 +589,7 @@ export const usePlayer = (artisan) => {
           Title,
           artistName,
           updateChat,
-          upcomingTracks,
+          [],
           "Milton",
           context.options
         );
